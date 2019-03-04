@@ -33,7 +33,7 @@ public class SysCacheServiceImpl implements SysCacheService {
 
     @Override
     public List<SysCacheEntity> queryAll(Map<String, String> params) {
-        SysCacheEntity sysCacheEntity = null;
+        SysCacheEntity sysCacheEntity;
         List<SysCacheEntity> result = new ArrayList<>();
 
         String pattern = params.get("pattern");
@@ -42,7 +42,11 @@ public class SysCacheServiceImpl implements SysCacheService {
         for (String key : keySet) {
             sysCacheEntity = new SysCacheEntity();
             sysCacheEntity.setCacheKey(key);
-            sysCacheEntity.setValue(JSONObject.toJSON(jedisUtil.getObject(key)).toString());
+            try {
+                sysCacheEntity.setValue(JSONObject.toJSON(jedisUtil.getObject(key)).toString());
+            } catch (Exception e) {
+                sysCacheEntity.setValue("");
+            }
             sysCacheEntity.setSeconds(jedisUtil.ttl(key));
             result.add(sysCacheEntity);
         }
