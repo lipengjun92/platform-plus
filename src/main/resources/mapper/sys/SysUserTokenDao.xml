@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.sys.dao.SysUserTokenDao">
+
+	<select id="queryByToken" resultType="com.platform.modules.sys.entity.SysUserTokenEntity">
+		select * from sys_user_token where token = #{value}
+	</select>
+
+    <sql id="selectSql">
+        select
+        t.user_id,
+        t.expire_time,
+        t.update_time,
+        u.user_name user_name
+        from sys_user_token t
+        left join sys_user u on t.user_id = u.user_id
+        WHERE 1=1 and t.expire_time > #{nowDate}
+        <if test="name != null and name.trim() != ''">
+            AND u.real_name LIKE '%${name}%'
+        </if>
+    </sql>
+
+    <select id="selectSysUserTokenPage" resultType="com.platform.modules.sys.entity.SysUserTokenEntity">
+        <include refid="selectSql"/>
+    </select>
+
+</mapper>

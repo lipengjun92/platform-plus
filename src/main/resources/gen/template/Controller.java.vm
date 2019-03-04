@@ -1,0 +1,109 @@
+/*
+ * 项目名称:${projectName}
+ * 类名称:${className}Controller.java
+ * 包名称:${package}.controller
+ *
+ * 修改履历:
+ *     日期                       修正者        主要内容
+ *     ${datetime}        ${author}     初版做成
+ *
+ * Copyright (c) 2019-2019 微同软件
+ */
+package ${package}.controller;
+
+import com.platform.common.utils.PageUtils;
+import com.platform.common.utils.RestResponse;
+import ${package}.entity.${className}Entity;
+import ${package}.service.${className}Service;
+import com.platform.modules.sys.controller.AbstractController;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * ${comments}Controller
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+@RestController
+@RequestMapping("${pre}/${pathName}")
+public class ${className}Controller extends AbstractController {
+    @Autowired
+    private ${className}Service ${classname}Service;
+
+    /**
+     * 查看所有列表
+     */
+    @RequestMapping("/queryAll")
+    @RequiresPermissions("${pre}:${pathName}:list")
+    public RestResponse queryAll(@RequestParam Map<String, Object> params) {
+        List<${className}Entity> list = ${classname}Service.queryAll(params);
+
+        return RestResponse.success().put("list", list);
+    }
+
+    /**
+     * 分页查询
+     */
+    @GetMapping("/list")
+    @RequiresPermissions("${pre}:${pathName}:list")
+    public RestResponse list(@RequestParam Map<String, Object> params) {
+        PageUtils page = ${classname}Service.queryPage(params);
+
+        return RestResponse.success().put("page", page);
+    }
+
+    /**
+     * 查看信息
+     */
+    @RequestMapping("/info/{${pk.attrname}}")
+    @RequiresPermissions("${pre}:${pathName}:info")
+    public RestResponse info(@PathVariable("${pk.attrname}") ${pk.attrType} ${pk.attrname}) {
+        ${className}Entity ${classname} = ${classname}Service.selectById(${pk.attrname});
+
+        return RestResponse.success().put("${pathName}", ${classname});
+    }
+
+    /**
+     * 保存
+     */
+    @RequestMapping("/save")
+    @RequiresPermissions("${pre}:${pathName}:save")
+    public RestResponse save(@RequestBody ${className}Entity ${classname}) {
+
+        ${classname}.setCreateUserId(getUserId());
+        ${classname}.setCreateUserOrgNo(getOrgNo());
+        ${classname}Service.save(${classname});
+
+        return RestResponse.success();
+    }
+
+    /**
+     * 修改
+     */
+    @RequestMapping("/update")
+    @RequiresPermissions("${pre}:${pathName}:update")
+    public RestResponse update(@RequestBody ${className}Entity ${classname}) {
+
+        ${classname}.setCreateUserId(getUserId());
+        ${classname}.setCreateUserOrgNo(getOrgNo());
+        ${classname}Service.update(${classname});
+
+        return RestResponse.success();
+    }
+
+    /**
+     * 删除
+     */
+    @RequestMapping("/delete")
+    @RequiresPermissions("${pre}:${pathName}:delete")
+    public RestResponse delete(@RequestBody ${pk.attrType}[] ${pk.attrname}s) {
+        ${classname}Service.deleteBatch(${pk.attrname}s);
+
+        return RestResponse.success();
+    }
+}

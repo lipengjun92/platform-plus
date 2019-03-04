@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.sys.dao.SysRoleOrgDao">
+
+    <delete id="deleteByRoleId">
+        delete from sys_role_org where role_id = #{roleId}
+    </delete>
+    <delete id="deleteBatch">
+        delete from sys_role_org where role_id in
+        <foreach item="roleId" collection="array" open="(" separator="," close=")">
+            #{roleId}
+        </foreach>
+    </delete>
+
+    <select id="queryOrgNoList" resultType="string">
+		select org_no from sys_role_org where role_id = #{value}
+	</select>
+
+    <select id="queryOrgNoListByUserId" resultType="string">
+		select org_no from sys_role_org where role_id IN (SELECT role_id FROM SYS_USER_ROLE WHERE user_id =  #{value})
+	</select>
+</mapper>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.sys.dao.SysUserDao">
+	<!-- 查询用户的所有权限 -->
+	<select id="queryAllPerms" resultType="string">
+		select m.perms from sys_user_role ur 
+			LEFT JOIN sys_role_menu rm on ur.role_id = rm.role_id 
+			LEFT JOIN sys_menu m on rm.menu_id = m.menu_id 
+		where ur.user_id = #{userId}
+	</select>
+	
+	<!-- 查询用户的所有菜单ID --> 
+	<select id="queryAllMenuId" resultType="string">
+		select distinct rm.menu_id from sys_user_role ur
+			LEFT JOIN sys_role_menu rm on ur.role_id = rm.role_id 
+		where ur.user_id = #{userId}
+	</select>
+	
+	<select id="queryByUserName" resultType="com.platform.modules.sys.entity.SysUserEntity">
+		select * from sys_user where user_name = #{userName}
+	</select>
+	<select id="selectListPage" resultType="com.platform.modules.sys.entity.SysUserEntity">
+		select t.user_id, t.sex, t.real_name, t.user_name, t.org_no, t.email, t.mobile, t.status, t.create_time,t.create_user_id,t.create_user_org_no from sys_user t
+		where 1=1
+		<if test="userName != null and userName != ''">
+			and t.user_name like '%${userName}%'
+		</if>
+		<if test="orgNo != null and orgNo != ''">
+			and t.org_no = #{orgNo}
+		</if>
+	</select>
+	<select id="selectEntityById" resultType="com.platform.modules.sys.entity.SysUserEntity">
+			select t.user_id, t.sex, t.real_name, t.user_name, t.org_no, t.email, t.mobile, t.status, t.create_time,t.create_user_id,t.create_user_org_no from sys_user t
+		where 1=1 and t.user_id = #{userId}
+	</select>
+
+</mapper>

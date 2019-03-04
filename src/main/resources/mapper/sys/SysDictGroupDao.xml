@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.sys.dao.SysDictGroupDao">
+    <sql id="selectSql">
+        select
+        t.id,
+        t.code,
+        t.name,
+        t.create_time,
+        t.remark
+        from sys_dict_group t
+        WHERE 1=1
+        <if test="code != null and code.trim() != ''">
+            AND t.code LIKE '%${code}%'
+        </if>
+        <if test="name != null and name.trim() != ''">
+            AND t.name LIKE '%${name}%'
+        </if>
+        order by t.create_time desc
+    </sql>
+
+    <select id="selectSysDictGroupPage" resultType="com.platform.modules.sys.entity.SysDictGroupEntity">
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="queryAll" resultType="com.platform.modules.sys.entity.SysDictGroupEntity">
+        <include refid="selectSql"/>
+    </select>
+</mapper>

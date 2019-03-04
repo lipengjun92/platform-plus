@@ -1,0 +1,76 @@
+/*
+ * 项目名称:${projectName}
+ * 类名称:${className}Service.java
+ * 包名称:${package}.service
+ *
+ * 修改履历:
+ *     日期                       修正者        主要内容
+ *     ${datetime}        ${author}     初版做成
+ *
+ * Copyright (c) 2019-2019 微同软件
+ */
+package ${package}.service;
+
+import com.baomidou.mybatisplus.service.IService;
+import com.platform.common.utils.PageUtils;
+import ${package}.entity.${className}Entity;
+
+import java.util.List;
+import java.util.Map;
+
+/**
+ * ${comments}Service接口
+ *
+ * @author ${author}
+ * @date ${datetime}
+ */
+public interface ${className}Service extends IService<${className}Entity> {
+
+    /**
+     * 查询所有列表
+     *
+     * @param params
+     * @return
+     */
+    List<${className}Entity> queryAll(Map<String, Object> params);
+
+    /**
+     * 查询分页信息
+     *
+     * @param params
+     * @return
+     */
+    PageUtils queryPage(Map<String, Object> params);
+
+    /**
+     * 保存实体
+     *
+     * @param ${classname} 实体
+     * @return 保存条数
+     */
+    void save(${className}Entity ${classname});
+
+    /**
+     * 根据主键更新实体
+     *
+     * @param ${classname} 实体
+     * @return 更新条数
+     */
+    void update(${className}Entity ${classname});
+
+    /**
+     * 根据主键删除
+     *
+     * @param ${pk.attrname}
+     * @return 删除条数
+     */
+    void delete(${pk.attrType} ${pk.attrname});
+
+    /**
+     * 根据主键批量删除
+     *
+     * @param ${pk.attrname}s
+     * @return 删除条数
+     */
+    void deleteBatch(${pk.attrType}[] ${pk.attrname}s);
+}

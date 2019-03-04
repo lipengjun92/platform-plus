@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.sys.dao.SysMenuDao">
+
+	<select id="queryListParentId" resultType="com.platform.modules.sys.entity.SysMenuEntity">
+		select * from sys_menu where parent_id = #{parentId} order by order_num asc
+	</select>
+
+	<select id="queryNotButtonList" resultType="com.platform.modules.sys.entity.SysMenuEntity">
+		select * from sys_menu where type != 2 order by order_num asc
+	</select>
+
+	<select id="queryList" resultType="com.platform.modules.sys.entity.SysMenuEntity">
+		select a.*,b.name parent_name from sys_menu a left join sys_menu b on a.parent_id = b.menu_id order by a.MENU_ID,a.ORDER_NUM
+	</select>
+    <select id="queryMaxIdByParentId" resultType="string">
+		SELECT max(menu_id) FROM sys_menu WHERE parent_id = #{parentId}
+	</select>
+</mapper>

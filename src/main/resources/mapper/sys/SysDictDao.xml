@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.sys.dao.SysDictDao">
+
+    <select id="queryByCode" resultType="com.platform.modules.sys.entity.SysDictEntity">
+        select name,value from sys_dict where 1=1
+            and group_id = (select id from sys_dict_group where code = #{code})
+            and status = 1 order by sort
+    </select>
+
+    <sql id="selectSql">
+        select d.id,d.group_id,d.name,d.value,d.sort,d.status,d.remark,g.code code from sys_dict d left join sys_dict_group g on d.group_id = g.id
+        where 1=1
+        <if test="name != null and name != ''">
+            and d.name LIKE '%${name}%'
+        </if>
+        <if test="code != null and code != ''">
+            and g.code LIKE '%${code}%'
+        </if>
+        <if test="status != null">
+            and d.status = #{status}
+        </if>
+    </sql>
+
+    <select id="selectDictPage" resultType="com.platform.modules.sys.entity.SysDictEntity">
+        <include refid="selectSql"/>
+    </select>
+
+    <select id="queryAll" resultType="com.platform.modules.sys.entity.SysDictEntity">
+        <include refid="selectSql"/>
+    </select>
+</mapper>

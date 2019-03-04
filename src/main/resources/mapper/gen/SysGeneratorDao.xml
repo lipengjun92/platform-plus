@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.platform.modules.gen.dao.SysGeneratorDao">
+	<select id="queryPage" resultType="com.platform.modules.gen.entity.ResultMapEntity">
+		<if test="driverClassName != null and driverClassName == 'com.mysql.jdbc.Driver'">
+			select TABLE_NAME, engine, table_comment, create_time from information_schema.tables
+			where table_schema = (select database())
+			<if test="tableName != null and tableName.trim() != ''">
+				and TABLE_NAME like '%${tableName}%'
+			</if>
+			order by create_time desc
+		</if>
+		<if test="driverClassName != null and driverClassName == 'oracle.jdbc.driver.OracleDriver'">
+			SELECT TABLE_NAME, COMMENTS table_comment FROM
+				(SELECT ROWNUM AS RN,USER_TAB_COMMENTS.TABLE_NAME TABLE_NAME,USER_TAB_COMMENTS.COMMENTS COMMENTS,USER_TABLES.TABLESPACE_NAME
+				FROM USER_TAB_COMMENTS
+				LEFT JOIN USER_TABLES
+				ON USER_TABLES.TABLE_NAME = USER_TAB_COMMENTS.TABLE_NAME
+				WHERE 1 = 1
+				<if test="tableName != null and tableName.trim() != ''">
+					AND USER_TABLES.table_Name LIKE concat(concat('%', #{tableName}), '%')
+				</if>
+				)
+		</if>
+	</select>
+
+	<select id="queryTable" resultType="com.platform.modules.gen.entity.ResultMapEntity">
+		<if test="driverClassName != null and driverClassName == 'com.mysql.jdbc.Driver'">
+			select table_name tableName, engine, table_comment tableComment, create_time createTime from information_schema.tables
+				where table_schema = (select database()) and table_name = #{tableName}
+		</if>
+
+		<if test="driverClassName != null and driverClassName == 'oracle.jdbc.driver.OracleDriver'">
+			SELECT USER_TAB_COMMENTS.TABLE_NAME TABLE_NAME,
+				USER_TAB_COMMENTS.COMMENTS   table_Comment,
+				USER_TABLES.TABLESPACE_NAME
+			FROM USER_TAB_COMMENTS
+			LEFT JOIN USER_TABLES
+			ON USER_TABLES.TABLE_NAME = USER_TAB_COMMENTS.TABLE_NAME
+			WHERE USER_TAB_COMMENTS.table_name = #{tableName}
+		</if>
+	</select> 
+	
+	<select id="queryColumns" resultType="com.platform.modules.gen.entity.ColumnEntity">
+		<if test="driverClassName != null and driverClassName == 'com.mysql.jdbc.Driver'">
+			select column_name, data_type, column_comment comments, column_key, extra from information_schema.columns
+				where table_name = #{tableName} and table_schema = (select database()) order by ordinal_position
+		</if>
+
+		<if test="driverClassName != null and driverClassName == 'oracle.jdbc.driver.OracleDriver'">
+			select column_name column_name,
+				lower(DATA_TYPE || decode(DATA_TYPE, 'DATE', '', '(' || nvl(DATA_PRECISION, data_length) || nvl2(nullif(DATA_SCALE, 0), ',' || data_scale, '') || ')')) data_type,
+				(select comments from user_col_comments where table_name = #{tableName} and column_name = user_tab_columns.column_Name) comments,
+				(select col.column_name from user_constraints con, user_cons_columns col where con.constraint_name = col.constraint_name and con.constraint_type = 'P' and col.table_name = #{tableName}) column_key
+			from user_tab_columns
+			LEFT JOIN USER_TABLES
+				ON USER_TABLES.TABLE_NAME = user_tab_columns.TABLE_NAME
+				WHERE user_tab_columns.table_name = #{tableName}
+		</if>
+	</select>
+</mapper>
