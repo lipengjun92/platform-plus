@@ -11,8 +11,8 @@
  */
 package ${package}.service;
 
-import com.baomidou.mybatisplus.service.IService;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
 import ${package}.entity.${className}Entity;
 
 import java.util.List;
@@ -40,37 +40,37 @@ public interface ${className}Service extends IService<${className}Entity> {
      * @param params
      * @return
      */
-    PageUtils queryPage(Map<String, Object> params);
+    Page queryPage(Map<String, Object> params);
 
     /**
-     * 保存实体
+     * 新增实体
      *
      * @param ${classname} 实体
-     * @return 保存条数
+     * @return 保存结果
      */
-    void save(${className}Entity ${classname});
+    boolean add(${className}Entity ${classname});
 
     /**
      * 根据主键更新实体
      *
      * @param ${classname} 实体
-     * @return 更新条数
+     * @return 更新结果
      */
-    void update(${className}Entity ${classname});
+    boolean update(${className}Entity ${classname});
 
     /**
      * 根据主键删除
      *
      * @param ${pk.attrname}
-     * @return 删除条数
+     * @return 删除结果
      */
-    void delete(${pk.attrType} ${pk.attrname});
+    boolean delete(${pk.attrType} ${pk.attrname});
 
     /**
      * 根据主键批量删除
      *
      * @param ${pk.attrname}s
-     * @return 删除条数
+     * @return 删除结果
      */
-    void deleteBatch(${pk.attrType}[] ${pk.attrname}s);
+    boolean deleteBatch(${pk.attrType}[] ${pk.attrname}s);
 }

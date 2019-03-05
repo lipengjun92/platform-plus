@@ -87,7 +87,7 @@ platform-plus
 - Spring Boot 2.0
 - Apache Shiro 1.4
 - Spring MVC 5.0
-- MyBatis 3.4.6、MyBatis-Plus 2.3.3
+- MyBatis 3.4.6、MyBatis-Plus 3.1.0
 - Quartz 2.3
 - Druid 1.1.10
 - lombok 1.18.4

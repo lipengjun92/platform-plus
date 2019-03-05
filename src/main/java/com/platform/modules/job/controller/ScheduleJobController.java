@@ -12,7 +12,7 @@
 package com.platform.modules.job.controller;
 
 import com.platform.common.annotation.SysLog;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.utils.RestResponse;
 import com.platform.common.validator.ValidatorUtils;
 import com.platform.modules.job.entity.ScheduleJobEntity;
@@ -40,7 +40,7 @@ public class ScheduleJobController {
     @GetMapping("/list")
     @RequiresPermissions("sys:schedule:list")
     public RestResponse list(@RequestParam Map<String, Object> params) {
-        PageUtils page = scheduleJobService.queryPage(params);
+        Page page = scheduleJobService.queryPage(params);
 
         return RestResponse.success().put("page", page);
     }
@@ -51,7 +51,7 @@ public class ScheduleJobController {
     @GetMapping("/info/{jobId}")
     @RequiresPermissions("sys:schedule:info")
     public RestResponse info(@PathVariable("jobId") String jobId) {
-        ScheduleJobEntity schedule = scheduleJobService.selectById(jobId);
+        ScheduleJobEntity schedule = scheduleJobService.getById(jobId);
 
         return RestResponse.success().put("schedule", schedule);
     }

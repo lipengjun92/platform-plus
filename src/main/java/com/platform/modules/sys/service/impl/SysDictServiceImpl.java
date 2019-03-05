@@ -11,11 +11,12 @@
  */
 package com.platform.modules.sys.service.impl;
 
-import com.baomidou.mybatisplus.plugins.Page;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.platform.common.annotation.RedisCache;
 import com.platform.common.utils.JedisUtil;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.utils.Query;
 import com.platform.modules.sys.dao.SysDictDao;
 import com.platform.modules.sys.entity.SysDictEntity;
@@ -46,36 +47,36 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictDao, SysDictEntity> i
     }
 
     @Override
-    public PageUtils queryPage(Map<String, Object> params) {
+    public IPage queryPage(Map<String, Object> params) {
         //排序
         params.put("sidx", "d.sort");
-        Page<SysDictEntity> page = new Query<SysDictEntity>(params).getPage();
-        return new PageUtils(page.setRecords(baseMapper.selectDictPage(page, params)));
+        IPage<SysDictEntity> page = new Query<SysDictEntity>(params).getPage();
+        return page.setRecords(baseMapper.selectDictPage(page, params));
     }
 
     @Override
-    public void save(SysDictEntity sysDict) {
-        this.insert(sysDict);
+    public void add(SysDictEntity sysDict) {
+        this.save(sysDict);
         jedisUtil.delByClass(this.getClass().getName(), "queryAll");
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void update(SysDictEntity sysDict) {
-        this.updateAllColumnById(sysDict);
+        this.updateById(sysDict);
         jedisUtil.delByClass(this.getClass().getName(), "queryAll");
     }
 
     @Override
     public void delete(String id) {
-        this.deleteById(id);
+        this.removeById(id);
         jedisUtil.delByClass(this.getClass().getName(), "queryAll");
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteBatch(String[] ids) {
-        this.deleteBatchIds(Arrays.asList(ids));
+        this.removeByIds(Arrays.asList(ids));
         jedisUtil.delByClass(this.getClass().getName(), "queryAll");
     }
 

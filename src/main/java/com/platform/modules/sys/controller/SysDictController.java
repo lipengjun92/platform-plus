@@ -11,9 +11,10 @@
  */
 package com.platform.modules.sys.controller;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.platform.common.annotation.SysLog;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.utils.RestResponse;
 import com.platform.common.validator.ValidatorUtils;
 import com.platform.common.validator.group.AddGroup;
@@ -61,7 +62,7 @@ public class SysDictController {
     @GetMapping("/list")
     @RequiresPermissions("sys:dict:list")
     public RestResponse list(@RequestParam Map<String, Object> params) {
-        PageUtils page = sysDictService.queryPage(params);
+        IPage page = sysDictService.queryPage(params);
 
         return RestResponse.success().put("page", page);
     }
@@ -72,7 +73,7 @@ public class SysDictController {
     @RequestMapping("/info/{id}")
     @RequiresPermissions("sys:dict:info")
     public RestResponse info(@PathVariable("id") String id) {
-        SysDictEntity sysDict = sysDictService.selectById(id);
+        SysDictEntity sysDict = sysDictService.getById(id);
 
         return RestResponse.success().put("dict", sysDict);
     }
@@ -85,7 +86,7 @@ public class SysDictController {
     @RequiresPermissions("sys:dict:save")
     public RestResponse save(@RequestBody SysDictEntity sysDict) {
         ValidatorUtils.validateEntity(sysDict, AddGroup.class);
-        sysDictService.save(sysDict);
+        sysDictService.add(sysDict);
 
         return RestResponse.success();
     }
@@ -124,7 +125,7 @@ public class SysDictController {
     @RequestMapping("/queryByCode")
     public RestResponse queryByCode(@RequestParam Map<String, Object> params) {
         String code = (String) params.get("code");
-        SysDictGroupEntity sysDictGroupEntity = sysDictGroupService.selectOne(new EntityWrapper<SysDictGroupEntity>()
+        SysDictGroupEntity sysDictGroupEntity = sysDictGroupService.getOne(new QueryWrapper<SysDictGroupEntity>()
                 .eq(StringUtils.isNotBlank(code), "code", code)
         );
         String type = "";

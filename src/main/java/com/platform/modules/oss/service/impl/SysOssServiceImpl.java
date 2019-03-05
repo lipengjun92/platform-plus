@@ -11,9 +11,9 @@
  */
 package com.platform.modules.oss.service.impl;
 
-import com.baomidou.mybatisplus.plugins.Page;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.utils.Query;
 import com.platform.modules.oss.dao.SysOssDao;
 import com.platform.modules.oss.entity.SysOssEntity;
@@ -29,11 +29,11 @@ import java.util.Map;
 public class SysOssServiceImpl extends ServiceImpl<SysOssDao, SysOssEntity> implements SysOssService {
 
     @Override
-    public PageUtils queryPage(Map<String, Object> params) {
+    public Page queryPage(Map<String, Object> params) {
         //排序
         params.put("sidx", "t.create_time");
         params.put("asc", false);
         Page<SysOssEntity> page = new Query<SysOssEntity>(params).getPage();
-        return new PageUtils(page.setRecords(baseMapper.selectSysOssPage(page, params)));
+        return page.setRecords(baseMapper.selectSysOssPage(page, params));
     }
 }

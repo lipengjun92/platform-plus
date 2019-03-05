@@ -11,9 +11,9 @@
  */
 package com.platform.modules.job.service.impl;
 
-import com.baomidou.mybatisplus.plugins.Page;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.utils.Query;
 import com.platform.modules.job.dao.ScheduleJobLogDao;
 import com.platform.modules.job.entity.ScheduleJobLogEntity;
@@ -29,12 +29,12 @@ import java.util.Map;
 public class ScheduleJobLogServiceImpl extends ServiceImpl<ScheduleJobLogDao, ScheduleJobLogEntity> implements ScheduleJobLogService {
 
     @Override
-    public PageUtils queryPage(Map<String, Object> params) {
+    public Page queryPage(Map<String, Object> params) {
         //排序
         params.put("sidx", "t.create_time");
         params.put("asc", false);
         Page<ScheduleJobLogEntity> page = new Query<ScheduleJobLogEntity>(params).getPage();
-        return new PageUtils(page.setRecords(baseMapper.selectScheduleJobLogPage(page, params)));
+        return page.setRecords(baseMapper.selectScheduleJobLogPage(page, params));
     }
 
 }

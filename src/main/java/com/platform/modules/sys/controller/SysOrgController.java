@@ -12,7 +12,6 @@
 package com.platform.modules.sys.controller;
 
 import com.platform.common.annotation.SysLog;
-import com.platform.common.utils.PageUtils;
 import com.platform.common.utils.RestResponse;
 import com.platform.modules.sys.entity.SysOrgEntity;
 import com.platform.modules.sys.entity.SysUserEntity;
@@ -48,23 +47,12 @@ public class SysOrgController extends AbstractController {
     }
 
     /**
-     * 分页查询
-     */
-    @GetMapping("/list")
-    @RequiresPermissions("sys:org:list")
-    public RestResponse list(@RequestParam Map<String, Object> params) {
-        PageUtils page = sysOrgService.queryPage(params);
-
-        return RestResponse.success().put("page", page);
-    }
-
-    /**
      * 查看信息
      */
     @RequestMapping("/info/{orgNo}")
     @RequiresPermissions("sys:org:info")
     public RestResponse info(@PathVariable("orgNo") String orgNo) {
-        SysOrgEntity sysOrg = sysOrgService.selectById(orgNo);
+        SysOrgEntity sysOrg = sysOrgService.getById(orgNo);
 
         return RestResponse.success().put("org", sysOrg);
     }
@@ -78,7 +66,7 @@ public class SysOrgController extends AbstractController {
     public RestResponse save(@RequestBody SysOrgEntity sysOrg) {
         SysUserEntity user = getUser();
         sysOrg.setCreateUserId(user.getUserId());
-        sysOrgService.save(sysOrg);
+        sysOrgService.add(sysOrg);
         return RestResponse.success();
     }
 

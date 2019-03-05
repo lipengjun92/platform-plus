@@ -11,7 +11,7 @@
  */
 package com.platform.modules.sys.service.impl;
 
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.platform.modules.sys.dao.SysUserRoleDao;
 import com.platform.modules.sys.entity.SysUserRoleEntity;
 import com.platform.modules.sys.service.SysUserRoleService;
@@ -33,7 +33,7 @@ public class SysUserRoleServiceImpl extends ServiceImpl<SysUserRoleDao, SysUserR
         Map<String, Object> map = new HashMap<>(2);
         map.put("user_id", userId);
         //先删除用户与角色关系
-        this.deleteByMap(map);
+        this.removeByMap(map);
 
         if (roleIdList == null || roleIdList.size() == 0) {
             return;
@@ -48,7 +48,7 @@ public class SysUserRoleServiceImpl extends ServiceImpl<SysUserRoleDao, SysUserR
 
             list.add(sysUserRoleEntity);
         }
-        this.insertBatch(list);
+        this.saveBatch(list);
     }
 
     @Override

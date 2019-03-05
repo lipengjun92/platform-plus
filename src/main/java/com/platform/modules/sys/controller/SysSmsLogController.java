@@ -14,7 +14,7 @@ package com.platform.modules.sys.controller;
 import com.alibaba.fastjson.JSON;
 import com.platform.common.annotation.SysLog;
 import com.platform.common.utils.Constant;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.utils.RestResponse;
 import com.platform.modules.sys.entity.SmsConfig;
 import com.platform.modules.sys.entity.SysSmsLogEntity;
@@ -58,7 +58,7 @@ public class SysSmsLogController extends AbstractController {
     @GetMapping("/list")
     @RequiresPermissions("sys:smslog:list")
     public RestResponse list(@RequestParam Map<String, Object> params) {
-        PageUtils page = sysSmsLogService.queryPage(params);
+        Page page = sysSmsLogService.queryPage(params);
 
         return RestResponse.success().put("page", page);
     }
@@ -69,7 +69,7 @@ public class SysSmsLogController extends AbstractController {
     @RequestMapping("/info/{id}")
     @RequiresPermissions("sys:smslog:info")
     public RestResponse info(@PathVariable("id") String id) {
-        SysSmsLogEntity sysSmsLog = sysSmsLogService.selectById(id);
+        SysSmsLogEntity sysSmsLog = sysSmsLogService.getById(id);
 
         return RestResponse.success().put("smslog", sysSmsLog);
     }
@@ -82,7 +82,7 @@ public class SysSmsLogController extends AbstractController {
     @RequiresPermissions("sys:smslog:save")
     public RestResponse save(@RequestBody SysSmsLogEntity sysSmsLog) {
 
-        sysSmsLogService.save(sysSmsLog);
+        sysSmsLogService.add(sysSmsLog);
 
         return RestResponse.success();
     }

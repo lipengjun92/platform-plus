@@ -11,8 +11,9 @@
  */
 package com.platform.modules.sys.service;
 
-import com.baomidou.mybatisplus.service.IService;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.modules.sys.entity.SysDictEntity;
 
 import java.util.List;
@@ -39,7 +40,7 @@ public interface SysDictService extends IService<SysDictEntity> {
      * @param params
      * @return
      */
-    PageUtils queryPage(Map<String, Object> params);
+    IPage queryPage(Map<String, Object> params);
 
     /**
      * 保存实体
@@ -47,7 +48,7 @@ public interface SysDictService extends IService<SysDictEntity> {
      * @param sysDict 实体
      * @return 保存条数
      */
-    void save(SysDictEntity sysDict);
+    void add(SysDictEntity sysDict);
 
     /**
      * 根据主键更新实体

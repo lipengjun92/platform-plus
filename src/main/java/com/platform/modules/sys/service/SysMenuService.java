@@ -11,7 +11,7 @@
  */
 package com.platform.modules.sys.service;
 
-import com.baomidou.mybatisplus.service.IService;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.platform.modules.sys.entity.SysMenuEntity;
 
 import java.util.List;
@@ -75,5 +75,5 @@ public interface SysMenuService extends IService<SysMenuEntity> {
      * @param menu
      * @return
      */
-    boolean save(SysMenuEntity menu);
+    boolean add(SysMenuEntity menu);
 }

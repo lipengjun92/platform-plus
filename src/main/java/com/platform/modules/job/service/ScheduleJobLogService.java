@@ -11,8 +11,8 @@
  */
 package com.platform.modules.job.service;
 
-import com.baomidou.mybatisplus.service.IService;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.modules.job.entity.ScheduleJobLogEntity;
 
 import java.util.Map;
@@ -30,6 +30,6 @@ public interface ScheduleJobLogService extends IService<ScheduleJobLogEntity> {
      * @param params
      * @return
      */
-    PageUtils queryPage(Map<String, Object> params);
+    Page queryPage(Map<String, Object> params);
 
 }

@@ -11,10 +11,11 @@
  */
 package ${package}.dao;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.baomidou.mybatisplus.plugins.pagination.Pagination;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import ${package}.entity.${className}Entity;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -34,7 +35,7 @@ public interface ${className}Dao extends BaseMapper<${className}Entity> {
      * @param params
      * @return
      */
-    List<${className}Entity> queryAll(Map<String, Object> params);
+    List<${className}Entity> queryAll(@Param("params") Map<String, Object> params);
 
     /**
      * 自定义分页查询
@@ -43,5 +44,5 @@ public interface ${className}Dao extends BaseMapper<${className}Entity> {
      * @param params
      * @return
      */
-    List<${className}Entity> select${className}Page(Pagination page, Map<String, Object> params);
+    List<${className}Entity> select${className}Page(IPage page, @Param("params") Map<String, Object> params);
 }

@@ -11,8 +11,8 @@
  */
 package com.platform.modules.job.service;
 
-import com.baomidou.mybatisplus.service.IService;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.modules.job.entity.ScheduleJobEntity;
 
 import java.util.Map;
@@ -30,14 +30,14 @@ public interface ScheduleJobService extends IService<ScheduleJobEntity> {
      * @param params
      * @return
      */
-    PageUtils queryPage(Map<String, Object> params);
+    Page queryPage(Map<String, Object> params);
 
     /**
      * 保存定时任务
      *
      * @param scheduleJob
      */
-    void save(ScheduleJobEntity scheduleJob);
+    void add(ScheduleJobEntity scheduleJob);
 
     /**
      * 更新定时任务

@@ -21,8 +21,8 @@
         t.return_msg
         from sys_sms_log t
         WHERE 1=1
-        <if test="sendId != null and sendId.trim() != ''">
-            AND t.send_id LIKE '%${sendId}%'
+        <if test="params.sendId != null and params.sendId.trim() != ''">
+            AND t.send_id LIKE '%${params.sendId}%'
         </if>
     </sql>
 

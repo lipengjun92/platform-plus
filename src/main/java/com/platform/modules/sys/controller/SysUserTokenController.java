@@ -12,7 +12,7 @@
 package com.platform.modules.sys.controller;
 
 import com.platform.common.annotation.SysLog;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.utils.RestResponse;
 import com.platform.modules.sys.service.SysUserTokenService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -39,7 +39,7 @@ public class SysUserTokenController {
     @GetMapping("/list")
     @RequiresPermissions("sys:usertoken:list")
     public RestResponse list(@RequestParam Map<String, Object> params) {
-        PageUtils page = sysUserTokenService.queryPage(params);
+        Page page = sysUserTokenService.queryPage(params);
 
         return RestResponse.success().put("page", page);
     }

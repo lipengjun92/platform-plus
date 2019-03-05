@@ -11,11 +11,12 @@
  */
 package ${package}.controller;
 
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.platform.common.annotation.SysLog;
 import com.platform.common.utils.RestResponse;
+import com.platform.modules.sys.controller.AbstractController;
 import ${package}.entity.${className}Entity;
 import ${package}.service.${className}Service;
-import com.platform.modules.sys.controller.AbstractController;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -52,7 +53,7 @@ public class ${className}Controller extends AbstractController {
     @GetMapping("/list")
     @RequiresPermissions("${pre}:${pathName}:list")
     public RestResponse list(@RequestParam Map<String, Object> params) {
-        PageUtils page = ${classname}Service.queryPage(params);
+        Page page = ${classname}Service.queryPage(params);
 
         return RestResponse.success().put("page", page);
     }
@@ -63,21 +64,20 @@ public class ${className}Controller extends AbstractController {
     @RequestMapping("/info/{${pk.attrname}}")
     @RequiresPermissions("${pre}:${pathName}:info")
     public RestResponse info(@PathVariable("${pk.attrname}") ${pk.attrType} ${pk.attrname}) {
-        ${className}Entity ${classname} = ${classname}Service.selectById(${pk.attrname});
+        ${className}Entity ${classname} = ${classname}Service.getById(${pk.attrname});
 
         return RestResponse.success().put("${pathName}", ${classname});
     }
 
     /**
-     * 保存
+     * 新增
      */
+    @SysLog("新增${comments}")
     @RequestMapping("/save")
     @RequiresPermissions("${pre}:${pathName}:save")
     public RestResponse save(@RequestBody ${className}Entity ${classname}) {
 
-        ${classname}.setCreateUserId(getUserId());
-        ${classname}.setCreateUserOrgNo(getOrgNo());
-        ${classname}Service.save(${classname});
+        ${classname}Service.add(${classname});
 
         return RestResponse.success();
     }
@@ -85,12 +85,11 @@ public class ${className}Controller extends AbstractController {
     /**
      * 修改
      */
+    @SysLog("修改${comments}")
     @RequestMapping("/update")
     @RequiresPermissions("${pre}:${pathName}:update")
     public RestResponse update(@RequestBody ${className}Entity ${classname}) {
 
-        ${classname}.setCreateUserId(getUserId());
-        ${classname}.setCreateUserOrgNo(getOrgNo());
         ${classname}Service.update(${classname});
 
         return RestResponse.success();
@@ -99,6 +98,7 @@ public class ${className}Controller extends AbstractController {
     /**
      * 删除
      */
+    @SysLog("删除${comments}")
     @RequestMapping("/delete")
     @RequiresPermissions("${pre}:${pathName}:delete")
     public RestResponse delete(@RequestBody ${pk.attrType}[] ${pk.attrname}s) {

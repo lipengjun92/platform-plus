@@ -11,9 +11,9 @@
  */
 package com.platform.modules.sys.service.impl;
 
-import com.baomidou.mybatisplus.plugins.Page;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.utils.Query;
 import com.platform.common.utils.RestResponse;
 import com.platform.modules.sys.dao.SysUserTokenDao;
@@ -57,7 +57,7 @@ public class SysUserTokenServiceImpl extends ServiceImpl<SysUserTokenDao, SysUse
         /**
          * 判断是否生成过token
          */
-        SysUserTokenEntity tokenEntity = this.selectById(userId);
+        SysUserTokenEntity tokenEntity = this.getById(userId);
         if (tokenEntity == null) {
             tokenEntity = new SysUserTokenEntity();
             tokenEntity.setUserId(userId);
@@ -66,7 +66,7 @@ public class SysUserTokenServiceImpl extends ServiceImpl<SysUserTokenDao, SysUse
             tokenEntity.setExpireTime(expireTime);
 
             //保存token
-            this.insert(tokenEntity);
+            this.save(tokenEntity);
         } else {
             tokenEntity.setToken(token);
             tokenEntity.setUpdateTime(now);
@@ -94,22 +94,22 @@ public class SysUserTokenServiceImpl extends ServiceImpl<SysUserTokenDao, SysUse
     }
 
     @Override
-    public PageUtils queryPage(Map<String, Object> params) {
+    public Page queryPage(Map<String, Object> params) {
         Page<SysUserTokenEntity> page = new Query<SysUserTokenEntity>(params).getPage();
 
         params.put("nowDate", new Date());
-        return new PageUtils(page.setRecords(baseMapper.selectSysUserTokenPage(page, params)));
+        return page.setRecords(baseMapper.selectSysUserTokenPage(page, params));
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void delete(String userId) {
-        this.deleteById(userId);
+        this.removeById(userId);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void offlineBatch(String[] userIds) {
-        this.deleteBatchIds(Arrays.asList(userIds));
+        this.removeByIds(Arrays.asList(userIds));
     }
 }

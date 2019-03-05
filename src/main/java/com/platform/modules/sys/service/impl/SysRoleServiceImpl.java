@@ -11,11 +11,11 @@
  */
 package com.platform.modules.sys.service.impl;
 
-import com.baomidou.mybatisplus.plugins.Page;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.platform.common.exception.BusinessException;
 import com.platform.common.utils.Constant;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.utils.Query;
 import com.platform.modules.sys.dao.SysRoleDao;
 import com.platform.modules.sys.entity.SysRoleEntity;
@@ -44,12 +44,12 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleDao, SysRoleEntity> i
     private SysRoleOrgService sysRoleOrgService;
 
     @Override
-    public PageUtils queryPage(Map<String, Object> params) {
+    public Page queryPage(Map<String, Object> params) {
         //排序
         params.put("sidx", "t.create_time");
         params.put("asc", false);
         Page<SysRoleEntity> page = new Query<SysRoleEntity>(params).getPage();
-        return new PageUtils(page.setRecords(baseMapper.selectSysRolePage(page, params)));
+        return page.setRecords(baseMapper.selectSysRolePage(page, params));
     }
 
     @Override
@@ -59,9 +59,9 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleDao, SysRoleEntity> i
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void save(SysRoleEntity role) {
+    public void add(SysRoleEntity role) {
         role.setCreateTime(new Date());
-        this.insert(role);
+        this.save(role);
 
         //检查权限是否越权
         checkPrems(role);
@@ -91,7 +91,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleDao, SysRoleEntity> i
     @Transactional(rollbackFor = Exception.class)
     public void deleteBatch(String[] roleIds) {
         //删除角色
-        this.deleteBatchIds(Arrays.asList(roleIds));
+        this.removeByIds(Arrays.asList(roleIds));
 
         //删除角色与菜单关联
         sysRoleMenuService.deleteBatch(roleIds);

@@ -11,7 +11,7 @@
  */
 package com.platform.modules.sys.service.impl;
 
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.platform.common.utils.Constant;
 import com.platform.common.utils.StringUtils;
 import com.platform.modules.sys.dao.SysMenuDao;
@@ -78,11 +78,11 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenuEntity> i
     @Override
     public void delete(String menuId) {
         //删除菜单
-        this.deleteById(menuId);
+        this.removeById(menuId);
         //删除菜单与角色关联
         Map<String, Object> map = new HashMap<>(2);
         map.put("menu_id", menuId);
-        sysRoleMenuService.deleteByMap(map);
+        sysRoleMenuService.removeByMap(map);
     }
 
     @Override
@@ -91,7 +91,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenuEntity> i
     }
 
     @Override
-    public boolean save(SysMenuEntity menu) {
+    public boolean add(SysMenuEntity menu) {
         String parentId = menu.getParentId();
         String maxId = baseMapper.queryMaxIdByParentId(parentId);
 

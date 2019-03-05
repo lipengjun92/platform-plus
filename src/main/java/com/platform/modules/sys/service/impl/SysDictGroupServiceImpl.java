@@ -11,9 +11,9 @@
  */
 package com.platform.modules.sys.service.impl;
 
-import com.baomidou.mybatisplus.plugins.Page;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.utils.Query;
 import com.platform.modules.sys.dao.SysDictGroupDao;
 import com.platform.modules.sys.entity.SysDictGroupEntity;
@@ -41,34 +41,34 @@ public class SysDictGroupServiceImpl extends ServiceImpl<SysDictGroupDao, SysDic
     }
 
     @Override
-    public PageUtils queryPage(Map<String, Object> params) {
+    public Page queryPage(Map<String, Object> params) {
         //排序
         params.put("sidx", "t.create_time");
         params.put("asc", false);
         Page<SysDictGroupEntity> page = new Query<SysDictGroupEntity>(params).getPage();
-        return new PageUtils(page.setRecords(baseMapper.selectSysDictGroupPage(page, params)));
+        return page.setRecords(baseMapper.selectSysDictGroupPage(page, params));
     }
 
     @Override
-    public void save(SysDictGroupEntity sysDictGroup) {
+    public void add(SysDictGroupEntity sysDictGroup) {
         sysDictGroup.setCreateTime(new Date());
-        this.insert(sysDictGroup);
+        this.save(sysDictGroup);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void update(SysDictGroupEntity sysDictGroup) {
-        this.updateAllColumnById(sysDictGroup);
+        this.updateById(sysDictGroup);
     }
 
     @Override
     public void delete(String id) {
-        this.deleteById(id);
+        this.removeById(id);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteBatch(String[] ids) {
-        this.deleteBatchIds(Arrays.asList(ids));
+        this.removeByIds(Arrays.asList(ids));
     }
 }

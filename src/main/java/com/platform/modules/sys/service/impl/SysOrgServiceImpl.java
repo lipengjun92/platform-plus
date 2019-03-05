@@ -11,9 +11,9 @@
  */
 package com.platform.modules.sys.service.impl;
 
-import com.baomidou.mybatisplus.plugins.Page;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.utils.Query;
 import com.platform.common.utils.StringUtils;
 import com.platform.modules.sys.dao.SysOrgDao;
@@ -42,17 +42,8 @@ public class SysOrgServiceImpl extends ServiceImpl<SysOrgDao, SysOrgEntity> impl
     }
 
     @Override
-    public PageUtils queryPage(Map<String, Object> params) {
-        //排序
-        params.put("sidx", "o.org_no");
-        params.put("asc", false);
-        Page<SysOrgEntity> page = new Query<SysOrgEntity>(params).getPage();
-        return new PageUtils(page.setRecords(baseMapper.selectSysOrgPage(page, params)));
-    }
-
-    @Override
     @Transactional(rollbackFor = Exception.class)
-    public void save(SysOrgEntity sysOrg) {
+    public void add(SysOrgEntity sysOrg) {
 
         String parentNo = sysOrg.getParentNo();
 
@@ -75,19 +66,19 @@ public class SysOrgServiceImpl extends ServiceImpl<SysOrgDao, SysOrgEntity> impl
         int orgType = getOrgType(orgNo);
         sysOrg.setOrgType(orgType);
 
-        this.updateAllColumnById(sysOrg);
+        this.updateById(sysOrg);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void delete(String orgNo) {
-        this.deleteById(orgNo);
+        this.removeById(orgNo);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteBatch(String[] orgNos) {
-        this.deleteBatchIds(Arrays.asList(orgNos));
+        this.removeByIds(Arrays.asList(orgNos));
     }
 
     @Override

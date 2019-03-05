@@ -1,6 +1,6 @@
 package com.platform.modules.sys.service.impl;
 
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.platform.modules.sys.dao.SysRoleOrgDao;
 import com.platform.modules.sys.entity.SysRoleOrgEntity;
 import com.platform.modules.sys.service.SysRoleOrgService;
@@ -38,7 +38,7 @@ public class SysRoleOrgServiceImpl extends ServiceImpl<SysRoleOrgDao, SysRoleOrg
 
             list.add(sysRoleMenuEntity);
         }
-        this.insertBatch(list);
+        this.saveBatch(list);
     }
 
     @Override

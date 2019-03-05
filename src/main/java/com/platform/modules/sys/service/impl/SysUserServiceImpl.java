@@ -11,12 +11,12 @@
  */
 package com.platform.modules.sys.service.impl;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.plugins.Page;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.platform.common.exception.BusinessException;
 import com.platform.common.utils.Constant;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.utils.Query;
 import com.platform.modules.sys.dao.SysUserDao;
 import com.platform.modules.sys.entity.SysUserEntity;
@@ -51,12 +51,12 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
     }
 
     @Override
-    public PageUtils queryPage(Map<String, Object> params) {
+    public Page queryPage(Map<String, Object> params) {
         //排序
         params.put("sidx", "t.create_time");
         params.put("asc", false);
         Page<SysUserEntity> page = new Query<SysUserEntity>(params).getPage();
-        return new PageUtils(page.setRecords(baseMapper.selectListPage(page, params)));
+        return page.setRecords(baseMapper.selectListPage(page, params));
     }
 
     @Override
@@ -76,13 +76,13 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void save(SysUserEntity user, Map<String, Object> params) {
+    public void add(SysUserEntity user, Map<String, Object> params) {
         user.setCreateTime(new Date());
         //sha256加密
         String salt = RandomStringUtils.randomAlphanumeric(20);
         user.setPassword(new Sha256Hash(Constant.DEFAULT_PW, salt).toHex());
         user.setSalt(salt);
-        this.insert(user);
+        this.save(user);
 
         //检查角色是否越权
         checkRole(user, params);
@@ -111,7 +111,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteBatch(String[] userIds) {
-        this.deleteBatchIds(Arrays.asList(userIds));
+        this.removeByIds(Arrays.asList(userIds));
     }
 
     @Override
@@ -119,14 +119,14 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
         SysUserEntity userEntity = new SysUserEntity();
         userEntity.setPassword(newPassword);
         return this.update(userEntity,
-                new EntityWrapper<SysUserEntity>().eq("user_id", userId).eq("password", password));
+                new QueryWrapper<SysUserEntity>().eq("user_id", userId).eq("password", password));
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public boolean resetPw(String[] userIds) {
         for (int i = 0; i < userIds.length; i++) {
-            SysUserEntity user = this.selectById(userIds[i]);
+            SysUserEntity user = this.getById(userIds[i]);
 
             user.setPassword(new Sha256Hash(Constant.DEFAULT_PW, user.getSalt()).toHex());
 

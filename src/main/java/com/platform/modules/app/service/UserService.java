@@ -11,7 +11,7 @@
  */
 package com.platform.modules.app.service;
 
-import com.baomidou.mybatisplus.service.IService;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.platform.modules.app.entity.UserEntity;
 
 /**

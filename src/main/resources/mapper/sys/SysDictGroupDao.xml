@@ -11,11 +11,11 @@
         t.remark
         from sys_dict_group t
         WHERE 1=1
-        <if test="code != null and code.trim() != ''">
-            AND t.code LIKE '%${code}%'
+        <if test="params.code != null and params.code.trim() != ''">
+            AND t.code LIKE '%${params.code}%'
         </if>
-        <if test="name != null and name.trim() != ''">
-            AND t.name LIKE '%${name}%'
+        <if test="params.name != null and params.name.trim() != ''">
+            AND t.name LIKE '%${params.name}%'
         </if>
         order by t.create_time desc
     </sql>

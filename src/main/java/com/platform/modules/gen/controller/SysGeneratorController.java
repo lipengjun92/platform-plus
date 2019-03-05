@@ -1,8 +1,8 @@
 package com.platform.modules.gen.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.annotation.SysLog;
 import com.platform.common.utils.DateUtils;
-import com.platform.common.utils.PageUtils;
 import com.platform.common.utils.RestResponse;
 import com.platform.common.xss.XssHttpServletRequestWrapper;
 import com.platform.modules.gen.service.SysGeneratorService;
@@ -41,7 +41,7 @@ public class SysGeneratorController {
     @RequiresPermissions("sys:generator:list")
     public RestResponse list(@RequestParam Map<String, Object> params) {
         //查询列表数据
-        PageUtils page = sysGeneratorService.queryPage(params);
+        Page page = sysGeneratorService.queryPage(params);
         return RestResponse.success().put("page", page);
     }
 

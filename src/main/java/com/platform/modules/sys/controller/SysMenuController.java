@@ -11,7 +11,7 @@
  */
 package com.platform.modules.sys.controller;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.platform.common.annotation.SysLog;
 import com.platform.common.exception.BusinessException;
 import com.platform.common.utils.Constant;
@@ -64,8 +64,8 @@ public class SysMenuController extends AbstractController {
         Map<String, Object> map = new HashMap<>(2);
 
         List<SysDictEntity> dictList = sysDictService.queryAll(map);
-        List<SysOrgEntity> orgList = orgService.selectList(null);
-        List<SysUserEntity> userList = userService.selectList(new EntityWrapper<SysUserEntity>().setSqlSelect("user_id,real_name"));
+        List<SysOrgEntity> orgList = orgService.list();
+        List<SysUserEntity> userList = userService.list(new QueryWrapper<SysUserEntity>().select("user_id,real_name"));
         return RestResponse.success()
                 .put("menuList", menuList)
                 .put("permissions", permissions)
@@ -110,7 +110,7 @@ public class SysMenuController extends AbstractController {
     @GetMapping("/info/{menuId}")
     @RequiresPermissions("sys:menu:info")
     public RestResponse info(@PathVariable("menuId") String menuId) {
-        SysMenuEntity menu = sysMenuService.selectById(menuId);
+        SysMenuEntity menu = sysMenuService.getById(menuId);
         return RestResponse.success().put("menu", menu);
     }
 
@@ -125,7 +125,7 @@ public class SysMenuController extends AbstractController {
         //数据校验
         verifyForm(menu);
 
-        sysMenuService.save(menu);
+        sysMenuService.add(menu);
 
         return RestResponse.success();
     }
@@ -187,7 +187,7 @@ public class SysMenuController extends AbstractController {
         //上级菜单类型
         int parentType = Constant.MenuType.CATALOG.getValue();
         if (!Constant.STR_ZORE.equals(menu.getParentId())) {
-            SysMenuEntity parentMenu = sysMenuService.selectById(menu.getParentId());
+            SysMenuEntity parentMenu = sysMenuService.getById(menu.getParentId());
             parentType = parentMenu.getType();
         }
 

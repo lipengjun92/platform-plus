@@ -1,8 +1,8 @@
 package com.platform.modules.gen.service.impl;
 
-import com.baomidou.mybatisplus.plugins.Page;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.platform.common.utils.Query;
 import com.platform.modules.gen.dao.SysGeneratorDao;
 import com.platform.modules.gen.entity.ColumnEntity;
@@ -28,11 +28,11 @@ public class SysGeneratorServiceImpl extends ServiceImpl<SysGeneratorDao, Result
     private String driverClassName;
 
     @Override
-    public PageUtils queryPage(Map<String, Object> params) {
+    public Page queryPage(Map<String, Object> params) {
         Page<ResultMapEntity> page = new Query<ResultMapEntity>(params).getPage();
 
         params.put("driverClassName", driverClassName);
-        return new PageUtils(page.setRecords(baseMapper.queryPage(page, params)));
+        return page.setRecords(baseMapper.queryPage(page, params));
     }
 
     @Override

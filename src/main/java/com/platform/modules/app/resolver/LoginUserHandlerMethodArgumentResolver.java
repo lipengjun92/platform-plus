@@ -49,7 +49,7 @@ public class LoginUserHandlerMethodArgumentResolver implements HandlerMethodArgu
         }
 
         //获取用户信息
-        UserEntity user = userService.selectById((String) object);
+        UserEntity user = userService.getById((String) object);
 
         return user;
     }

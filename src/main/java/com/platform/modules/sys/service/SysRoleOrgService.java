@@ -1,6 +1,6 @@
 package com.platform.modules.sys.service;
 
-import com.baomidou.mybatisplus.service.IService;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.platform.modules.sys.entity.SysRoleOrgEntity;
 
 import java.util.List;

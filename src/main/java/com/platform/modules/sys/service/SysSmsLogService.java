@@ -11,8 +11,8 @@
  */
 package com.platform.modules.sys.service;
 
-import com.baomidou.mybatisplus.service.IService;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.modules.sys.entity.SysSmsLogEntity;
 
 import java.util.List;
@@ -40,7 +40,7 @@ public interface SysSmsLogService extends IService<SysSmsLogEntity> {
      * @param params
      * @return
      */
-    PageUtils queryPage(Map<String, Object> params);
+    Page queryPage(Map<String, Object> params);
 
     /**
      * 保存实体
@@ -48,7 +48,7 @@ public interface SysSmsLogService extends IService<SysSmsLogEntity> {
      * @param sysSmsLog 实体
      * @return 保存条数
      */
-    void save(SysSmsLogEntity sysSmsLog);
+    void add(SysSmsLogEntity sysSmsLog);
 
     /**
      * 根据主键更新实体

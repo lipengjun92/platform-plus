@@ -11,8 +11,8 @@
  */
 package com.platform.modules.sys.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.annotation.SysLog;
-import com.platform.common.utils.PageUtils;
 import com.platform.common.utils.RestResponse;
 import com.platform.common.validator.ValidatorUtils;
 import com.platform.modules.sys.entity.SysConfigEntity;
@@ -40,7 +40,7 @@ public class SysConfigController extends AbstractController {
     @GetMapping("/list")
     @RequiresPermissions("sys:config:list")
     public RestResponse list(@RequestParam Map<String, Object> params) {
-        PageUtils page = sysConfigService.queryPage(params);
+        Page page = sysConfigService.queryPage(params);
 
         return RestResponse.success().put("page", page);
     }
@@ -52,7 +52,7 @@ public class SysConfigController extends AbstractController {
     @GetMapping("/info/{id}")
     @RequiresPermissions("sys:config:info")
     public RestResponse info(@PathVariable("id") String id) {
-        SysConfigEntity config = sysConfigService.selectById(id);
+        SysConfigEntity config = sysConfigService.getById(id);
 
         return RestResponse.success().put("config", config);
     }
@@ -66,7 +66,7 @@ public class SysConfigController extends AbstractController {
     public RestResponse save(@RequestBody SysConfigEntity config) {
         ValidatorUtils.validateEntity(config);
 
-        sysConfigService.save(config);
+        sysConfigService.add(config);
 
         return RestResponse.success();
     }

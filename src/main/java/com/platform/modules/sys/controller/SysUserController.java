@@ -11,9 +11,10 @@
  */
 package com.platform.modules.sys.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.annotation.SysLog;
 import com.platform.common.utils.Constant;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.utils.RestResponse;
 import com.platform.common.validator.AbstractAssert;
 import com.platform.common.validator.ValidatorUtils;
@@ -67,7 +68,7 @@ public class SysUserController extends AbstractController {
         //如需数据权限，在参数中添加DataScope
         params.put("dataScope", getDataScope());
 
-        PageUtils page = sysUserService.queryPage(params);
+        Page page = sysUserService.queryPage(params);
 
         return RestResponse.success().put("page", page);
     }
@@ -131,7 +132,7 @@ public class SysUserController extends AbstractController {
 
         user.setCreateUserId(getUserId());
         user.setCreateUserOrgNo(getOrgNo());
-        sysUserService.save(user, params);
+        sysUserService.add(user, params);
 
         return RestResponse.success();
     }

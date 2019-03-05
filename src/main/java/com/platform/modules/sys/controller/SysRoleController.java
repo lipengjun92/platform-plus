@@ -12,7 +12,7 @@
 package com.platform.modules.sys.controller;
 
 import com.platform.common.annotation.SysLog;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.utils.RestResponse;
 import com.platform.common.validator.ValidatorUtils;
 import com.platform.modules.sys.entity.SysRoleEntity;
@@ -52,7 +52,7 @@ public class SysRoleController extends AbstractController {
         //如需数据权限，在参数中添加DataScope
         params.put("dataScope", getDataScope());
 
-        PageUtils page = sysRoleService.queryPage(params);
+        Page page = sysRoleService.queryPage(params);
 
         return RestResponse.success().put("page", page);
     }
@@ -77,7 +77,7 @@ public class SysRoleController extends AbstractController {
     @GetMapping("/info/{roleId}")
     @RequiresPermissions("sys:role:info")
     public RestResponse info(@PathVariable("roleId") String roleId) {
-        SysRoleEntity role = sysRoleService.selectById(roleId);
+        SysRoleEntity role = sysRoleService.getById(roleId);
 
         //查询角色对应的菜单
         List<String> menuIdList = sysRoleMenuService.queryMenuIdList(roleId);
@@ -101,7 +101,7 @@ public class SysRoleController extends AbstractController {
 
         role.setCreateUserId(getUserId());
         role.setCreateUserOrgNo(getOrgNo());
-        sysRoleService.save(role);
+        sysRoleService.add(role);
 
         return RestResponse.success();
     }

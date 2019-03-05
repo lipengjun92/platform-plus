@@ -31,10 +31,6 @@
 		</if>
 	</sql>
 
-    <select id="selectSysOrgPage" resultType="com.platform.modules.sys.entity.SysOrgEntity">
-		<include refid="selectSql"/>
-    </select>
-
 	<select id="queryAll" resultType="com.platform.modules.sys.entity.SysOrgEntity">
 		<include refid="selectSql"/>
 	</select>

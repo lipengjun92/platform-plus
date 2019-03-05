@@ -11,8 +11,8 @@
  */
 package com.platform.modules.sys.service;
 
-import com.baomidou.mybatisplus.service.IService;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.modules.sys.entity.SysOrgEntity;
 
 import java.util.List;
@@ -35,20 +35,12 @@ public interface SysOrgService extends IService<SysOrgEntity> {
     List<SysOrgEntity> queryAll(Map<String, Object> params);
 
     /**
-     * 查询分页信息
-     *
-     * @param params
-     * @return
-     */
-    PageUtils queryPage(Map<String, Object> params);
-
-    /**
      * 保存实体
      *
      * @param sysOrg 实体
      * @return 保存条数
      */
-    void save(SysOrgEntity sysOrg);
+    void add(SysOrgEntity sysOrg);
 
     /**
      * 根据主键更新实体

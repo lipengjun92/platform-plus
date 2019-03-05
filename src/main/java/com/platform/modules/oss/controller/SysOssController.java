@@ -15,7 +15,7 @@ import com.google.gson.Gson;
 import com.platform.common.annotation.SysLog;
 import com.platform.common.exception.BusinessException;
 import com.platform.common.utils.Constant;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.utils.RestResponse;
 import com.platform.common.validator.ValidatorUtils;
 import com.platform.common.validator.group.AliyunGroup;
@@ -56,7 +56,7 @@ public class SysOssController {
     @GetMapping("/list")
     @RequiresPermissions("sys:oss:list")
     public RestResponse list(@RequestParam Map<String, Object> params) {
-        PageUtils page = sysOssService.queryPage(params);
+        Page page = sysOssService.queryPage(params);
 
         return RestResponse.success().put("page", page);
     }
@@ -122,7 +122,7 @@ public class SysOssController {
         SysOssEntity ossEntity = new SysOssEntity();
         ossEntity.setUrl(url);
         ossEntity.setCreateDate(new Date());
-        sysOssService.insert(ossEntity);
+        sysOssService.save(ossEntity);
 
         return RestResponse.success().put("url", url);
     }
@@ -135,7 +135,7 @@ public class SysOssController {
     @PostMapping("/delete")
     @RequiresPermissions("sys:oss:delete")
     public RestResponse delete(@RequestBody String[] ids) {
-        sysOssService.deleteBatchIds(Arrays.asList(ids));
+        sysOssService.removeByIds(Arrays.asList(ids));
 
         return RestResponse.success();
     }

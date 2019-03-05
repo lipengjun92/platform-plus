@@ -11,7 +11,7 @@
  */
 package com.platform.modules.job.controller;
 
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.utils.RestResponse;
 import com.platform.modules.job.entity.ScheduleJobLogEntity;
 import com.platform.modules.job.service.ScheduleJobLogService;
@@ -38,7 +38,7 @@ public class ScheduleJobLogController {
     @GetMapping("/list")
     @RequiresPermissions("sys:schedule:log")
     public RestResponse list(@RequestParam Map<String, Object> params) {
-        PageUtils page = scheduleJobLogService.queryPage(params);
+        Page page = scheduleJobLogService.queryPage(params);
 
         return RestResponse.success().put("page", page);
     }
@@ -48,7 +48,7 @@ public class ScheduleJobLogController {
      */
     @GetMapping("/info/{logId}")
     public RestResponse info(@PathVariable("logId") String logId) {
-        ScheduleJobLogEntity log = scheduleJobLogService.selectById(logId);
+        ScheduleJobLogEntity log = scheduleJobLogService.getById(logId);
 
         return RestResponse.success().put("log", log);
     }

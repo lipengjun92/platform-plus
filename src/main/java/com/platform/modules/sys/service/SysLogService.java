@@ -11,8 +11,8 @@
  */
 package com.platform.modules.sys.service;
 
-import com.baomidou.mybatisplus.service.IService;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.platform.modules.sys.entity.SysLogEntity;
 
 import java.util.Map;
@@ -30,6 +30,6 @@ public interface SysLogService extends IService<SysLogEntity> {
      * @param params
      * @return
      */
-    PageUtils queryPage(Map<String, Object> params);
+    IPage queryPage(Map<String, Object> params);
 
 }

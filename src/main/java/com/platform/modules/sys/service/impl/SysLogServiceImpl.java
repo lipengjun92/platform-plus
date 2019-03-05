@@ -11,10 +11,10 @@
  */
 package com.platform.modules.sys.service.impl;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.plugins.Page;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.platform.common.utils.Query;
 import com.platform.modules.sys.dao.SysLogDao;
 import com.platform.modules.sys.entity.SysLogEntity;
@@ -31,16 +31,14 @@ import java.util.Map;
 public class SysLogServiceImpl extends ServiceImpl<SysLogDao, SysLogEntity> implements SysLogService {
 
     @Override
-    public PageUtils queryPage(Map<String, Object> params) {
+    public IPage queryPage(Map<String, Object> params) {
         String key = (String) params.get("key");
 
-        Page<SysLogEntity> page = this.selectPage(
-                new Query<SysLogEntity>(params).getPage(),
-                new EntityWrapper<SysLogEntity>().like(StringUtils.isNotBlank(key), "user_name", key)
-                        .or().like(StringUtils.isNotBlank(key), "operation", key)
-                        .orderBy("create_time", false)
-        );
+        Page<SysLogEntity> page = new Query<SysLogEntity>(params).getPage();
 
-        return new PageUtils(page);
+        return baseMapper.selectPage(page,
+                new QueryWrapper<SysLogEntity>().like(StringUtils.isNotBlank(key), "user_name", key)
+                        .or().like(StringUtils.isNotBlank(key), "operation", key)
+                        .orderByDesc("create_time"));
     }
 }

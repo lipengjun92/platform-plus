@@ -11,8 +11,9 @@
  */
 package com.platform.modules.sys.service.impl;
 
-import com.baomidou.mybatisplus.plugins.Page;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.platform.common.exception.BusinessException;
 import com.platform.common.utils.*;
 import com.platform.modules.sys.dao.SysSmsLogDao;
@@ -47,33 +48,33 @@ public class SysSmsLogServiceImpl extends ServiceImpl<SysSmsLogDao, SysSmsLogEnt
     }
 
     @Override
-    public PageUtils queryPage(Map<String, Object> params) {
+    public Page queryPage(Map<String, Object> params) {
         //排序
         params.put("sidx", "t.send_id");
         params.put("asc", false);
         Page<SysSmsLogEntity> page = new Query<SysSmsLogEntity>(params).getPage();
-        return new PageUtils(page.setRecords(baseMapper.selectSysSmsLogPage(page, params)));
+        return page.setRecords(baseMapper.selectSysSmsLogPage(page, params));
     }
 
     @Override
-    public void save(SysSmsLogEntity sysSmsLog) {
-        this.insert(sysSmsLog);
+    public void add(SysSmsLogEntity sysSmsLog) {
+        this.save(sysSmsLog);
     }
 
     @Override
     public void update(SysSmsLogEntity sysSmsLog) {
-        this.updateAllColumnById(sysSmsLog);
+        this.update(sysSmsLog, new QueryWrapper<>());
     }
 
     @Override
     public void delete(String id) {
-        this.deleteById(id);
+        this.removeById(id);
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void deleteBatch(String[] ids) {
-        this.deleteBatchIds(Arrays.asList(ids));
+        this.removeByIds(Arrays.asList(ids));
     }
 
     @Override

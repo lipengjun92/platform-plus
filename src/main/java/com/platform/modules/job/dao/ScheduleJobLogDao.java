@@ -11,10 +11,11 @@
  */
 package com.platform.modules.job.dao;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.baomidou.mybatisplus.plugins.pagination.Pagination;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.platform.modules.job.entity.ScheduleJobLogEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -35,5 +36,5 @@ public interface ScheduleJobLogDao extends BaseMapper<ScheduleJobLogEntity> {
      * @param params
      * @return
      */
-    List<ScheduleJobLogEntity> selectScheduleJobLogPage(Pagination page, Map<String, Object> params);
+    List<ScheduleJobLogEntity> selectScheduleJobLogPage(IPage page, @Param("params") Map<String, Object> params);
 }

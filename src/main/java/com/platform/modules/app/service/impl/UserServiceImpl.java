@@ -11,8 +11,9 @@
  */
 package com.platform.modules.app.service.impl;
 
-import com.baomidou.mybatisplus.mapper.EntityWrapper;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.platform.common.exception.BusinessException;
 import com.platform.common.utils.Constant;
 import com.platform.common.utils.JedisUtil;
@@ -39,9 +40,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, UserEntity> implements
 
     @Override
     public UserEntity queryByMobile(String mobile) {
-        UserEntity userEntity = new UserEntity();
-        userEntity.setMobile(mobile);
-        return baseMapper.selectOne(userEntity);
+        return baseMapper.selectOne(new QueryWrapper<UserEntity>().eq("mobile", mobile));
     }
 
     @Override
@@ -69,15 +68,15 @@ public class UserServiceImpl extends ServiceImpl<UserDao, UserEntity> implements
     public UserEntity selectByOpenId(String openId) {
         UserEntity userEntity = new UserEntity();
         userEntity.setOpenId(openId);
-        return baseMapper.selectOne(userEntity);
+        return baseMapper.selectOne(new QueryWrapper<UserEntity>().eq("open_id", openId));
     }
 
     @Override
     public UserEntity saveOrUpdateByOpenId(UserEntity user) {
         if (null == selectByOpenId(user.getOpenId())) {
-            this.insert(user);
+            this.save(user);
         } else {
-            this.update(user, new EntityWrapper<UserEntity>().eq("open_id", user.getOpenId()));
+            this.update(user, new UpdateWrapper<UserEntity>().eq("open_id", user.getOpenId()));
         }
         return user;
     }

@@ -11,8 +11,8 @@
  */
 package com.platform.datascope;
 
-import com.baomidou.mybatisplus.plugins.SqlParserHandler;
-import com.baomidou.mybatisplus.toolkit.PluginUtils;
+import com.baomidou.mybatisplus.core.toolkit.PluginUtils;
+import com.baomidou.mybatisplus.extension.plugins.SqlExplainInterceptor;
 import com.platform.common.utils.Constant;
 import com.platform.common.utils.ShiroUtils;
 import com.platform.common.utils.StringUtils;
@@ -37,7 +37,7 @@ import java.util.Properties;
  */
 @Slf4j
 @Intercepts({@Signature(type = StatementHandler.class, method = "prepare", args = {Connection.class, Integer.class})})
-public class DataScopeInterceptor extends SqlParserHandler implements Interceptor {
+public class DataScopeInterceptor extends SqlExplainInterceptor implements Interceptor {
 
     @Override
     public Object intercept(Invocation invocation) throws Throwable {

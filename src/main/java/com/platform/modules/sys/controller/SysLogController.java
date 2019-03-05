@@ -11,7 +11,8 @@
  */
 package com.platform.modules.sys.controller;
 
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.utils.RestResponse;
 import com.platform.modules.sys.service.SysLogService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -42,7 +43,7 @@ public class SysLogController {
     @GetMapping("/list")
     @RequiresPermissions("sys:log:list")
     public RestResponse list(@RequestParam Map<String, Object> params) {
-        PageUtils page = sysLogService.queryPage(params);
+        IPage page = sysLogService.queryPage(params);
 
         return RestResponse.success().put("page", page);
     }

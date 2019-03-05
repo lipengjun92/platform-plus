@@ -12,7 +12,7 @@
 package com.platform.modules.sys.controller;
 
 import com.platform.common.annotation.SysLog;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.utils.RestResponse;
 import com.platform.common.validator.ValidatorUtils;
 import com.platform.common.validator.group.AddGroup;
@@ -55,7 +55,7 @@ public class SysDictGroupController {
     @GetMapping("/list")
     @RequiresPermissions("sys:dictgroup:list")
     public RestResponse list(@RequestParam Map<String, Object> params) {
-        PageUtils page = sysDictGroupService.queryPage(params);
+        Page page = sysDictGroupService.queryPage(params);
 
         return RestResponse.success().put("page", page);
     }
@@ -66,7 +66,7 @@ public class SysDictGroupController {
     @RequestMapping("/info/{id}")
     @RequiresPermissions("sys:dictgroup:info")
     public RestResponse info(@PathVariable("id") String id) {
-        SysDictGroupEntity sysDictGroup = sysDictGroupService.selectById(id);
+        SysDictGroupEntity sysDictGroup = sysDictGroupService.getById(id);
 
         return RestResponse.success().put("dictgroup", sysDictGroup);
     }
@@ -79,7 +79,7 @@ public class SysDictGroupController {
     @RequiresPermissions("sys:dictgroup:save")
     public RestResponse save(@RequestBody SysDictGroupEntity sysDictGroup) {
         ValidatorUtils.validateEntity(sysDictGroup, AddGroup.class);
-        sysDictGroupService.save(sysDictGroup);
+        sysDictGroupService.add(sysDictGroup);
 
         return RestResponse.success();
     }

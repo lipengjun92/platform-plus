@@ -15,9 +15,9 @@
         u.user_name user_name
         from sys_user_token t
         left join sys_user u on t.user_id = u.user_id
-        WHERE 1=1 and t.expire_time > #{nowDate}
-        <if test="name != null and name.trim() != ''">
-            AND u.real_name LIKE '%${name}%'
+        WHERE 1=1 and t.expire_time > #{params.nowDate}
+        <if test="params.name != null and params.name.trim() != ''">
+            AND u.real_name LIKE '%${params.name}%'
         </if>
     </sql>
 

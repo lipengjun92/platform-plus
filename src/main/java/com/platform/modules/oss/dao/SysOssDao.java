@@ -11,10 +11,11 @@
  */
 package com.platform.modules.oss.dao;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.baomidou.mybatisplus.plugins.pagination.Pagination;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.platform.modules.oss.entity.SysOssEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -35,5 +36,5 @@ public interface SysOssDao extends BaseMapper<SysOssEntity> {
      * @param params
      * @return
      */
-    List<SysOssEntity> selectSysOssPage(Pagination page, Map<String, Object> params);
+    List<SysOssEntity> selectSysOssPage(IPage page, @Param("params") Map<String, Object> params);
 }

@@ -11,10 +11,11 @@
  */
 package com.platform.modules.sys.dao;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.baomidou.mybatisplus.plugins.Page;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.modules.sys.entity.SysUserEntity;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import java.util.Map;
@@ -58,7 +59,7 @@ public interface SysUserDao extends BaseMapper<SysUserEntity> {
      * @param params
      * @return
      */
-    List<SysUserEntity> selectListPage(Page<SysUserEntity> page, Map<String, Object> params);
+    List<SysUserEntity> selectListPage(Page<SysUserEntity> page, @Param("params") Map<String, Object> params);
 
     /**
      * 查询所有
@@ -66,7 +67,7 @@ public interface SysUserDao extends BaseMapper<SysUserEntity> {
      * @param params
      * @return
      */
-    List<SysUserEntity> selectListPage(Map<String, Object> params);
+    List<SysUserEntity> selectListPage(@Param("params") Map<String, Object> params);
 
     /**
      * 根据userId连表查询一个

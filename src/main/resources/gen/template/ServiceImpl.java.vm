@@ -11,9 +11,8 @@
  */
 package ${package}.service.impl;
 
-import com.baomidou.mybatisplus.plugins.Page;
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.platform.common.utils.Query;
 import ${package}.dao.${className}Dao;
 import ${package}.entity.${className}Entity;
@@ -40,29 +39,32 @@ public class ${className}ServiceImpl extends ServiceImpl<${className}Dao, ${clas
     }
 
     @Override
-    public PageUtils queryPage(Map<String, Object> params) {
+    public Page queryPage(Map<String, Object> params) {
+        //排序
+        params.put("sidx", "t.${pk.attrname}");
+        params.put("asc", false);
         Page<${className}Entity> page = new Query<${className}Entity>(params).getPage();
-        return new PageUtils(page.setRecords(baseMapper.select${className}Page(page, params)));
+        return page.setRecords(baseMapper.select${className}Page(page, params));
     }
 
     @Override
-    public void save(${className}Entity ${classname}) {
-        this.insert(${classname});
+    public boolean add(${className}Entity ${classname}) {
+        return this.save(${classname});
     }
 
     @Override
-    public void update(${className}Entity ${classname}) {
-        this.updateAllColumnById(${classname});
+    public boolean update(${className}Entity ${classname}) {
+        return this.updateById(${classname});
     }
 
     @Override
-    public void delete(${pk.attrType} ${pk.attrname}) {
-        this.deleteById(${pk.attrname});
+    public boolean delete(${pk.attrType} ${pk.attrname}) {
+        return this.removeById(${pk.attrname});
     }
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public void deleteBatch(${pk.attrType}[] ${pk.attrname}s) {
-        this.deleteBatchIds(Arrays.asList(${pk.attrname}s));
+    public boolean deleteBatch(${pk.attrType}[] ${pk.attrname}s) {
+        return this.removeByIds(Arrays.asList(${pk.attrname}s));
     }
 }

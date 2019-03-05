@@ -18,8 +18,8 @@
 		t.create_time
 		from sys_role t
 		WHERE 1=1
-		<if test="roleName != null and roleName.trim() != ''">
-			AND t.role_name LIKE '%${roleName}%'
+		<if test="params.roleName != null and params.roleName.trim() != ''">
+			AND t.role_name LIKE '%${params.roleName}%'
 		</if>
 	</select>
 </mapper>

@@ -1,7 +1,8 @@
 package com.platform.modules.gen.service;
 
-import com.baomidou.mybatisplus.service.IService;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.platform.modules.gen.entity.ColumnEntity;
 import com.platform.modules.gen.entity.ResultMapEntity;
 
@@ -22,7 +23,7 @@ public interface SysGeneratorService extends IService<ResultMapEntity> {
      * @param params
      * @return
      */
-    PageUtils queryPage(Map<String, Object> params);
+    Page queryPage(Map<String, Object> params);
 
     /**
      * queryTable

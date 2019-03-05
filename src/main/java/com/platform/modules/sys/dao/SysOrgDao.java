@@ -11,8 +11,8 @@
  */
 package com.platform.modules.sys.dao;
 
-import com.baomidou.mybatisplus.mapper.BaseMapper;
-import com.baomidou.mybatisplus.plugins.pagination.Pagination;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.platform.modules.sys.entity.SysOrgEntity;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -35,15 +35,6 @@ public interface SysOrgDao extends BaseMapper<SysOrgEntity> {
      * @return
      */
     String queryMaxIdByParentNo(String orgNo);
-
-    /**
-     * 自定义分页查询
-     *
-     * @param page
-     * @param params
-     * @return
-     */
-    List<SysOrgEntity> selectSysOrgPage(Pagination page, Map<String, Object> params);
 
     /**
      * 查询所有列表

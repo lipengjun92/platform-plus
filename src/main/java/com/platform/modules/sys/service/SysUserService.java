@@ -11,8 +11,9 @@
  */
 package com.platform.modules.sys.service;
 
-import com.baomidou.mybatisplus.service.IService;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.modules.sys.entity.SysUserEntity;
 
 import java.util.List;
@@ -39,7 +40,7 @@ public interface SysUserService extends IService<SysUserEntity> {
      * @param params
      * @return
      */
-    PageUtils queryPage(Map<String, Object> params);
+    Page queryPage(Map<String, Object> params);
 
     /**
      * 查询用户的所有权限
@@ -71,7 +72,7 @@ public interface SysUserService extends IService<SysUserEntity> {
      * @param user
      * @param params
      */
-    void save(SysUserEntity user, Map<String, Object> params);
+    void add(SysUserEntity user, Map<String, Object> params);
 
     /**
      * 修改用户

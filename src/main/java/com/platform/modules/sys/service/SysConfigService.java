@@ -11,8 +11,8 @@
  */
 package com.platform.modules.sys.service;
 
-import com.baomidou.mybatisplus.service.IService;
-import com.platform.common.utils.PageUtils;
+import com.baomidou.mybatisplus.extension.service.IService;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.modules.sys.entity.SysConfigEntity;
 
 import java.util.Map;
@@ -30,14 +30,14 @@ public interface SysConfigService extends IService<SysConfigEntity> {
      * @param params
      * @return
      */
-    PageUtils queryPage(Map<String, Object> params);
+    Page queryPage(Map<String, Object> params);
 
     /**
      * 保存配置信息
      *
      * @param config
      */
-    void save(SysConfigEntity config);
+    void add(SysConfigEntity config);
 
     /**
      * 更新配置信息

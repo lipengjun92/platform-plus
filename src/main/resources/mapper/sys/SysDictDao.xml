@@ -12,14 +12,14 @@
     <sql id="selectSql">
         select d.id,d.group_id,d.name,d.value,d.sort,d.status,d.remark,g.code code from sys_dict d left join sys_dict_group g on d.group_id = g.id
         where 1=1
-        <if test="name != null and name != ''">
-            and d.name LIKE '%${name}%'
+        <if test="params.name != null and params.name != ''">
+            and d.name LIKE '%${params.name}%'
         </if>
-        <if test="code != null and code != ''">
-            and g.code LIKE '%${code}%'
+        <if test="params.code != null and params.code != ''">
+            and g.code LIKE '%${params.code}%'
         </if>
-        <if test="status != null">
-            and d.status = #{status}
+        <if test="params.status != null">
+            and d.status = #{params.status}
         </if>
     </sql>
 

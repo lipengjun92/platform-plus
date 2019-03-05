@@ -11,8 +11,7 @@
  */
 package com.platform.common.utils;
 
-import com.baomidou.mybatisplus.plugins.Page;
-import com.platform.common.xss.SqlFilter;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -57,8 +56,7 @@ public class Query<T> extends LinkedHashMap<String, Object> {
         this.put("page", currPage);
         this.put("limit", limit);
 
-        //防止SQL注入（因为sidx是通过拼接SQL实现排序的，会有SQL注入风险）
-        String sidx = SqlFilter.sqlInject((String) params.get("sidx"));
+        String sidx = (String) params.get("sidx");
         //默认升序
         Boolean asc = true;
         if (!StringUtils.isNullOrEmpty(params.get(ASC))) {
@@ -69,8 +67,11 @@ public class Query<T> extends LinkedHashMap<String, Object> {
 
         //排序
         if (StringUtils.isNotBlank(sidx)) {
-            this.page.setOrderByField(sidx);
-            this.page.setAsc(asc);
+            if (asc) {
+                this.page.setAsc(sidx);
+            } else {
+                this.page.setDesc(sidx);
+            }
         }
 
     }
