@@ -75,7 +75,7 @@ public class AppUserController {
     @GetMapping("queryOrg")
     @ApiOperation("根据级别获取供电单位，不传查询所有")
     @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "query", name = "orgType", value = "机构级别", required = true, dataType = "int", example = "2")
+            @ApiImplicitParam(paramType = "query", name = "orgType", value = "机构级别", dataType = "int", example = "2")
     })
     public RestResponse queryOrg(@RequestParam(required = false) Integer orgType) {
 
