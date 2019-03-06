@@ -79,46 +79,48 @@ platform-plus
 
 ## 实现功能
 
-* 一：系统管理
-    * 管理员列表
-    * 角色管理
-    * 菜单管理
-    * SQL监控
-    * 组织机构
-    * 参数管理
-    * 数据字典管理
-    * 文件上传
-    * 定时任务
-    * 系统日志
-    * SQL监控
-    * 代码生成器
-    * 缓存信息
-    * 在线用户管理
-    * 短信配置
+- 系统管理
+    - 菜单管理
+    - 组织机构
+    - 系统参数
+    - 字典管理
+    - 文件上传
+    - 系统日志
+- 权限管理
+    - 管理员列表
+    - 角色管理
+- 短信平台
+    - 短信配置
+- 任务调度
+    - 定时任务
+- 开发工具
+    - 在线用户管理
+    - 缓存信息
+    - SQL监控
+    - 接口文档
+    - 代码生成器
 
-
- **项目演示**
+**项目演示**
 - 演示地址：http://fly2you.cn/platform-plus/#/login
 - 账号密码：admin/admin
 
 
 **效果图：**
 
-##### 菜单管理
+- 菜单管理
 ![https://platform-wxmall.oss-cn-beijing.aliyuncs.com/upload/platform-plus/platform-plus.jpg](https://platform-wxmall.oss-cn-beijing.aliyuncs.com/upload/platform-plus/platform-plus.jpg "菜单管理")
-##### 字典管理
+- 字典管理
 ![https://platform-wxmall.oss-cn-beijing.aliyuncs.com/upload/platform-plus/dict.png](https://platform-wxmall.oss-cn-beijing.aliyuncs.com/upload/platform-plus/dict.png "字典管理")
-##### 在线人数
+- 在线人数
 ![https://platform-wxmall.oss-cn-beijing.aliyuncs.com/upload/platform-plus/users.png](https://platform-wxmall.oss-cn-beijing.aliyuncs.com/upload/platform-plus/users.png "在线人数")
-##### 缓存数据
+- 缓存数据
 ![https://platform-wxmall.oss-cn-beijing.aliyuncs.com/upload/platform-plus/doc.png](https://platform-wxmall.oss-cn-beijing.aliyuncs.com/upload/platform-plus/redis.png "缓存数据")
-##### 接口文档
+- 接口文档
 ![https://platform-wxmall.oss-cn-beijing.aliyuncs.com/upload/platform-plus/doc.png](https://platform-wxmall.oss-cn-beijing.aliyuncs.com/upload/platform-plus/doc.png "接口文档")
-
 
 #### 后端部署
 - 通过git下载源码
-- 创建数据库plaftorm-plus，数据库编码为UTF-8
+- 创建数据库plaftorm-plus
 - mysql执行sql/mysql.sql文件(oracle执行sql/oracle.sql)，初始化数据
 - 修改application-dev.yml，修改MySQL、Oracle驱动、账号和密码
 - Eclipse、IDEA运行PlatformPlusApplication.java，则可启动项目
@@ -136,9 +138,10 @@ platform-plus
 - <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=c7657db5d4e65a40e46ee5998534f7b9b9fa56d0347c3af3157c7f6240c0d0dd"><img border="0" src="http://pub.idqqimg.com/wpa/images/group.png" alt="微同软件 ③群" title="微同软件 ③群"></a>
 #### 鸣谢 
 
-[renrenio](https://www.renren.io)   
-[mybatis-plus](http://mp.baomidou.com)  
-[easypoi](https://opensource.afterturn.cn)
+- [renrenio](https://www.renren.io)
+- [mybatis-plus](http://mp.baomidou.com)
+- [easypoi](https://opensource.afterturn.cn)
+
 
 #### 常用API
 - [Mybatis-Plus](https://baomidou.gitee.io/mybatis-plus-doc/#/quick-start)
