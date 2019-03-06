@@ -485,7 +485,7 @@ CREATE TABLE `sys_org` (
 -- ----------------------------
 -- Records of sys_org
 -- ----------------------------
-INSERT INTO `sys_org` VALUES ('01', '中华人民共和国国务院', '0', null, '1', '0', '1', '2019-01-21 16:53:32');
+INSERT INTO `sys_org` VALUES ('01', '中华人民共和国国务院', '0', '1', '1', '0', '1', '2019-01-21 16:53:32');
 
 -- ----------------------------
 -- Table structure for `sys_oss`
@@ -658,3 +658,4 @@ CREATE TABLE `tb_user` (
 -- ----------------------------
 -- Records of tb_user
 -- ----------------------------
+INSERT INTO `tb_user` VALUES ('1', '李鹏军', 1, '1550742648', 'oxaA11ulr9134oBL9Xscon5at_Gc', 'Boy Genius', 'http://thirdwx.qlogo.cn/mmopen/PiajxSqBRaEI3eTLaf64kP7sBrpXKbJ7l4h6BWOlJjAQUqibVbsKotVWbzH6QnkTHYmuTMZXuUiaXVo7Ba02XbCxA/132', 1, '15209831990', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', '2019-03-06 02:33:16');

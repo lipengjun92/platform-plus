@@ -715,4 +715,4 @@ INSERT INTO SYS_DICT (ID, GROUP_ID, NAME, VALUE, SORT, STATUS, create_time, REMA
 INSERT INTO SYS_DICT (ID, GROUP_ID, NAME, VALUE, SORT, STATUS, create_time, REMARK) VALUES ('9892d578e13e47c7afc5fe0817a690e3', '467086f66e404456b7f51cd2e68eb3ef', '未知', '3', 3, 1, sysdate, null);
 
 -- 账号：15209831990  密码：admin
-INSERT INTO TB_USER (USER_ID, USER_NAME, subscribe,subscribe_time,MOBILE, PASSWORD, CREATE_TIME) VALUES ('1', 'lpj', 0, null, '15209831990', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', TO_TIMESTAMP('2019-01-31 06:54:40.000000', 'YYYY-MM-DD HH24:MI:SS.FF6'));
+INSERT INTO TB_USER (USER_ID, USER_NAME, subscribe, subscribe_time, open_id, nickname, head_img_url, sex, mobile, password, create_time) VALUES ('1', '李鹏军', 1, '1550742648', 'oxaA11ulr9134oBL9Xscon5at_Gc', 'Boy Genius', 'http://thirdwx.qlogo.cn/mmopen/PiajxSqBRaEI3eTLaf64kP7sBrpXKbJ7l4h6BWOlJjAQUqibVbsKotVWbzH6QnkTHYmuTMZXuUiaXVo7Ba02XbCxA/132', 1, '15209831990', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', TO_TIMESTAMP('2019-01-31 06:54:40.000000', 'YYYY-MM-DD HH24:MI:SS.FF6'));
