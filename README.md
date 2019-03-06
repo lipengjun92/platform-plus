@@ -8,7 +8,8 @@
 
 #### 项目说明
 - platform-plus是一个轻量级的，前后端分离的Java快速开发平台
-- 已完美支持MySQL、Oracle
+- 支持 MySQL、MariaDB、Oracle、DB2、H2、HSQL、SQLite、Postgre、SQLServer2005、SQLServer 等多种数据库
+- 代码生成工具已完美支持MySQL、Oracle
  
 
 #### 具有如下特点
@@ -84,11 +85,11 @@ platform-plus
 
     
 #### 技术选型：
-- Spring Boot 2.0
-- Apache Shiro 1.4
-- Spring MVC 5.0
-- MyBatis 3.4.6、MyBatis-Plus 3.1.0
-- Quartz 2.3
+- Spring Boot 2.1.0.RELEASE
+- Apache Shiro 1.4.0
+- Spring MVC 5.1.2
+- MyBatis 3.5.0、MyBatis-Plus 3.1.0
+- Quartz 2.3.0
 - Druid 1.1.10
 - lombok 1.18.4
 - swagger 2.9.2
