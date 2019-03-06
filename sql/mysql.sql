@@ -467,9 +467,9 @@ INSERT INTO `sys_menu` VALUES ('140101', '1401', '强制下线', null, 'sys:user
 INSERT INTO `sys_menu` VALUES ('1402', '14', '缓存信息', 'sys/redis', 'sys:cache:queryAll', 1, 'redis', 2);
 INSERT INTO `sys_menu` VALUES ('140201', '1402', '删除', null, 'sys:cache:deleteCache', 2, null, 0);
 INSERT INTO `sys_menu` VALUES ('1403', '14', 'SQL监控', 'http://localhost:8888/platform-plus/druid/sql.html', null, 1, 'sql', 3);
-INSERT INTO `sys_menu` VALUES ('1404', '14', '代码生成器', 'gen/generator', 'sys:generator:list', 1, 'code', 4);
-INSERT INTO `sys_menu` VALUES ('140401', '1404', '生成代码', null, 'sys:generator:code', 2, null, 0);
-INSERT INTO `sys_menu` VALUES ('1405', '14', '接口文档', 'http://localhost:8888/platform-plus/doc.html', null, 1, 'interface', 4);
+INSERT INTO `sys_menu` VALUES ('1404', '14', '接口文档', 'http://localhost:8888/platform-plus/doc.html', null, 1, 'interface', 4);
+INSERT INTO `sys_menu` VALUES ('1405', '14', '代码生成器', 'gen/generator', 'sys:generator:list', 1, 'code', 5);
+INSERT INTO `sys_menu` VALUES ('140501', '1405', '生成代码', null, 'sys:generator:code', 2, null, 0);
 
 -- ----------------------------
 -- Table structure for `sys_org`

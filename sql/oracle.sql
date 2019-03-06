@@ -620,9 +620,9 @@ INSERT INTO SYS_MENU (MENU_ID, PARENT_ID, NAME, URL, PERMS, TYPE, ICON, ORDER_NU
 INSERT INTO SYS_MENU (MENU_ID, PARENT_ID, NAME, URL, PERMS, TYPE, ICON, ORDER_NUM) VALUES ('1402', '14', '缓存信息', 'sys/redis', 'sys:cache:queryAll', 1, 'redis', 2);
 INSERT INTO SYS_MENU (MENU_ID, PARENT_ID, NAME, URL, PERMS, TYPE, ICON, ORDER_NUM) VALUES ('140201', '1402', '删除', null, 'sys:cache:deleteCache', 2, null, 0);
 INSERT INTO SYS_MENU (MENU_ID, PARENT_ID, NAME, URL, PERMS, TYPE, ICON, ORDER_NUM) VALUES ('1403', '14', 'SQL监控', 'http://localhost:8888/platform-plus/druid/sql.html', null, 1, 'sql', 3);
-INSERT INTO SYS_MENU (MENU_ID, PARENT_ID, NAME, URL, PERMS, TYPE, ICON, ORDER_NUM) VALUES ('1404', '14', '代码生成器', 'gen/generator', 'sys:generator:list', 1, 'code', 4);
-INSERT INTO SYS_MENU (MENU_ID, PARENT_ID, NAME, URL, PERMS, TYPE, ICON, ORDER_NUM) VALUES ('140401', '1404', '生成代码', null, 'sys:generator:code', 2, null, 0);
-INSERT INTO SYS_MENU (MENU_ID, PARENT_ID, NAME, URL, PERMS, TYPE, ICON, ORDER_NUM) VALUES ('1405', '14', '接口文档', 'http://localhost:8888/platform-plus/doc.html', null, 1, 'interface', 4);
+INSERT INTO SYS_MENU (MENU_ID, PARENT_ID, NAME, URL, PERMS, TYPE, ICON, ORDER_NUM) VALUES ('1404', '14', '接口文档', 'http://localhost:8888/platform-plus/doc.html', null, 1, 'interface', 4);
+INSERT INTO SYS_MENU (MENU_ID, PARENT_ID, NAME, URL, PERMS, TYPE, ICON, ORDER_NUM) VALUES ('1405', '14', '代码生成器', 'gen/generator', 'sys:generator:list', 1, 'code', 5);
+INSERT INTO SYS_MENU (MENU_ID, PARENT_ID, NAME, URL, PERMS, TYPE, ICON, ORDER_NUM) VALUES ('140501', '1405', '生成代码', null, 'sys:generator:code', 2, null, 0);
 
 INSERT INTO SCHEDULE_JOB (JOB_ID, BEAN_NAME, METHOD_NAME, PARAMS, CRON_EXPRESSION, STATUS, REMARK, CREATE_TIME) VALUES ('1', 'tokenTask', 'refreshToken', null, '0 0/30 * * * ?', 1, '刷新微信access_token', TO_TIMESTAMP('2019-01-31 15:00:36.000000', 'YYYY-MM-DD HH24:MI:SS.FF6'));
 
