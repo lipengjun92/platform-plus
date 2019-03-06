@@ -88,10 +88,9 @@ public class SwaggerConfig implements WebMvcConfigurer {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("物料管理")
-                .description("物料管理接口文档")
-                .termsOfServiceUrl("http://132.232.89.47")
-                .version("0.0.1-SNAPSHOT")
+                .title("微同软件")
+                .description("微同软件APP接口文档")
+                .version("1.0.0")
                 .contact(new Contact("李鹏军", "https://fly2you.cn/my/u/1", "939961241@qq.com"))
                 .build();
     }
