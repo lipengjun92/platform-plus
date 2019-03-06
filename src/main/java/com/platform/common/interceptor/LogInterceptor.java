@@ -59,8 +59,7 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
      */
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-                           ModelAndView modelAndView) throws Exception {
-
+                           ModelAndView modelAndView) {
     }
 
     /**
@@ -73,8 +72,7 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
     @Override
     public void afterCompletion(HttpServletRequest request,
                                 HttpServletResponse response, Object handler,
-                                Exception ex)
-            throws Exception {
+                                Exception ex) {
 
         Date start = (Date) request.getAttribute("REQUEST_START_TIME");
         Date end = new Date();
@@ -102,19 +100,19 @@ public class LogInterceptor extends HandlerInterceptorAdapter {
         StringBuilder reqInfo = new StringBuilder();
         UrlPathHelper urlPathHelper = new UrlPathHelper();
         String urlPath = urlPathHelper.getLookupPathForRequest(request);
-        reqInfo.append(" 请求路径=" + urlPath);
-        reqInfo.append(" 来源IP=" + IpUtils.getIpAddr(request));
+        reqInfo.append(" 请求路径=").append(urlPath);
+        reqInfo.append(" 来源IP=").append(IpUtils.getIpAddr(request));
 
         try {
             SysUserEntity sysUser = ShiroUtils.getUserEntity();
             if (sysUser != null) {
                 String userName = (sysUser.getUserName());
-                reqInfo.append(" 操作人=" + (userName));
+                reqInfo.append(" 操作人=").append(userName);
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         }
-        reqInfo.append(" 请求参数=" + RequestUtils.getParameters(request).toString());
+        reqInfo.append(" 请求参数=").append(RequestUtils.getParameters(request).toString());
         return reqInfo;
     }
 }
