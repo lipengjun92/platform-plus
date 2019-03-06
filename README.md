@@ -127,9 +127,9 @@ platform-plus
 2. 不接受`功能请求`的 issue，功能请求可能会被直接关闭。  
 
 3. 官方QQ群：
-- <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=ac742b7481b95fac926a3f2196085108bceeebcdf14bd716cbea519751e69445"><img border="0" src="pub.idqqimg.com/wpa/images/group.png" alt="66502035" title="微同软件 ①群"></a>
-- <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=dcb460bfa21213a2712677bab7292fd8eb2138a1914af5af397b58e7c02690c5"><img border="0" src="pub.idqqimg.com/wpa/images/group.png" alt="870579539" title="微同软件 ②群"></a>
-- <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=c7657db5d4e65a40e46ee5998534f7b9b9fa56d0347c3af3157c7f6240c0d0dd"><img border="0" src="pub.idqqimg.com/wpa/images/group.png" alt="151602347" title="微同软件 ③群"></a>
+- <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=ac742b7481b95fac926a3f2196085108bceeebcdf14bd716cbea519751e69445"><img border="0" src="pub.idqqimg.com/wpa/images/group.png" alt="微同软件 ①群" title="66502035"></a>
+- <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=dcb460bfa21213a2712677bab7292fd8eb2138a1914af5af397b58e7c02690c5"><img border="0" src="pub.idqqimg.com/wpa/images/group.png" alt="微同软件 ②群" title="870579539"></a>
+- <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=c7657db5d4e65a40e46ee5998534f7b9b9fa56d0347c3af3157c7f6240c0d0dd"><img border="0" src="pub.idqqimg.com/wpa/images/group.png" alt="微同软件 ③群" title="151602347"></a>
 #### 鸣谢 
 
 [renrenio](https://www.renren.io)   
