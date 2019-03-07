@@ -41,7 +41,7 @@ public class ${className}ServiceImpl extends ServiceImpl<${className}Dao, ${clas
     @Override
     public Page queryPage(Map<String, Object> params) {
         //排序
-        params.put("sidx", "t.${pk.attrname}");
+        params.put("sidx", "T.${pk.attrname}");
         params.put("asc", false);
         Page<${className}Entity> page = new Query<${className}Entity>(params).getPage();
         return page.setRecords(baseMapper.select${className}Page(page, params));

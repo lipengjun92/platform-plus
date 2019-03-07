@@ -4,14 +4,14 @@
 <mapper namespace="com.platform.modules.oss.dao.SysOssDao">
 
     <select id="selectSysOssPage" resultType="com.platform.modules.oss.entity.SysOssEntity">
-        select
-        t.id,
-        t.url,
-        t.create_date
-        from sys_oss t
+        SELECT
+        T.ID,
+        T.URL,
+        T.CREATE_DATE
+        FROM SYS_OSS T
         WHERE 1=1
         <if test="params.url != null and params.url.trim() != ''">
-            AND t.url LIKE '%${params.url}%'
+            AND T.URL LIKE '%${params.url}%'
         </if>
     </select>
 </mapper>

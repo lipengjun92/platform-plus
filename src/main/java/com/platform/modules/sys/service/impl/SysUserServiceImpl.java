@@ -52,7 +52,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
     @Override
     public Page queryPage(Map<String, Object> params) {
         //排序
-        params.put("sidx", "t.create_time");
+        params.put("sidx", "T.CREATE_TIME");
         params.put("asc", false);
         Page<SysUserEntity> page = new Query<SysUserEntity>(params).getPage();
         return page.setRecords(baseMapper.selectListPage(page, params));
@@ -65,7 +65,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
 
     @Override
     public SysUserEntity queryByUserName(String userName) {
-        return baseMapper.queryByUserName(userName);
+        return this.getOne(new QueryWrapper<SysUserEntity>().eq("USER_NAME", userName));
     }
 
     @Override
@@ -126,11 +126,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
 
             this.updateById(user);
         }
-    }
-
-    @Override
-    public SysUserEntity selectEntityById(String userId) {
-        return baseMapper.selectEntityById(userId);
     }
 
     /**

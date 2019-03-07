@@ -4691,7 +4691,7 @@
 
     /***
      * SwaggerBootstrapUi Model树对象
-     * @param id
+     * @param id 主键
      * @param name
      * @constructor
      */
@@ -4742,7 +4742,7 @@
 
     /***
      * 缓存请求参数对象
-     * @param id
+     * @param id 主键
      * @param arrs
      * @constructor
      */

@@ -4,11 +4,18 @@
 
 	<!-- 根据key，更新value -->
 	<update id="updateValueByKey" parameterType="map">
-		update sys_config set param_value = #{paramValue} where param_key = #{paramKey}
+		UPDATE SYS_CONFIG SET PARAM_VALUE = #{paramValue} WHERE PARAM_KEY = #{paramKey}
 	</update>
 
 	<!-- 根据key，查询value -->
 	<select id="queryByKey" parameterType="string" resultType="com.platform.modules.sys.entity.SysConfigEntity">
-		select * from sys_config where param_key = #{paramKey}
+		SELECT
+        T.ID,
+        T.PARAM_KEY,
+        T.PARAM_VALUE,
+        T.STATUS,
+        T.REMARK
+        FROM SYS_CONFIG T
+        WHERE T.PARAM_KEY = #{paramKey}
 	</select>
 </mapper>

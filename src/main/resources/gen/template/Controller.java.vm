@@ -38,6 +38,9 @@ public class ${className}Controller extends AbstractController {
 
     /**
      * 查看所有列表
+     *
+     * @param params 查询参数
+     * @return RestResponse
      */
     @RequestMapping("/queryAll")
     @RequiresPermissions("${pre}:${pathName}:list")
@@ -48,7 +51,10 @@ public class ${className}Controller extends AbstractController {
     }
 
     /**
-     * 分页查询
+     * 分页查询${comments}
+     *
+     * @param params 查询参数
+     * @return RestResponse
      */
     @GetMapping("/list")
     @RequiresPermissions("${pre}:${pathName}:list")
@@ -59,7 +65,10 @@ public class ${className}Controller extends AbstractController {
     }
 
     /**
-     * 查看信息
+     * 根据主键查询详情
+     *
+     * @param ${pk.attrname} 主键
+     * @return RestResponse
      */
     @RequestMapping("/info/{${pk.attrname}}")
     @RequiresPermissions("${pre}:${pathName}:info")
@@ -70,7 +79,10 @@ public class ${className}Controller extends AbstractController {
     }
 
     /**
-     * 新增
+     * 新增${comments}
+     *
+     * @param ${classname} ${classname}
+     * @return RestResponse
      */
     @SysLog("新增${comments}")
     @RequestMapping("/save")
@@ -83,7 +95,10 @@ public class ${className}Controller extends AbstractController {
     }
 
     /**
-     * 修改
+     * 修改${comments}
+     *
+     * @param ${classname} ${classname}
+     * @return RestResponse
      */
     @SysLog("修改${comments}")
     @RequestMapping("/update")
@@ -96,7 +111,10 @@ public class ${className}Controller extends AbstractController {
     }
 
     /**
-     * 删除
+     * 根据主键删除${comments}
+     *
+     * @param ${pk.attrname}s ${pk.attrname}s
+     * @return RestResponse
      */
     @SysLog("删除${comments}")
     @RequestMapping("/delete")

@@ -29,7 +29,7 @@ import java.io.Serializable;
  * @date 2019-01-15 11:42:20
  */
 @Data
-@TableName("sys_dict")
+@TableName("SYS_DICT")
 public class SysDictEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 

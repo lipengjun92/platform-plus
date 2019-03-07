@@ -30,7 +30,7 @@ public class SysOssServiceImpl extends ServiceImpl<SysOssDao, SysOssEntity> impl
     @Override
     public Page queryPage(Map<String, Object> params) {
         //排序
-        params.put("sidx", "t.create_time");
+        params.put("sidx", "T.CREATE_TIME");
         params.put("asc", false);
         Page<SysOssEntity> page = new Query<SysOssEntity>(params).getPage();
         return page.setRecords(baseMapper.selectSysOssPage(page, params));

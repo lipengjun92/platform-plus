@@ -40,7 +40,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, UserEntity> implements
 
     @Override
     public UserEntity queryByMobile(String mobile) {
-        return baseMapper.selectOne(new QueryWrapper<UserEntity>().eq("mobile", mobile));
+        return baseMapper.selectOne(new QueryWrapper<UserEntity>().eq("MOBILE", mobile));
     }
 
     @Override
@@ -68,7 +68,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, UserEntity> implements
     public UserEntity selectByOpenId(String openId) {
         UserEntity userEntity = new UserEntity();
         userEntity.setOpenId(openId);
-        return baseMapper.selectOne(new QueryWrapper<UserEntity>().eq("open_id", openId));
+        return baseMapper.selectOne(new QueryWrapper<UserEntity>().eq("OPEN_ID", openId));
     }
 
     @Override
@@ -76,7 +76,7 @@ public class UserServiceImpl extends ServiceImpl<UserDao, UserEntity> implements
         if (null == selectByOpenId(user.getOpenId())) {
             this.save(user);
         } else {
-            this.update(user, new UpdateWrapper<UserEntity>().eq("open_id", user.getOpenId()));
+            this.update(user, new UpdateWrapper<UserEntity>().eq("OPEN_ID", user.getOpenId()));
         }
         return user;
     }

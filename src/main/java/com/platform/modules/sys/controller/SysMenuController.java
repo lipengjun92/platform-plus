@@ -67,7 +67,7 @@ public class SysMenuController extends AbstractController {
 
         List<SysDictEntity> dictList = sysDictService.queryAll(map);
         List<SysOrgEntity> orgList = orgService.list();
-        List<SysUserEntity> userList = userService.list(new QueryWrapper<SysUserEntity>().select("user_id,real_name"));
+        List<SysUserEntity> userList = userService.list(new QueryWrapper<SysUserEntity>().select("USER_ID,REAL_NAME"));
         return RestResponse.success()
                 .put("menuList", menuList)
                 .put("permissions", permissions)

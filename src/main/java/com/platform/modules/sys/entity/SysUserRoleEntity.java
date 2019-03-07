@@ -23,7 +23,7 @@ import java.io.Serializable;
  * @author 李鹏军
  */
 @Data
-@TableName("sys_user_role")
+@TableName("SYS_USER_ROLE")
 public class SysUserRoleEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 

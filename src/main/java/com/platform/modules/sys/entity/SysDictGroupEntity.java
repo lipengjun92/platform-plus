@@ -29,7 +29,7 @@ import java.util.Date;
  * @date 2019-01-15 11:42:20
  */
 @Data
-@TableName("sys_dict_group")
+@TableName("SYS_DICT_GROUP")
 public class SysDictGroupEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 

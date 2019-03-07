@@ -23,7 +23,7 @@ import java.io.Serializable;
  * @author 李鹏军
  */
 @Data
-@TableName("sys_role_menu")
+@TableName("SYS_ROLE_MENU")
 public class SysRoleMenuEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 

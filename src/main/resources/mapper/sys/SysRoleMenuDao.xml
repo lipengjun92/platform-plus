@@ -4,11 +4,11 @@
 <mapper namespace="com.platform.modules.sys.dao.SysRoleMenuDao">
 	
 	<select id="queryMenuIdList" resultType="string">
-		select menu_id from sys_role_menu where role_id = #{value}
+		SELECT MENU_ID FROM SYS_ROLE_MENU WHERE ROLE_ID = #{value}
 	</select>
 
 	<delete id="deleteBatch">
-		delete from sys_role_menu where role_id in
+		DELETE FROM SYS_ROLE_MENU WHERE ROLE_ID IN
 		<foreach item="roleId" collection="array" open="(" separator="," close=")">
 			#{roleId}
 		</foreach>

@@ -25,7 +25,7 @@ import java.io.Serializable;
  * @date 2019-01-21 17:20:07
  */
 @Data
-@TableName("sys_role_org")
+@TableName("SYS_ROLE_ORG")
 public class SysRoleOrgEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 

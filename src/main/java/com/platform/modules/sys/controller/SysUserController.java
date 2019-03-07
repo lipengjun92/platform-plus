@@ -122,7 +122,7 @@ public class SysUserController extends AbstractController {
     @GetMapping("/info/{userId}")
     @RequiresPermissions("sys:user:info")
     public RestResponse info(@PathVariable("userId") String userId) {
-        SysUserEntity user = sysUserService.selectEntityById(userId);
+        SysUserEntity user = sysUserService.getById(userId);
 
         //获取用户所属的角色列表
         List<String> roleIdList = sysUserRoleService.queryRoleIdList(userId);

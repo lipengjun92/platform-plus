@@ -4,13 +4,13 @@
 <mapper namespace="com.platform.modules.sys.dao.SysUserRoleDao">
 
 	<delete id="deleteBatch">
-		delete from sys_user_role where role_id in
+		DELETE FROM SYS_USER_ROLE WHERE ROLE_ID IN
 		<foreach item="roleId" collection="array" open="(" separator="," close=")">
 			#{roleId}
 		</foreach>
 	</delete>
 
 	<select id="queryRoleIdList" resultType="string">
-		select role_id from sys_user_role where user_id = #{value}
+		SELECT ROLE_ID FROM SYS_USER_ROLE WHERE USER_ID = #{value}
 	</select>
 </mapper>

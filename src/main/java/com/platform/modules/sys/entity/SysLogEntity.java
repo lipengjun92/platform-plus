@@ -25,7 +25,7 @@ import java.util.Date;
  * @author 李鹏军
  */
 @Data
-@TableName("sys_log")
+@TableName("SYS_LOG")
 public class SysLogEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     @TableId

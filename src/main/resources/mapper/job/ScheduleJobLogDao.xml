@@ -4,23 +4,23 @@
 <mapper namespace="com.platform.modules.job.dao.ScheduleJobLogDao">
 
     <select id="selectScheduleJobLogPage" resultType="com.platform.modules.job.entity.ScheduleJobLogEntity">
-        select
-        t.log_id,
-        t.job_id,
-        t.bean_name,
-        t.method_name,
-        t.params,
-        t.status,
-        t.error,
-        t.times,
-        t.create_time
-        from schedule_job_log t
+        SELECT
+        T.LOG_ID,
+        T.JOB_ID,
+        T.BEAN_NAME,
+        T.METHOD_NAME,
+        T.PARAMS,
+        T.STATUS,
+        T.ERROR,
+        T.TIMES,
+        T.CREATE_TIME
+        FROM SCHEDULE_JOB_LOG T
         WHERE 1=1
         <if test="params.beanName != null and params.beanName.trim() != ''">
-            AND t.bean_name LIKE '%${params.beanName}%'
+            AND T.BEAN_NAME LIKE '%${params.beanName}%'
         </if>
         <if test="params.methodName != null and params.methodName.trim() != ''">
-            AND t.method_name LIKE '%${params.methodName}%'
+            AND T.METHOD_NAME LIKE '%${params.methodName}%'
         </if>
     </select>
 </mapper>

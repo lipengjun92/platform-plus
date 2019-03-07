@@ -46,7 +46,6 @@ public class JedisSessionDAO extends EnterpriseCacheSessionDAO {
     @Override
     protected Serializable doCreate(Session session) {
         Serializable sessionId = super.doCreate(session);
-        log.debug("创建session:{}", sessionId);
 
         jedisUtil.setObject(Constant.SESSION + session.getId().toString(), session);
         return sessionId;
@@ -60,7 +59,6 @@ public class JedisSessionDAO extends EnterpriseCacheSessionDAO {
      */
     @Override
     protected Session doReadSession(Serializable sessionId) {
-        log.debug("获取session:{}", sessionId);
         // 先从缓存中获取session，如果没有再去redis中获取
         Session session = super.doReadSession(sessionId);
         if (null == session) {
@@ -76,7 +74,6 @@ public class JedisSessionDAO extends EnterpriseCacheSessionDAO {
      */
     @Override
     protected void doUpdate(Session session) {
-        log.debug("更新session:{}", session.getId());
         super.doUpdate(session);
         String key = Constant.SESSION + session.getId().toString();
 
@@ -93,7 +90,6 @@ public class JedisSessionDAO extends EnterpriseCacheSessionDAO {
      */
     @Override
     protected void doDelete(Session session) {
-        log.debug("删除session:{}", session.getId());
         if (session.getId() == null) {
             return;
         }

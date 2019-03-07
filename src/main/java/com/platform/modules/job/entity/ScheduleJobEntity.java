@@ -25,7 +25,7 @@ import java.util.Date;
  * @author 李鹏军
  */
 @Data
-@TableName("schedule_job")
+@TableName("SCHEDULE_JOB")
 public class ScheduleJobEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 

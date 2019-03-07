@@ -45,14 +45,6 @@ public interface SysUserDao extends BaseMapper<SysUserEntity> {
     List<String> queryAllMenuId(String userId);
 
     /**
-     * 根据用户名，查询系统用户
-     *
-     * @param userName 用户名
-     * @return SysUserEntity
-     */
-    SysUserEntity queryByUserName(String userName);
-
-    /**
      * 分页查询
      *
      * @param page   分页参数
@@ -68,12 +60,4 @@ public interface SysUserDao extends BaseMapper<SysUserEntity> {
      * @return List
      */
     List<SysUserEntity> selectListPage(@Param("params") Map<String, Object> params);
-
-    /**
-     * 根据userId连表查询一个
-     *
-     * @param userId 用户ID
-     * @return SysUserEntity
-     */
-    SysUserEntity selectEntityById(String userId);
 }

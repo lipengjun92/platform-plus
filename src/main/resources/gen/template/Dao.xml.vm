@@ -4,16 +4,16 @@
 <mapper namespace="${package}.dao.${className}Dao">
 
     <sql id="selectSql">
-        select
+        SELECT
 #foreach($column in $columns)
-        t.$column.columnName#if($velocityCount != $columns.size()),
+        T.$column.columnName#if($velocityCount != $columns.size()),
 #end
 #end
 
-        from ${tableName} t
+        FROM ${tableName} T
         WHERE 1=1
         <if test="params.name != null and params.name.trim() != ''">
-            AND t.name LIKE '%${params.name}%'
+            AND T.NAME LIKE '%${params.name}%'
         </if>
     </sql>
 

@@ -44,8 +44,8 @@ public class SysConfigServiceImpl extends ServiceImpl<SysConfigDao, SysConfigEnt
         Page<SysConfigEntity> page = new Query<SysConfigEntity>(params).getPage();
         return (Page) baseMapper.selectPage(page,
                 new QueryWrapper<SysConfigEntity>()
-                        .like(StringUtils.isNotBlank(paramKey), "param_key", paramKey)
-                        .eq("status", 1));
+                        .like(StringUtils.isNotBlank(paramKey), "PARAM_KEY", paramKey)
+                        .eq("STATUS", 1));
     }
 
     @Override

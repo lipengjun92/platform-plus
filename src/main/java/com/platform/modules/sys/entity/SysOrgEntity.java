@@ -31,7 +31,7 @@ import java.util.Date;
  * @date 2019-01-21 11:29:22
  */
 @Data
-@TableName("sys_org")
+@TableName("SYS_ORG")
 public class SysOrgEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 

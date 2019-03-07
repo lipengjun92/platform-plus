@@ -27,7 +27,7 @@ import java.util.Date;
  */
 @Data
 @ApiModel(value = "user对象", description = "用户对象user")
-@TableName("tb_user")
+@TableName("TB_USER")
 public class UserEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 

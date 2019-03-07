@@ -4,17 +4,17 @@
 <mapper namespace="com.platform.modules.sys.dao.SysMenuDao">
 
 	<select id="queryListParentId" resultType="com.platform.modules.sys.entity.SysMenuEntity">
-		select * from sys_menu where parent_id = #{parentId} order by order_num asc
+		SELECT MENU_ID,PARENT_ID,NAME,URL,PERMS,TYPE,ICON,ORDER_NUM FROM SYS_MENU WHERE PARENT_ID = #{parentId} ORDER BY ORDER_NUM ASC
 	</select>
 
 	<select id="queryNotButtonList" resultType="com.platform.modules.sys.entity.SysMenuEntity">
-		select * from sys_menu where type != 2 order by order_num asc
+		SELECT MENU_ID,PARENT_ID,NAME,URL,PERMS,TYPE,ICON,ORDER_NUM FROM SYS_MENU WHERE TYPE != 2 ORDER BY ORDER_NUM ASC
 	</select>
 
 	<select id="queryList" resultType="com.platform.modules.sys.entity.SysMenuEntity">
-		select a.*,b.name parent_name from sys_menu a left join sys_menu b on a.parent_id = b.menu_id order by a.MENU_ID,a.ORDER_NUM
+		SELECT A.*,B.NAME PARENT_NAME FROM SYS_MENU A LEFT JOIN SYS_MENU B ON A.PARENT_ID = B.MENU_ID ORDER BY A.MENU_ID,A.ORDER_NUM
 	</select>
     <select id="queryMaxIdByParentId" resultType="string">
-		SELECT max(menu_id) FROM sys_menu WHERE parent_id = #{parentId}
+		SELECT MAX(MENU_ID) FROM SYS_MENU WHERE PARENT_ID = #{parentId}
 	</select>
 </mapper>

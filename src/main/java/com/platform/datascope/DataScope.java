@@ -26,14 +26,14 @@ import java.util.HashMap;
 public class DataScope extends HashMap {
 
     /**
-     * sql中数据创建用户（通常传入create_user_id）的别名
+     * SQL中数据创建用户（通常传入CREATE_USER_ID）的别名
      */
-    private String userAlias = "t.create_user_id";
+    private String userAlias = "T.CREATE_USER_ID";
 
     /**
-     * sql中数据create_user_org_no的别名
+     * SQL中数据CREATE_USER_ORG_NO的别名
      */
-    private String orgAlias = "t.create_user_org_no";
+    private String orgAlias = "T.CREATE_USER_ORG_NO";
 
     /**
      * 具体的数据范围

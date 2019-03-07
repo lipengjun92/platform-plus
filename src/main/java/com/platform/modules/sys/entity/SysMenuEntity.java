@@ -28,7 +28,7 @@ import java.util.List;
  * @author 李鹏军
  */
 @Data
-@TableName("sys_menu")
+@TableName("SYS_MENU")
 public class SysMenuEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 

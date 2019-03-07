@@ -37,8 +37,8 @@ public class SysLogServiceImpl extends ServiceImpl<SysLogDao, SysLogEntity> impl
         Page<SysLogEntity> page = new Query<SysLogEntity>(params).getPage();
 
         return baseMapper.selectPage(page,
-                new QueryWrapper<SysLogEntity>().like(StringUtils.isNotBlank(key), "user_name", key)
-                        .or().like(StringUtils.isNotBlank(key), "operation", key)
-                        .orderByDesc("create_time"));
+                new QueryWrapper<SysLogEntity>().like(StringUtils.isNotBlank(key), "USER_NAME", key)
+                        .or().like(StringUtils.isNotBlank(key), "OPERATION", key)
+                        .orderByDesc("CREATE_TIME"));
     }
 }

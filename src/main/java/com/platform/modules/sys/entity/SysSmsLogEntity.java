@@ -25,7 +25,7 @@ import java.util.Date;
  * @date 2019-02-12 09:51:15
  */
 @Data
-@TableName("sys_sms_log")
+@TableName("SYS_SMS_LOG")
 public class SysSmsLogEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 

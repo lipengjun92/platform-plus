@@ -67,7 +67,7 @@ public class GenUtils {
         boolean hasBigDecimal = false;
         for (ColumnEntity column : columns) {
             ColumnEntity columnEntity = new ColumnEntity();
-            columnEntity.setColumnName(column.getColumnName());
+            columnEntity.setColumnName(column.getColumnName().toUpperCase());
             columnEntity.setDataType(column.getDataType());
             columnEntity.setComments(null == column.getComments() ? column.getColumnName() : column.getComments());
 
@@ -133,7 +133,7 @@ public class GenUtils {
          */
         Map<String, Object> map = new HashMap<>(32);
         //取表前缀用于分包
-        map.put("tableName", tableEntity.getTableName());
+        map.put("tableName", tableEntity.getTableName().toUpperCase());
         map.put("comments", null == tableEntity.getComments() ? "" : tableEntity.getComments());
         map.put("pk", tableEntity.getPk());
         map.put("className", tableEntity.getClassName());
