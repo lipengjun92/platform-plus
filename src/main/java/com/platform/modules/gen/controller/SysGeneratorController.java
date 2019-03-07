@@ -34,7 +34,10 @@ public class SysGeneratorController {
     private SysGeneratorService sysGeneratorService;
 
     /**
-     * 列表
+     * 分页查询所有表
+     *
+     * @param params 查询参数
+     * @return RestResponse
      */
     @ResponseBody
     @RequestMapping("/list")
@@ -47,6 +50,9 @@ public class SysGeneratorController {
 
     /**
      * 生成代码
+     *
+     * @param request  request
+     * @param response response
      */
     @SysLog("生成代码")
     @RequestMapping("/code")

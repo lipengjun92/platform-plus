@@ -11,8 +11,8 @@
  */
 package com.platform.modules.sys.controller;
 
-import com.platform.common.annotation.SysLog;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.platform.common.annotation.SysLog;
 import com.platform.common.utils.RestResponse;
 import com.platform.common.validator.ValidatorUtils;
 import com.platform.common.validator.group.AddGroup;
@@ -40,6 +40,9 @@ public class SysDictGroupController {
 
     /**
      * 查看所有列表
+     *
+     * @param params 查询参数
+     * @return RestResponse
      */
     @RequestMapping("/queryAll")
     @RequiresPermissions("sys:dictgroup:list")
@@ -51,6 +54,9 @@ public class SysDictGroupController {
 
     /**
      * 分页查询
+     *
+     * @param params 查询参数
+     * @return RestResponse
      */
     @GetMapping("/list")
     @RequiresPermissions("sys:dictgroup:list")
@@ -61,7 +67,10 @@ public class SysDictGroupController {
     }
 
     /**
-     * 查看信息
+     * 根据主键查询详情
+     *
+     * @param id 主键
+     * @return RestResponse
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("sys:dictgroup:info")
@@ -72,7 +81,10 @@ public class SysDictGroupController {
     }
 
     /**
-     * 保存
+     * 保存数据字典分组
+     *
+     * @param sysDictGroup sysDictGroup
+     * @return RestResponse
      */
     @SysLog("保存数据字典分组")
     @RequestMapping("/save")
@@ -85,7 +97,10 @@ public class SysDictGroupController {
     }
 
     /**
-     * 修改
+     * 修改数据字典分组
+     *
+     * @param sysDictGroup sysDictGroup
+     * @return RestResponse
      */
     @SysLog("修改数据字典分组")
     @RequestMapping("/update")
@@ -98,7 +113,10 @@ public class SysDictGroupController {
     }
 
     /**
-     * 删除
+     * 删除数据字典分组
+     *
+     * @param ids ids
+     * @return RestResponse
      */
     @SysLog("删除数据字典分组")
     @RequestMapping("/delete")

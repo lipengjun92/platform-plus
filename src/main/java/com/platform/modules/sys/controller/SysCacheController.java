@@ -38,7 +38,10 @@ public class SysCacheController {
     SysCacheService sysCacheService;
 
     /**
-     * 所有配置列表
+     * 查询缓存
+     *
+     * @param params 查询参数
+     * @return
      */
     @RequiresPermissions("sys:cache:queryAll")
     @RequestMapping("/queryAll")
@@ -64,6 +67,9 @@ public class SysCacheController {
 
     /**
      * 删除cache
+     *
+     * @param keys keys
+     * @return RestResponse
      */
     @SysLog("删除redis缓存")
     @RequiresPermissions("sys:cache:deleteCache")

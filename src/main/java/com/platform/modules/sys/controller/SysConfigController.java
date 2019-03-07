@@ -36,6 +36,9 @@ public class SysConfigController extends AbstractController {
 
     /**
      * 所有系统配置列表
+     *
+     * @param params 查询参数
+     * @return RestResponse
      */
     @GetMapping("/list")
     @RequiresPermissions("sys:config:list")
@@ -45,9 +48,11 @@ public class SysConfigController extends AbstractController {
         return RestResponse.success().put("page", page);
     }
 
-
     /**
-     * 系统配置信息
+     * 根据主键查询详情
+     *
+     * @param id 主键
+     * @return RestResponse
      */
     @GetMapping("/info/{id}")
     @RequiresPermissions("sys:config:info")
@@ -59,6 +64,9 @@ public class SysConfigController extends AbstractController {
 
     /**
      * 保存系统配置
+     *
+     * @param config config
+     * @return RestResponse
      */
     @SysLog("保存系统配置")
     @PostMapping("/save")
@@ -73,6 +81,9 @@ public class SysConfigController extends AbstractController {
 
     /**
      * 修改系统配置
+     *
+     * @param config config
+     * @return RestResponse
      */
     @SysLog("修改系统配置")
     @PostMapping("/update")
@@ -87,6 +98,9 @@ public class SysConfigController extends AbstractController {
 
     /**
      * 删除系统配置
+     *
+     * @param ids ids
+     * @return RestResponse
      */
     @SysLog("删除系统配置")
     @PostMapping("/delete")

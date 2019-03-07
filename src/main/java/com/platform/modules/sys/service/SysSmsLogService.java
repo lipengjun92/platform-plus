@@ -11,8 +11,8 @@
  */
 package com.platform.modules.sys.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.platform.modules.sys.entity.SysSmsLogEntity;
 
 import java.util.List;
@@ -29,24 +29,23 @@ public interface SysSmsLogService extends IService<SysSmsLogEntity> {
     /**
      * 查询所有列表
      *
-     * @param params
-     * @return
+     * @param params 查询参数
+     * @return List
      */
     List<SysSmsLogEntity> queryAll(Map<String, Object> params);
 
     /**
      * 查询分页信息
      *
-     * @param params
-     * @return
+     * @param params 查询参数
+     * @return Page
      */
     Page queryPage(Map<String, Object> params);
 
     /**
-     * 保存实体
+     * 新增实体
      *
      * @param sysSmsLog 实体
-     * @return 保存条数
      */
     void add(SysSmsLogEntity sysSmsLog);
 
@@ -54,15 +53,13 @@ public interface SysSmsLogService extends IService<SysSmsLogEntity> {
      * 根据主键更新实体
      *
      * @param sysSmsLog 实体
-     * @return 更新条数
      */
     void update(SysSmsLogEntity sysSmsLog);
 
     /**
      * 根据主键删除
      *
-     * @param id
-     * @return 删除条数
+     * @param id 主键
      */
     void delete(String id);
 
@@ -70,15 +67,14 @@ public interface SysSmsLogService extends IService<SysSmsLogEntity> {
      * 根据主键批量删除
      *
      * @param ids
-     * @return 删除条数
      */
     void deleteBatch(String[] ids);
 
     /**
      * 发送短信
      *
-     * @param smsLog
-     * @return
+     * @param smsLog smsLog
+     * @return SysSmsLogEntity
      */
     SysSmsLogEntity sendSms(SysSmsLogEntity smsLog);
 }

@@ -43,7 +43,7 @@ public abstract class AbstractController {
     /**
      * 当前登录用户ID
      *
-     * @return
+     * @return userId
      */
     protected String getUserId() {
         return getUser().getUserId();
@@ -52,7 +52,7 @@ public abstract class AbstractController {
     /**
      * 当前登录用户所属机构
      *
-     * @return
+     * @return orgNo
      */
     protected String getOrgNo() {
         return getUser().getOrgNo();
@@ -61,7 +61,7 @@ public abstract class AbstractController {
     /**
      * 数据权限构造
      *
-     * @return
+     * @return DataScope
      */
     protected DataScope getDataScope() {
         DataScope dataScope = new DataScope();
@@ -72,7 +72,7 @@ public abstract class AbstractController {
     /**
      * 数据权限构造
      *
-     * @return
+     * @return DataScope
      */
     protected DataScope getDataScope(String userAlias, String orgAlias) {
         DataScope dataScope = new DataScope();

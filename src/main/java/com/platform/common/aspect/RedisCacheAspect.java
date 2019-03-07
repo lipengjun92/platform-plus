@@ -71,7 +71,7 @@ public class RedisCacheAspect {
         }
         log.debug("生成的key[{}]", key);
 
-        Object result = null;
+        Object result;
         if (!jedisUtil.exists(key)) {
             log.debug("缓存未命中");
             //缓存不存在，则调用原方法，并将结果放入缓存中

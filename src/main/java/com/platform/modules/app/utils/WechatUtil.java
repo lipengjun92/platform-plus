@@ -22,6 +22,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.ConnectException;
 import java.net.URL;
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 /**
@@ -65,16 +66,16 @@ public class WechatUtil {
             if (null != outputStr) {
                 OutputStream outputStream = conn.getOutputStream();
                 // 注意编码格式
-                outputStream.write(outputStr.getBytes("UTF-8"));
+                outputStream.write(outputStr.getBytes(StandardCharsets.UTF_8));
                 outputStream.close();
             }
 
             // 从输入流读取返回内容
             InputStream inputStream = conn.getInputStream();
-            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, "utf-8");
+            InputStreamReader inputStreamReader = new InputStreamReader(inputStream, StandardCharsets.UTF_8);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-            String str = null;
-            StringBuffer buffer = new StringBuffer();
+            String str;
+            StringBuilder buffer = new StringBuilder();
             while ((str = bufferedReader.readLine()) != null) {
                 buffer.append(str);
             }
@@ -132,7 +133,7 @@ public class WechatUtil {
      * @param openId      用户标识
      * @param accessToken accessToken
      * @param count       重试次数
-     * @return
+     * @return UserEntity
      */
     public UserEntity getUserInfo(String openId, String accessToken, int count) {
         UserEntity weixinUserInfo = null;

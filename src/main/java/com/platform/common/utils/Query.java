@@ -36,7 +36,7 @@ public class Query<T> extends LinkedHashMap<String, Object> {
      */
     private int limit = 10;
 
-    public static final String ASC = "asc";
+    private static final String ASC = "asc";
 
     public Query(Map<String, Object> params) {
 

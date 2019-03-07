@@ -44,7 +44,7 @@ public class DynamicDataSourceConfig {
     @Bean
     @Primary
     public DynamicDataSource dataSource(DataSource firstDataSource, DataSource secondDataSource) {
-        /**
+        /*
          * map中2个元素，与2的n次方最接近的数是2，但是这里如果设置容量为2的话 2/2=1,
          * 已经超过默认加载因子(0.75)的大小了。因此会resize一次，变成4。所以最优的值是4。
          *

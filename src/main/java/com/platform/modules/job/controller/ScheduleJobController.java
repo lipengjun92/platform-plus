@@ -11,8 +11,8 @@
  */
 package com.platform.modules.job.controller;
 
-import com.platform.common.annotation.SysLog;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.platform.common.annotation.SysLog;
 import com.platform.common.utils.RestResponse;
 import com.platform.common.validator.ValidatorUtils;
 import com.platform.modules.job.entity.ScheduleJobEntity;
@@ -35,7 +35,10 @@ public class ScheduleJobController {
     private ScheduleJobService scheduleJobService;
 
     /**
-     * 定时任务列表
+     * 分页查询定时任务
+     *
+     * @param params 查询参数
+     * @return RestResponse
      */
     @GetMapping("/list")
     @RequiresPermissions("sys:schedule:list")
@@ -46,7 +49,10 @@ public class ScheduleJobController {
     }
 
     /**
-     * 定时任务信息
+     * 根据主键查询详情
+     *
+     * @param jobId 主键
+     * @return RestResponse
      */
     @GetMapping("/info/{jobId}")
     @RequiresPermissions("sys:schedule:info")
@@ -57,21 +63,27 @@ public class ScheduleJobController {
     }
 
     /**
-     * 保存定时任务
+     * 新增定时任务
+     *
+     * @param scheduleJob scheduleJob
+     * @return RestResponse
      */
-    @SysLog("保存定时任务")
+    @SysLog("新增定时任务")
     @PostMapping("/save")
     @RequiresPermissions("sys:schedule:save")
     public RestResponse save(@RequestBody ScheduleJobEntity scheduleJob) {
         ValidatorUtils.validateEntity(scheduleJob);
 
-        scheduleJobService.save(scheduleJob);
+        scheduleJobService.add(scheduleJob);
 
         return RestResponse.success();
     }
 
     /**
      * 修改定时任务
+     *
+     * @param scheduleJob scheduleJob
+     * @return RestResponse
      */
     @SysLog("修改定时任务")
     @PostMapping("/update")
@@ -86,6 +98,9 @@ public class ScheduleJobController {
 
     /**
      * 删除定时任务
+     *
+     * @param jobIds jobIds
+     * @return RestResponse
      */
     @SysLog("删除定时任务")
     @PostMapping("/delete")
@@ -98,6 +113,9 @@ public class ScheduleJobController {
 
     /**
      * 立即执行任务
+     *
+     * @param jobIds jobIds
+     * @return RestResponse
      */
     @SysLog("立即执行任务")
     @PostMapping("/run")
@@ -110,6 +128,9 @@ public class ScheduleJobController {
 
     /**
      * 暂停定时任务
+     *
+     * @param jobIds jobIds
+     * @return RestResponse
      */
     @SysLog("暂停定时任务")
     @PostMapping("/pause")
@@ -122,6 +143,9 @@ public class ScheduleJobController {
 
     /**
      * 恢复定时任务
+     *
+     * @param jobIds jobIds
+     * @return RestResponse
      */
     @SysLog("恢复定时任务")
     @PostMapping("/resume")
@@ -131,5 +155,4 @@ public class ScheduleJobController {
 
         return RestResponse.success();
     }
-
 }

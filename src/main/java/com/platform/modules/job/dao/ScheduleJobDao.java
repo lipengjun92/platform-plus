@@ -32,17 +32,17 @@ public interface ScheduleJobDao extends BaseMapper<ScheduleJobEntity> {
     /**
      * 批量更新状态
      *
-     * @param map
-     * @return
+     * @param map map
+     * @return int
      */
     int updateBatch(Map<String, Object> map);
 
     /**
      * 自定义分页查询
      *
-     * @param page
-     * @param params
-     * @return
+     * @param page   分页参数
+     * @param params 查询参数
+     * @return List
      */
     List<ScheduleJobEntity> selectScheduleJobPage(IPage page, @Param("params") Map<String, Object> params);
 }

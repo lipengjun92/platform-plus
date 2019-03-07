@@ -34,8 +34,8 @@ public class ObjectUtils extends org.apache.commons.lang.ObjectUtils {
     /**
      * 注解到对象复制，只复制能匹配上的方法。
      *
-     * @param annotation
-     * @param object
+     * @param annotation annotation
+     * @param object     object
      */
     public static void annotationToObject(Object annotation, Object object) {
         if (annotation != null) {
@@ -63,16 +63,14 @@ public class ObjectUtils extends org.apache.commons.lang.ObjectUtils {
     /**
      * 序列化对象
      *
-     * @param object
-     * @return
+     * @param object object
+     * @return byte[]
      */
     public static byte[] serialize(Object object) {
-        ObjectOutputStream oos = null;
-        ByteArrayOutputStream baos = null;
         try {
             if (object != null) {
-                baos = new ByteArrayOutputStream();
-                oos = new ObjectOutputStream(baos);
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                ObjectOutputStream oos = new ObjectOutputStream(baos);
                 oos.writeObject(object);
                 return baos.toByteArray();
             }
@@ -85,11 +83,11 @@ public class ObjectUtils extends org.apache.commons.lang.ObjectUtils {
     /**
      * 反序列化对象
      *
-     * @param bytes
-     * @return
+     * @param bytes bytes
+     * @return Object
      */
     public static Object unserialize(byte[] bytes) {
-        ByteArrayInputStream bais = null;
+        ByteArrayInputStream bais;
         try {
             if (bytes != null && bytes.length > 0) {
                 bais = new ByteArrayInputStream(bytes);
@@ -100,18 +98,5 @@ public class ObjectUtils extends org.apache.commons.lang.ObjectUtils {
             logger.error(ExceptionUtils.getStackTrace(e));
         }
         return null;
-    }
-
-    /**
-     * @param clazz
-     * @param index
-     * @return T
-     * @Description:获取数据对象
-     * @date 2016年9月13日
-     * @author zhuliyun
-     */
-    public static <T> T getEnum(Class<T> clazz, int index) {
-        T[] c = clazz.getEnumConstants();
-        return c[index];
     }
 }

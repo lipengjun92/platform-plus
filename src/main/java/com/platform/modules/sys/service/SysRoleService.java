@@ -11,8 +11,8 @@
  */
 package com.platform.modules.sys.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.platform.modules.sys.entity.SysRoleEntity;
 
 import java.util.List;
@@ -26,47 +26,47 @@ import java.util.Map;
 public interface SysRoleService extends IService<SysRoleEntity> {
 
     /**
-     * queryPage
+     * 分页查询
      *
-     * @param params
-     * @return
+     * @param params 查询参数
+     * @return Page
      */
     Page queryPage(Map<String, Object> params);
 
     /**
      * 保存
      *
-     * @param role
+     * @param role role
      */
     void add(SysRoleEntity role);
 
     /**
      * 更新
      *
-     * @param role
+     * @param role role
      */
     void update(SysRoleEntity role);
 
     /**
      * 删除
      *
-     * @param roleIds
+     * @param roleIds roleIds
      */
     void deleteBatch(String[] roleIds);
 
     /**
      * 查询用户权限下的角色ID列表
      *
-     * @param params
-     * @return
+     * @param params 查询参数
+     * @return List
      */
     List<String> queryRoleIdList(Map<String, Object> params);
 
     /**
      * selectListByMap
      *
-     * @param params
-     * @return
+     * @param params 查询参数
+     * @return List
      */
     List<SysRoleEntity> selectListByMap(Map<String, Object> params);
 }

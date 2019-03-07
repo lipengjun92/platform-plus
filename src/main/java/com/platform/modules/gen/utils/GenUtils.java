@@ -62,7 +62,7 @@ public class GenUtils {
         tableEntity.setClassname(StringUtils.uncapitalize(className));
 
         //列信息
-        List<ColumnEntity> columsList = new ArrayList<ColumnEntity>();
+        List<ColumnEntity> columsList = new ArrayList<>();
         boolean hasDate = false;
         boolean hasBigDecimal = false;
         for (ColumnEntity column : columns) {
@@ -127,7 +127,7 @@ public class GenUtils {
         Velocity.init(prop);
 
         //封装模板数据
-        /**
+        /*
          * map中14个元素，与2的n次方最接近的数是16，但是这里如果设置容量为16的话 14/16=0.875,
          * 已经超过默认加载因子(0.75)的大小了。因此会resize一次，变成32。所以最好的结果还是32。
          */
@@ -159,7 +159,7 @@ public class GenUtils {
 
             try {
                 //添加到zip
-                zip.putNextEntry(new ZipEntry(getFileName(template, tableEntity.getClassName(), packageName, pre)));
+                zip.putNextEntry(new ZipEntry(Objects.requireNonNull(getFileName(template, tableEntity.getClassName(), packageName, pre))));
                 IOUtils.write(sw.toString(), zip, "UTF-8");
                 IOUtils.closeQuietly(sw);
                 zip.closeEntry();

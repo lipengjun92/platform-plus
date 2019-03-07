@@ -1,6 +1,5 @@
 package com.platform.common.utils;
 
-
 import org.springframework.http.HttpStatus;
 
 import java.io.IOException;
@@ -11,6 +10,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 /**
  * 功能:		web.cr6868.com HTTP接口 发送短信
@@ -32,7 +32,7 @@ public class SmsUtil {
      * @param sign          签名
      * @param stime         追加发送时间，可为空，为空为及时发送
      * @param extno         扩展码，必须为数字 可为空
-     * @return
+     * @return resultBuffer
      * @throws Exception
      */
     public static String crSendSms(String name, String pwd, String mobileString, String contextString, String sign, String stime, String extno) throws Exception {
@@ -102,8 +102,8 @@ public class SmsUtil {
     /**
      * 转换返回值类型为UTF-8格式.
      *
-     * @param is
-     * @return
+     * @param is InputStream
+     * @return String
      */
     private static String convertStreamToString(InputStream is) {
         StringBuilder sb1 = new StringBuilder();
@@ -112,7 +112,7 @@ public class SmsUtil {
 
         try {
             while ((size = is.read(bytes)) > 0) {
-                String str = new String(bytes, 0, size, "UTF-8");
+                String str = new String(bytes, 0, size, StandardCharsets.UTF_8);
                 sb1.append(str);
             }
         } catch (IOException e) {

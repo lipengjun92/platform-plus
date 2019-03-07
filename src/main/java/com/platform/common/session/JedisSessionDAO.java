@@ -40,8 +40,8 @@ public class JedisSessionDAO extends EnterpriseCacheSessionDAO {
     /**
      * 创建session，保存到redis
      *
-     * @param session
-     * @return
+     * @param session session
+     * @return sessionId
      */
     @Override
     protected Serializable doCreate(Session session) {
@@ -55,8 +55,8 @@ public class JedisSessionDAO extends EnterpriseCacheSessionDAO {
     /**
      * 获取session
      *
-     * @param sessionId
-     * @return
+     * @param sessionId sessionId
+     * @return Session
      */
     @Override
     protected Session doReadSession(Serializable sessionId) {
@@ -72,7 +72,7 @@ public class JedisSessionDAO extends EnterpriseCacheSessionDAO {
     /**
      * 更新session的最后一次访问时间
      *
-     * @param session
+     * @param session session
      */
     @Override
     protected void doUpdate(Session session) {
@@ -89,12 +89,12 @@ public class JedisSessionDAO extends EnterpriseCacheSessionDAO {
     /**
      * 删除session
      *
-     * @param session
+     * @param session session
      */
     @Override
     protected void doDelete(Session session) {
         log.debug("删除session:{}", session.getId());
-        if (session == null || session.getId() == null) {
+        if (session.getId() == null) {
             return;
         }
         super.doDelete(session);

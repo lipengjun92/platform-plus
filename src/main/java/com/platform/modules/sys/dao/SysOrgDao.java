@@ -12,7 +12,6 @@
 package com.platform.modules.sys.dao;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.platform.modules.sys.entity.SysOrgEntity;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -31,24 +30,24 @@ public interface SysOrgDao extends BaseMapper<SysOrgEntity> {
     /**
      * 查询存在的最大ID
      *
-     * @param orgNo
-     * @return
+     * @param orgNo 机构编码
+     * @return String
      */
     String queryMaxIdByParentNo(String orgNo);
 
     /**
      * 查询所有列表
      *
-     * @param params
-     * @return
+     * @param params 查询参数
+     * @return List
      */
     List<SysOrgEntity> queryAll(Map<String, Object> params);
 
     /**
      * 根据orgNo查询所有下级列表
      *
-     * @param orgNo
-     * @return
+     * @param orgNo 机构编码
+     * @return List
      */
     List<SysOrgEntity> selectChildrensByOrgNo(String orgNo);
 }

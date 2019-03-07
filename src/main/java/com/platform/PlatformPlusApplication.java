@@ -9,6 +9,8 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 import org.springframework.context.annotation.Import;
 
 /**
+ * 启动类
+ *
  * @author 李鹏军
  */
 @SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})

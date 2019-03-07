@@ -11,11 +11,11 @@
  */
 package com.platform.modules.oss.controller;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.google.gson.Gson;
 import com.platform.common.annotation.SysLog;
 import com.platform.common.exception.BusinessException;
 import com.platform.common.utils.Constant;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.utils.RestResponse;
 import com.platform.common.validator.ValidatorUtils;
 import com.platform.common.validator.group.AliyunGroup;
@@ -51,7 +51,10 @@ public class SysOssController {
     private SysConfigService sysConfigService;
 
     /**
-     * 列表
+     * 分页查询
+     *
+     * @param params 查询参数
+     * @return RestResponse
      */
     @GetMapping("/list")
     @RequiresPermissions("sys:oss:list")
@@ -61,9 +64,10 @@ public class SysOssController {
         return RestResponse.success().put("page", page);
     }
 
-
     /**
      * 云存储配置信息
+     *
+     * @return RestResponse
      */
     @GetMapping("/config")
     @RequiresPermissions("sys:oss:config")
@@ -73,9 +77,11 @@ public class SysOssController {
         return RestResponse.success().put("config", config);
     }
 
-
     /**
      * 修改云存储配置信息
+     *
+     * @param config config
+     * @return RestResponse
      */
     @SysLog("修改云存储配置信息")
     @PostMapping("/saveConfig")
@@ -103,9 +109,11 @@ public class SysOssController {
         return RestResponse.success();
     }
 
-
     /**
      * 上传文件
+     *
+     * @param file file
+     * @return RestResponse
      */
     @PostMapping("/upload")
     @RequiresPermissions("sys:oss:upload")
@@ -127,9 +135,11 @@ public class SysOssController {
         return RestResponse.success().put("url", url);
     }
 
-
     /**
      * 删除文件上传记录
+     *
+     * @param ids ids
+     * @return RestResponse
      */
     @SysLog("删除文件上传记录")
     @PostMapping("/delete")

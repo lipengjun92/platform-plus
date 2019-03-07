@@ -31,7 +31,6 @@ import java.util.List;
 
 import static com.google.common.collect.Lists.newArrayList;
 
-
 /**
  * Swagger配置
  * Parameter Types
@@ -60,7 +59,6 @@ import static com.google.common.collect.Lists.newArrayList;
  * int、double、float、long、biginteger、bigdecimal、byte、需要给example的值
  *
  * @author 李鹏军
- * @return
  */
 @Configuration
 @EnableSwagger2
@@ -72,7 +70,6 @@ public class SwaggerConfig implements WebMvcConfigurer {
         registry.addResourceHandler("doc.html").addResourceLocations("classpath:/static/");
         registry.addResourceHandler("/swagger-ui/**").addResourceLocations("classpath:/static/swagger-ui/");
     }
-
 
     @Bean
     public Docket createRestApi() {
@@ -100,5 +97,4 @@ public class SwaggerConfig implements WebMvcConfigurer {
                 new ApiKey("token", "token", "header")
         );
     }
-
 }

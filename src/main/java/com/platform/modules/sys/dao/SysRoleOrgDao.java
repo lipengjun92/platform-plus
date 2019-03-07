@@ -29,32 +29,32 @@ public interface SysRoleOrgDao extends BaseMapper<SysRoleOrgEntity> {
     /**
      * 删除根据角色Id
      *
-     * @param roleId
-     * @return
+     * @param roleId 角色Id
+     * @return int
      */
     int deleteByRoleId(String roleId);
 
     /**
      * 根据角色ID，获取机构ID列表
      *
-     * @param roleId
-     * @return
+     * @param roleId 角色Id
+     * @return List
      */
     List<String> queryOrgNoList(String roleId);
 
     /**
      * 根据用户ID获取权限机构列表
      *
-     * @param userId
-     * @return
+     * @param userId 用户ID
+     * @return List
      */
     List<String> queryOrgNoListByUserId(String userId);
 
     /**
      * offlineBatch
      *
-     * @param roleIds
-     * @return
+     * @param roleIds 角色Ids
+     * @return int
      */
     int deleteBatch(String[] roleIds);
 }

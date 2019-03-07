@@ -11,10 +11,7 @@
  */
 package com.platform.modules.sys.service.impl;
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.platform.common.utils.Query;
 import com.platform.common.utils.StringUtils;
 import com.platform.modules.sys.dao.SysOrgDao;
 import com.platform.modules.sys.entity.SysOrgEntity;

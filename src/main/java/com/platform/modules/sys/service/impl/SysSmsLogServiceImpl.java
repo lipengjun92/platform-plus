@@ -110,7 +110,7 @@ public class SysSmsLogServiceImpl extends ServiceImpl<SysSmsLogDao, SysSmsLogEnt
             }
             String[] arr = result.split(",");
             //发送成功
-            if (Constant.STR_ZORE.equals(arr[0])) {
+            if (Constant.STR_ZERO.equals(arr[0])) {
                 smsLog.setSendId(arr[1]);
                 smsLog.setInvalidNum(Integer.parseInt(arr[2]));
                 smsLog.setSuccessNum(Integer.parseInt(arr[3]));

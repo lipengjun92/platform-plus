@@ -26,16 +26,16 @@ public interface SysCacheService {
     /**
      * 查询缓存
      *
-     * @param params
-     * @return
+     * @param params 查询参数
+     * @return List
      */
     List<SysCacheEntity> queryAll(Map<String, String> params);
 
     /**
      * 删除缓存
      *
-     * @param keys
-     * @return
+     * @param keys keys
+     * @return int
      */
     int deleteBatch(String[] keys);
 }

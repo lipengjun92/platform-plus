@@ -218,13 +218,17 @@ public final class HtmlFilter {
     /**
      * my versions of some PHP library functions
      *
-     * @param decimal
-     * @return
+     * @param decimal decimal
+     * @return String
      */
     public static String chr(final int decimal) {
         return String.valueOf((char) decimal);
     }
 
+    /**
+     * @param s s
+     * @return String
+     */
     public static String htmlSpecialChars(final String s) {
         String result = s;
         result = regexReplace(P_AMP, "&amp;", result);

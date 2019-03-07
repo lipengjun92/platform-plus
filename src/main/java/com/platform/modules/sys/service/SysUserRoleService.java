@@ -26,24 +26,24 @@ public interface SysUserRoleService extends IService<SysUserRoleEntity> {
     /**
      * saveOrUpdate
      *
-     * @param userId
-     * @param roleIdList
+     * @param userId     用户Id
+     * @param roleIdList roleIdList
      */
     void saveOrUpdate(String userId, List<String> roleIdList);
 
     /**
      * 根据用户ID，获取角色ID列表
      *
-     * @param userId
-     * @return
+     * @param userId 用户Id
+     * @return List
      */
     List<String> queryRoleIdList(String userId);
 
     /**
      * 根据角色ID数组，批量删除
      *
-     * @param roleIds
-     * @return
+     * @param roleIds roleIds
+     * @return int
      */
     int deleteBatch(String[] roleIds);
 }

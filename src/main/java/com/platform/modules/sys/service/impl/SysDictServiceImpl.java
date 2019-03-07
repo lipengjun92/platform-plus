@@ -12,11 +12,9 @@
 package com.platform.modules.sys.service.impl;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.platform.common.annotation.RedisCache;
 import com.platform.common.utils.JedisUtil;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.utils.Query;
 import com.platform.modules.sys.dao.SysDictDao;
 import com.platform.modules.sys.entity.SysDictEntity;

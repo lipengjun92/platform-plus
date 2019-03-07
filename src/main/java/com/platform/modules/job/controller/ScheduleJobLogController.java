@@ -33,7 +33,10 @@ public class ScheduleJobLogController {
     private ScheduleJobLogService scheduleJobLogService;
 
     /**
-     * 定时任务日志列表
+     * 分页查询定时任务日志
+     *
+     * @param params 查询参数
+     * @return RestResponse
      */
     @GetMapping("/list")
     @RequiresPermissions("sys:schedule:log")
@@ -44,7 +47,10 @@ public class ScheduleJobLogController {
     }
 
     /**
-     * 定时任务日志信息
+     * 根据主键查询详情
+     *
+     * @param logId logId
+     * @return RestResponse
      */
     @GetMapping("/info/{logId}")
     public RestResponse info(@PathVariable("logId") String logId) {

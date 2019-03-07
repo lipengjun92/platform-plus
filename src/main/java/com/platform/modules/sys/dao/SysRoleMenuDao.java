@@ -28,16 +28,16 @@ public interface SysRoleMenuDao extends BaseMapper<SysRoleMenuEntity> {
     /**
      * 根据角色ID，获取菜单ID列表
      *
-     * @param roleId
-     * @return
+     * @param roleId 角色Id
+     * @return List
      */
     List<String> queryMenuIdList(String roleId);
 
     /**
      * 根据角色ID数组，批量删除
      *
-     * @param roleIds
-     * @return
+     * @param roleIds 角色Ids
+     * @return int
      */
     int deleteBatch(String[] roleIds);
 }

@@ -11,8 +11,8 @@
  */
 package com.platform.modules.sys.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.platform.modules.sys.entity.SysDictGroupEntity;
 
 import java.util.List;
@@ -29,24 +29,23 @@ public interface SysDictGroupService extends IService<SysDictGroupEntity> {
     /**
      * 查看所有列表
      *
-     * @param params
-     * @return
+     * @param params 查询参数
+     * @return List
      */
     List<SysDictGroupEntity> queryAll(Map<String, Object> params);
 
     /**
-     * 查询分页信息
+     * 分页查询
      *
-     * @param params
-     * @return
+     * @param params 查询参数
+     * @return Page
      */
     Page queryPage(Map<String, Object> params);
 
     /**
-     * 保存实体
+     * 新增实体
      *
      * @param sysDictGroup 实体
-     * @return 保存条数
      */
     void add(SysDictGroupEntity sysDictGroup);
 
@@ -54,23 +53,20 @@ public interface SysDictGroupService extends IService<SysDictGroupEntity> {
      * 根据主键更新实体
      *
      * @param sysDictGroup 实体
-     * @return 更新条数
      */
     void update(SysDictGroupEntity sysDictGroup);
 
     /**
      * 根据主键删除
      *
-     * @param id
-     * @return 删除条数
+     * @param id 主键
      */
     void delete(String id);
 
     /**
      * 根据主键批量删除
      *
-     * @param ids
-     * @return 删除条数
+     * @param ids ids
      */
     void deleteBatch(String[] ids);
 }

@@ -12,7 +12,6 @@
 package com.platform.modules.sys.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.utils.RestResponse;
 import com.platform.modules.sys.service.SysLogService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -38,6 +37,9 @@ public class SysLogController {
 
     /**
      * 列表
+     *
+     * @param params 查询参数
+     * @return RestResponse
      */
     @ResponseBody
     @GetMapping("/list")
@@ -47,5 +49,4 @@ public class SysLogController {
 
         return RestResponse.success().put("page", page);
     }
-
 }

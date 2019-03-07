@@ -11,8 +11,8 @@
  */
 package com.platform.modules.sys.controller;
 
-import com.platform.common.annotation.SysLog;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.platform.common.annotation.SysLog;
 import com.platform.common.utils.RestResponse;
 import com.platform.common.validator.ValidatorUtils;
 import com.platform.modules.sys.entity.SysRoleEntity;
@@ -44,6 +44,9 @@ public class SysRoleController extends AbstractController {
 
     /**
      * 角色列表
+     *
+     * @param params 查询参数
+     * @return RestResponse
      */
     @GetMapping("/list")
     @RequiresPermissions("sys:role:list")
@@ -59,6 +62,8 @@ public class SysRoleController extends AbstractController {
 
     /**
      * 角色列表
+     *
+     * @return RestResponse
      */
     @GetMapping("/select")
     @RequiresPermissions("sys:role:select")
@@ -72,7 +77,10 @@ public class SysRoleController extends AbstractController {
     }
 
     /**
-     * 角色信息
+     * 根据主键查询详情
+     *
+     * @param roleId 主键
+     * @return RestResponse
      */
     @GetMapping("/info/{roleId}")
     @RequiresPermissions("sys:role:info")
@@ -92,6 +100,9 @@ public class SysRoleController extends AbstractController {
 
     /**
      * 保存角色
+     *
+     * @param role role
+     * @return RestResponse
      */
     @SysLog("保存角色")
     @PostMapping("/save")
@@ -108,6 +119,9 @@ public class SysRoleController extends AbstractController {
 
     /**
      * 修改角色
+     *
+     * @param role role
+     * @return RestResponse
      */
     @SysLog("修改角色")
     @PostMapping("/update")
@@ -124,6 +138,9 @@ public class SysRoleController extends AbstractController {
 
     /**
      * 删除角色
+     *
+     * @param roleIds roleIds
+     * @return RestResponse
      */
     @SysLog("删除角色")
     @PostMapping("/delete")

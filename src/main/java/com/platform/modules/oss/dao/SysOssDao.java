@@ -32,8 +32,8 @@ public interface SysOssDao extends BaseMapper<SysOssEntity> {
     /**
      * 自定义分页查询
      *
-     * @param page
-     * @param params
+     * @param page   分页参数
+     * @param params 查询参数
      * @return
      */
     List<SysOssEntity> selectSysOssPage(IPage page, @Param("params") Map<String, Object> params);

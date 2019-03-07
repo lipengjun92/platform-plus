@@ -28,8 +28,8 @@ public interface SysUserRoleDao extends BaseMapper<SysUserRoleEntity> {
     /**
      * 根据用户ID，获取角色ID列表
      *
-     * @param userId
-     * @return
+     * @param userId 用户ID
+     * @return List
      */
     List<String> queryRoleIdList(String userId);
 
@@ -37,8 +37,8 @@ public interface SysUserRoleDao extends BaseMapper<SysUserRoleEntity> {
     /**
      * 根据角色ID数组，批量删除
      *
-     * @param roleIds
-     * @return
+     * @param roleIds 角色ids
+     * @return int
      */
     int deleteBatch(String[] roleIds);
 }

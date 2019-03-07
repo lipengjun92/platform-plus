@@ -31,25 +31,25 @@ public interface SysRoleDao extends BaseMapper<SysRoleEntity> {
     /**
      * 查询用户权限下的角色列表
      *
-     * @param params
-     * @return
+     * @param params 查询参数
+     * @return List
      */
     List<String> queryRoleIdList(Map<String, Object> params);
 
     /**
      * 自定义分页查询
      *
-     * @param page
-     * @param params
-     * @return
+     * @param page   分页参数
+     * @param params 查询参数
+     * @return List
      */
-    List<SysRoleEntity> selectSysRolePage(IPage page, @Param("params")Map<String, Object> params);
+    List<SysRoleEntity> selectSysRolePage(IPage page, @Param("params") Map<String, Object> params);
 
     /**
      * 根据条件查询（不传page则不分页）
      *
-     * @param params
-     * @return
+     * @param params 查询参数
+     * @return List
      */
-    List<SysRoleEntity> selectSysRolePage(@Param("params")Map<String, Object> params);
+    List<SysRoleEntity> selectSysRolePage(@Param("params") Map<String, Object> params);
 }

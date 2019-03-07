@@ -25,11 +25,10 @@ import java.util.Map;
 public interface SysLogService extends IService<SysLogEntity> {
 
     /**
-     * queryPage
+     * 分页查询
      *
-     * @param params
-     * @return
+     * @param params 查询参数
+     * @return IPage
      */
     IPage queryPage(Map<String, Object> params);
-
 }

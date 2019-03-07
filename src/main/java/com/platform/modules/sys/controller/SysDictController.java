@@ -14,7 +14,6 @@ package com.platform.modules.sys.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.platform.common.annotation.SysLog;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.utils.RestResponse;
 import com.platform.common.validator.ValidatorUtils;
 import com.platform.common.validator.group.AddGroup;
@@ -47,6 +46,9 @@ public class SysDictController {
 
     /**
      * 查看所有列表
+     *
+     * @param params 查询参数
+     * @return RestResponse
      */
     @RequestMapping("/queryAll")
     @RequiresPermissions("sys:dict:list")
@@ -58,6 +60,9 @@ public class SysDictController {
 
     /**
      * 分页查询
+     *
+     * @param params 查询参数
+     * @return RestResponse
      */
     @GetMapping("/list")
     @RequiresPermissions("sys:dict:list")
@@ -68,7 +73,10 @@ public class SysDictController {
     }
 
     /**
-     * 查看信息
+     * 根据主键查询详情
+     *
+     * @param id 主键
+     * @return RestResponse
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("sys:dict:info")
@@ -80,6 +88,8 @@ public class SysDictController {
 
     /**
      * 保存
+     *
+     * @return RestResponse
      */
     @SysLog("保存数据字典")
     @RequestMapping("/save")
@@ -93,6 +103,8 @@ public class SysDictController {
 
     /**
      * 修改
+     *
+     * @return RestResponse
      */
     @SysLog("修改数据字典")
     @RequestMapping("/update")
@@ -106,6 +118,9 @@ public class SysDictController {
 
     /**
      * 删除
+     *
+     * @param ids ids
+     * @return RestResponse
      */
     @SysLog("删除数据字典")
     @RequestMapping("/delete")
@@ -119,8 +134,8 @@ public class SysDictController {
     /**
      * 根据code查询数据字典
      *
-     * @param params
-     * @return
+     * @param params 查询参数
+     * @return RestResponse
      */
     @RequestMapping("/queryByCode")
     public RestResponse queryByCode(@RequestParam Map<String, Object> params) {

@@ -76,13 +76,13 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenuEntity> i
     }
 
     @Override
-    public void delete(String menuId) {
+    public boolean delete(String menuId) {
         //删除菜单
         this.removeById(menuId);
         //删除菜单与角色关联
         Map<String, Object> map = new HashMap<>(2);
         map.put("menu_id", menuId);
-        sysRoleMenuService.removeByMap(map);
+        return sysRoleMenuService.removeByMap(map);
     }
 
     @Override
@@ -96,7 +96,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenuEntity> i
         String maxId = baseMapper.queryMaxIdByParentId(parentId);
 
         menu.setMenuId(StringUtils.addOne(parentId, maxId));
-        return baseMapper.insert(menu) == 1 ? true : false;
+        return this.save(menu);
     }
 
     /**
@@ -115,7 +115,7 @@ public class SysMenuServiceImpl extends ServiceImpl<SysMenuDao, SysMenuEntity> i
      * 递归
      */
     private List<SysMenuEntity> getMenuTreeList(List<SysMenuEntity> menuList, List<String> menuIdList) {
-        List<SysMenuEntity> subMenuList = new ArrayList<SysMenuEntity>();
+        List<SysMenuEntity> subMenuList = new ArrayList<>();
 
         for (SysMenuEntity entity : menuList) {
             //目录

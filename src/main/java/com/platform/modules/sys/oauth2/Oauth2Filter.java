@@ -34,7 +34,7 @@ import java.io.IOException;
 public class Oauth2Filter extends AuthenticatingFilter {
 
     @Override
-    protected AuthenticationToken createToken(ServletRequest request, ServletResponse response) throws Exception {
+    protected AuthenticationToken createToken(ServletRequest request, ServletResponse response) {
         //获取请求token
         String token = getRequestToken((HttpServletRequest) request);
 
@@ -47,11 +47,7 @@ public class Oauth2Filter extends AuthenticatingFilter {
 
     @Override
     protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) {
-        if (((HttpServletRequest) request).getMethod().equals(RequestMethod.OPTIONS.name())) {
-            return true;
-        }
-
-        return false;
+        return ((HttpServletRequest) request).getMethod().equals(RequestMethod.OPTIONS.name());
     }
 
     @Override
@@ -86,7 +82,7 @@ public class Oauth2Filter extends AuthenticatingFilter {
 
             String json = new Gson().toJson(restResponse);
             httpResponse.getWriter().print(json);
-        } catch (IOException e1) {
+        } catch (IOException ignored) {
 
         }
 

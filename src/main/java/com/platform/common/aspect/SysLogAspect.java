@@ -96,7 +96,7 @@ public class SysLogAspect {
             sysLog.setCreateTime(new Date());
             //保存系统日志
             sysLogService.save(sysLog);
-        } catch (Exception e) {
+        } catch (Exception ignored) {
 
         }
     }

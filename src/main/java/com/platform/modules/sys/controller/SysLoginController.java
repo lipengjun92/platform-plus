@@ -12,6 +12,7 @@
 package com.platform.modules.sys.controller;
 
 import com.platform.common.annotation.SysLog;
+import com.platform.common.utils.Constant;
 import com.platform.common.utils.RestResponse;
 import com.platform.modules.sys.entity.SysUserEntity;
 import com.platform.modules.sys.form.SysLoginForm;
@@ -27,12 +28,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.imageio.ImageIO;
-import javax.servlet.ServletException;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.util.Map;
 
 /**
  * 登录相关
@@ -50,9 +49,12 @@ public class SysLoginController extends AbstractController {
 
     /**
      * 验证码
+     *
+     * @param response response
+     * @param uuid     uuid
      */
     @GetMapping("captcha.jpg")
-    public void captcha(HttpServletResponse response, String uuid) throws ServletException, IOException {
+    public void captcha(HttpServletResponse response, String uuid) throws IOException {
         response.setHeader("Cache-Control", "no-store, no-cache");
         response.setContentType("image/jpeg");
 
@@ -66,10 +68,13 @@ public class SysLoginController extends AbstractController {
 
     /**
      * 登录
+     *
+     * @param form 登录表单
+     * @return RestResponse
      */
     @SysLog("登录")
     @PostMapping("/sys/login")
-    public Map<String, Object> login(@RequestBody SysLoginForm form) throws IOException {
+    public RestResponse login(@RequestBody SysLoginForm form) {
         boolean captcha = sysCaptchaService.validate(form.getUuid(), form.getCaptcha());
         if (!captcha) {
             return RestResponse.error("验证码不正确");
@@ -89,13 +94,16 @@ public class SysLoginController extends AbstractController {
         }
 
         //生成token，并保存到数据库
-        RestResponse restResponse = sysUserTokenService.createToken(user.getUserId());
-        return restResponse;
+        String token = sysUserTokenService.createToken(user.getUserId());
+
+        return RestResponse.success().put("token", token).put("expire", Constant.EXPIRE);
     }
 
 
     /**
-     * 退出
+     * 退出系统
+     *
+     * @return RestResponse
      */
     @PostMapping("/sys/logout")
     public RestResponse logout() {

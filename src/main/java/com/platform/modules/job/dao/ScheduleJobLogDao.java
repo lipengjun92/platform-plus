@@ -32,9 +32,9 @@ public interface ScheduleJobLogDao extends BaseMapper<ScheduleJobLogEntity> {
     /**
      * 自定义分页查询
      *
-     * @param page
-     * @param params
-     * @return
+     * @param page   分页参数
+     * @param params 查询参数
+     * @return List
      */
     List<ScheduleJobLogEntity> selectScheduleJobLogPage(IPage page, @Param("params") Map<String, Object> params);
 }

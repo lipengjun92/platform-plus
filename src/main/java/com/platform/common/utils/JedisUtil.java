@@ -76,7 +76,7 @@ public class JedisUtil {
                 value = toObject(jedis.get(getBytesKey(key)));
                 log.debug("get {} = {}", key, value);
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         } finally {
             returnResource(jedis);
         }
@@ -93,7 +93,7 @@ public class JedisUtil {
      * @param key          键
      * @param value        值
      * @param cacheSeconds 超时时间，0为不超时
-     * @return
+     * @return result
      */
     public String set(String key, String value, int cacheSeconds) {
         String result = null;
@@ -118,7 +118,6 @@ public class JedisUtil {
      *
      * @param key          键
      * @param cacheSeconds 超时时间，0为不超时
-     * @return
      */
     public void expire(String key, int cacheSeconds) {
         Jedis jedis = null;
@@ -164,7 +163,7 @@ public class JedisUtil {
      * @param key          键
      * @param value        值
      * @param cacheSeconds 超时时间，0为不超时
-     * @return
+     * @return result
      */
     public String setObject(String key, Object value, int cacheSeconds) {
         String result = null;
@@ -175,14 +174,20 @@ public class JedisUtil {
             if (cacheSeconds != 0) {
                 jedis.expire(key, cacheSeconds);
             }
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         } finally {
             returnResource(jedis);
         }
         return result;
     }
 
-
+    /**
+     * 设置缓存
+     *
+     * @param key   键
+     * @param value 值
+     * @return result
+     */
     public String setObject(String key, Object value) {
         return setObject(key, value, expireTime);
     }
@@ -190,8 +195,8 @@ public class JedisUtil {
     /**
      * key筛选
      *
-     * @param pattern
-     * @return
+     * @param pattern 正则
+     * @return result
      */
     public Set<String> keys(String pattern) {
         Set<String> result = Sets.newHashSet();
@@ -443,7 +448,6 @@ public class JedisUtil {
         return value;
 
     }
-
 
     /**
      * 获取缓存

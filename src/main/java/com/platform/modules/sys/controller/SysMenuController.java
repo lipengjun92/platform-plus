@@ -55,6 +55,8 @@ public class SysMenuController extends AbstractController {
 
     /**
      * 导航菜单
+     *
+     * @return RestResponse
      */
     @GetMapping("/nav")
     public RestResponse nav() {
@@ -76,6 +78,8 @@ public class SysMenuController extends AbstractController {
 
     /**
      * 所有菜单列表
+     *
+     * @return RestResponse
      */
     @GetMapping("/list")
     @RequiresPermissions("sys:menu:list")
@@ -86,6 +90,8 @@ public class SysMenuController extends AbstractController {
 
     /**
      * 选择菜单(添加、修改菜单)
+     *
+     * @return RestResponse
      */
     @GetMapping("/select")
     @RequiresPermissions("sys:menu:select")
@@ -105,7 +111,10 @@ public class SysMenuController extends AbstractController {
     }
 
     /**
-     * 菜单信息
+     * 根据主键查询详情
+     *
+     * @param menuId 主键
+     * @return RestResponse
      */
     @GetMapping("/info/{menuId}")
     @RequiresPermissions("sys:menu:info")
@@ -116,6 +125,9 @@ public class SysMenuController extends AbstractController {
 
     /**
      * 保存
+     *
+     * @param menu menu
+     * @return RestResponse
      */
     @SysLog("保存菜单")
     @PostMapping("/save")
@@ -132,6 +144,9 @@ public class SysMenuController extends AbstractController {
 
     /**
      * 修改
+     *
+     * @param menu menu
+     * @return RestResponse
      */
     @SysLog("修改菜单")
     @PostMapping("/update")
@@ -148,6 +163,9 @@ public class SysMenuController extends AbstractController {
 
     /**
      * 删除
+     *
+     * @param menuId 主键
+     * @return RestResponse
      */
     @SysLog("删除菜单")
     @PostMapping("/delete/{menuId}")
@@ -167,6 +185,8 @@ public class SysMenuController extends AbstractController {
 
     /**
      * 验证参数是否正确
+     *
+     * @param menu menu
      */
     private void verifyForm(SysMenuEntity menu) {
         if (StringUtils.isBlank(menu.getName())) {
@@ -186,7 +206,7 @@ public class SysMenuController extends AbstractController {
 
         //上级菜单类型
         int parentType = Constant.MenuType.CATALOG.getValue();
-        if (!Constant.STR_ZORE.equals(menu.getParentId())) {
+        if (!Constant.STR_ZERO.equals(menu.getParentId())) {
             SysMenuEntity parentMenu = sysMenuService.getById(menu.getParentId());
             parentType = parentMenu.getType();
         }
@@ -205,7 +225,6 @@ public class SysMenuController extends AbstractController {
             if (parentType != Constant.MenuType.MENU.getValue()) {
                 throw new BusinessException("上级菜单只能为菜单类型");
             }
-            return;
         }
     }
 }

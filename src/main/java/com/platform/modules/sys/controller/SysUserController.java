@@ -14,7 +14,6 @@ package com.platform.modules.sys.controller;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.annotation.SysLog;
 import com.platform.common.utils.Constant;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.utils.RestResponse;
 import com.platform.common.validator.AbstractAssert;
 import com.platform.common.validator.ValidatorUtils;
@@ -49,6 +48,9 @@ public class SysUserController extends AbstractController {
 
     /**
      * 查看所有列表
+     *
+     * @param params 查询参数
+     * @return RestResponse
      */
     @RequestMapping("/queryAll")
     @RequiresPermissions("sys:dict:list")
@@ -60,6 +62,9 @@ public class SysUserController extends AbstractController {
 
     /**
      * 所有用户列表
+     *
+     * @param params 查询参数
+     * @return RestResponse
      */
     @GetMapping("/list")
     @RequiresPermissions("sys:user:list")
@@ -75,6 +80,8 @@ public class SysUserController extends AbstractController {
 
     /**
      * 获取登录的用户信息
+     *
+     * @return RestResponse
      */
     @GetMapping("/info")
     public RestResponse info() {
@@ -83,6 +90,9 @@ public class SysUserController extends AbstractController {
 
     /**
      * 修改登录用户密码
+     *
+     * @param form form
+     * @return RestResponse
      */
     @SysLog("修改密码")
     @PostMapping("/password")
@@ -104,7 +114,10 @@ public class SysUserController extends AbstractController {
     }
 
     /**
-     * 用户信息
+     * 根据主键查询详情
+     *
+     * @param userId 主键
+     * @return RestResponse
      */
     @GetMapping("/info/{userId}")
     @RequiresPermissions("sys:user:info")
@@ -120,6 +133,9 @@ public class SysUserController extends AbstractController {
 
     /**
      * 保存用户
+     *
+     * @param user user
+     * @return RestResponse
      */
     @SysLog("保存用户")
     @PostMapping("/save")
@@ -139,6 +155,9 @@ public class SysUserController extends AbstractController {
 
     /**
      * 修改用户
+     *
+     * @param user user
+     * @return RestResponse
      */
     @SysLog("修改用户")
     @PostMapping("/update")
@@ -158,6 +177,9 @@ public class SysUserController extends AbstractController {
 
     /**
      * 删除用户
+     *
+     * @param userIds userIds
+     * @return RestResponse
      */
     @SysLog("删除用户")
     @PostMapping("/delete")
@@ -178,6 +200,9 @@ public class SysUserController extends AbstractController {
 
     /**
      * 重置密码
+     *
+     * @param userIds userIds
+     * @return RestResponse
      */
     @SysLog("重置密码")
     @PostMapping("/resetPw")

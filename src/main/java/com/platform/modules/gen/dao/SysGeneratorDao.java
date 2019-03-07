@@ -23,25 +23,25 @@ public interface SysGeneratorDao extends BaseMapper<ResultMapEntity> {
     /**
      * queryPage
      *
-     * @param page
-     * @param params
-     * @return
+     * @param page   分页参数
+     * @param params 查询参数
+     * @return List
      */
     List<ResultMapEntity> queryPage(Page<ResultMapEntity> page, @Param("params") Map<String, Object> params);
 
     /**
      * queryTable
      *
-     * @param params
-     * @return
+     * @param params 查询参数
+     * @return ResultMapEntity
      */
     ResultMapEntity queryTable(Map<String, Object> params);
 
     /**
      * queryColumns
      *
-     * @param params
-     * @return
+     * @param params 查询参数
+     * @return List
      */
     List<ColumnEntity> queryColumns(Map<String, Object> params);
 }

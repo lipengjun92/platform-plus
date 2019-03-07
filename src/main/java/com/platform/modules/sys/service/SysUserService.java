@@ -13,7 +13,6 @@ package com.platform.modules.sys.service;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.modules.sys.entity.SysUserEntity;
 
 import java.util.List;
@@ -29,89 +28,80 @@ public interface SysUserService extends IService<SysUserEntity> {
     /**
      * 查询所有
      *
-     * @param params
-     * @return
+     * @param params 查询参数
+     * @return List
      */
     List<SysUserEntity> queryAll(Map<String, Object> params);
 
     /**
-     * queryPage
+     * 分页查询
      *
-     * @param params
-     * @return
+     * @param params 查询参数
+     * @return Page
      */
     Page queryPage(Map<String, Object> params);
 
     /**
-     * 查询用户的所有权限
-     *
-     * @param userId
-     * @return
-     */
-    List<String> queryAllPerms(String userId);
-
-    /**
      * 查询用户的所有菜单ID
      *
-     * @param userId
-     * @return
+     * @param userId 用户Id
+     * @return List
      */
     List<String> queryAllMenuId(String userId);
 
     /**
      * 根据用户名，查询系统用户
      *
-     * @param userName
-     * @return
+     * @param userName 用户名
+     * @return SysUserEntity
      */
     SysUserEntity queryByUserName(String userName);
 
     /**
      * 保存用户
      *
-     * @param user
-     * @param params
+     * @param user   用户
+     * @param params 查询参数
      */
     void add(SysUserEntity user, Map<String, Object> params);
 
     /**
      * 修改用户
      *
-     * @param user
-     * @param params
+     * @param user   用户
+     * @param params 查询参数
      */
     void update(SysUserEntity user, Map<String, Object> params);
 
     /**
      * 删除用户
      *
-     * @param userIds
+     * @param userIds 用户Ids
      */
     void deleteBatch(String[] userIds);
 
     /**
      * 修改密码
      *
-     * @param userId
-     * @param password
-     * @param newPassword
-     * @return
+     * @param userId      用户Id
+     * @param password    原密码
+     * @param newPassword 新密码
+     * @return boolean
      */
     boolean updatePassword(String userId, String password, String newPassword);
 
     /**
      * 重置密码
      *
-     * @param userIds
-     * @return
+     * @param userIds 用户Ids
      */
-    boolean resetPw(String[] userIds);
+    void resetPw(String[] userIds);
 
     /**
      * 根据userId查询一个
      *
-     * @param userId
-     * @return
+     * @param userId 用户Id
+     * @return SysUserEntity
      */
     SysUserEntity selectEntityById(String userId);
 }

@@ -13,9 +13,8 @@ package com.platform.modules.sys.service.impl;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.platform.common.utils.Constant;
 import com.platform.common.utils.Query;
-import com.platform.common.utils.RestResponse;
 import com.platform.modules.sys.dao.SysUserTokenDao;
 import com.platform.modules.sys.entity.SysUserTokenEntity;
 import com.platform.modules.sys.oauth2.TokenGenerator;
@@ -32,31 +31,19 @@ import java.util.Map;
  */
 @Service("sysUserTokenService")
 public class SysUserTokenServiceImpl extends ServiceImpl<SysUserTokenDao, SysUserTokenEntity> implements SysUserTokenService {
-    /**
-     * 6小时后过期
-     */
-    private final static int EXPIRE = 3600 * 6;
 
 
     @Override
-    public RestResponse createToken(String userId) {
-        /**
-         * 生成一个token
-         */
+    public String createToken(String userId) {
+        //生成一个token
         String token = TokenGenerator.generateValue();
 
-        /**
-         * 当前时间
-         */
+        //当前时间
         Date now = new Date();
-        /**
-         * 过期时间
-         */
-        Date expireTime = new Date(now.getTime() + EXPIRE * 1000);
+        //过期时间
+        Date expireTime = new Date(now.getTime() + Constant.EXPIRE * 1000);
 
-        /**
-         * 判断是否生成过token
-         */
+        //判断是否生成过token
         SysUserTokenEntity tokenEntity = this.getById(userId);
         if (tokenEntity == null) {
             tokenEntity = new SysUserTokenEntity();
@@ -76,9 +63,7 @@ public class SysUserTokenServiceImpl extends ServiceImpl<SysUserTokenDao, SysUse
             this.updateById(tokenEntity);
         }
 
-        RestResponse restResponse = RestResponse.success().put("token", token).put("expire", EXPIRE);
-
-        return restResponse;
+        return token;
     }
 
     @Override

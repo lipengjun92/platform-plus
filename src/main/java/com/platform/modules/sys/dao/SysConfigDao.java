@@ -27,17 +27,17 @@ public interface SysConfigDao extends BaseMapper<SysConfigEntity> {
     /**
      * 根据key，查询value
      *
-     * @param paramKey
-     * @return
+     * @param paramKey key
+     * @return SysConfigEntity
      */
     SysConfigEntity queryByKey(String paramKey);
 
     /**
      * 根据key，更新value
      *
-     * @param paramKey
-     * @param paramValue
-     * @return
+     * @param paramKey   key
+     * @param paramValue value
+     * @return int
      */
     int updateValueByKey(@Param("paramKey") String paramKey, @Param("paramValue") String paramValue);
 }

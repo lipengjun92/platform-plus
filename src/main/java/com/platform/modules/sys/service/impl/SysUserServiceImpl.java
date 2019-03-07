@@ -16,7 +16,6 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.platform.common.exception.BusinessException;
 import com.platform.common.utils.Constant;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.utils.Query;
 import com.platform.modules.sys.dao.SysUserDao;
 import com.platform.modules.sys.entity.SysUserEntity;
@@ -57,11 +56,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
         params.put("asc", false);
         Page<SysUserEntity> page = new Query<SysUserEntity>(params).getPage();
         return page.setRecords(baseMapper.selectListPage(page, params));
-    }
-
-    @Override
-    public List<String> queryAllPerms(String userId) {
-        return baseMapper.queryAllPerms(userId);
     }
 
     @Override
@@ -124,7 +118,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public boolean resetPw(String[] userIds) {
+    public void resetPw(String[] userIds) {
         for (int i = 0; i < userIds.length; i++) {
             SysUserEntity user = this.getById(userIds[i]);
 
@@ -132,7 +126,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserDao, SysUserEntity> i
 
             this.updateById(user);
         }
-        return true;
     }
 
     @Override

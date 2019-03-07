@@ -12,7 +12,6 @@
 package com.platform.modules.sys.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.modules.sys.entity.SysOrgEntity;
 
 import java.util.List;
@@ -29,16 +28,15 @@ public interface SysOrgService extends IService<SysOrgEntity> {
     /**
      * 查询所有列表
      *
-     * @param params
-     * @return
+     * @param params 查询参数
+     * @return List
      */
     List<SysOrgEntity> queryAll(Map<String, Object> params);
 
     /**
-     * 保存实体
+     * 新增实体
      *
      * @param sysOrg 实体
-     * @return 保存条数
      */
     void add(SysOrgEntity sysOrg);
 
@@ -46,31 +44,28 @@ public interface SysOrgService extends IService<SysOrgEntity> {
      * 根据主键更新实体
      *
      * @param sysOrg 实体
-     * @return 更新条数
      */
     void update(SysOrgEntity sysOrg);
 
     /**
      * 根据主键删除
      *
-     * @param orgNo
-     * @return 删除条数
+     * @param orgNo 机构编码
      */
     void delete(String orgNo);
 
     /**
      * 根据主键批量删除
      *
-     * @param orgNos
-     * @return 删除条数
+     * @param orgNos 机构编码集
      */
     void deleteBatch(String[] orgNos);
 
     /**
      * 根据OrgNo查询子机构
      *
-     * @param orgNo
-     * @return
+     * @param orgNo 机构编码
+     * @return List
      */
     List<SysOrgEntity> queryListByOrgNo(String orgNo);
 }

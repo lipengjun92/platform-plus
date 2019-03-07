@@ -32,17 +32,17 @@ public interface SysDictGroupDao extends BaseMapper<SysDictGroupEntity> {
     /**
      * 自定义分页查询
      *
-     * @param page
-     * @param params
-     * @return
+     * @param page   分页参数
+     * @param params 查询参数
+     * @return List
      */
     List<SysDictGroupEntity> selectSysDictGroupPage(IPage page, @Param("params") Map<String, Object> params);
 
     /**
      * 查询所有数据字典
      *
-     * @param params
-     * @return
+     * @param params 查询参数
+     * @return List
      */
     List<SysDictGroupEntity> queryAll(@Param("params") Map<String, Object> params);
 }

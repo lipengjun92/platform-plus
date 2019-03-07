@@ -51,11 +51,11 @@ public class AppLoginController {
      *
      * @param mobile   手机号
      * @param password 密码
-     * @return
+     * @return RestResponse
      */
     @IgnoreAuth
     @PostMapping("login")
-    @ApiOperation("登录")
+    @ApiOperation(value = "登录", notes = "根据用户名密码登录")
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "query", name = "mobile", value = "手机号", required = true, dataType = "string"),
             @ApiImplicitParam(paramType = "query", name = "password", value = "密码", required = true, dataType = "string")
@@ -79,7 +79,7 @@ public class AppLoginController {
      * 微信登录
      *
      * @param code code
-     * @return
+     * @return RestResponse
      */
     @IgnoreAuth
     @PostMapping("loginByCode")
@@ -112,7 +112,7 @@ public class AppLoginController {
      * 根据openId换取登录token，方便本地开发调试
      *
      * @param openId openId
-     * @return
+     * @return RestResponse
      */
     @IgnoreAuth
     @PostMapping("loginByOpenId")

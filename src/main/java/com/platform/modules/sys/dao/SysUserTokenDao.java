@@ -31,17 +31,17 @@ public interface SysUserTokenDao extends BaseMapper<SysUserTokenEntity> {
     /**
      * 根据token获取用户
      *
-     * @param token
-     * @return
+     * @param token token
+     * @return SysUserTokenEntity
      */
     SysUserTokenEntity queryByToken(String token);
 
     /**
      * 分页查询
      *
-     * @param page
-     * @param params
-     * @return
+     * @param page   分页参数
+     * @param params 查询参数
+     * @return List
      */
     List<SysUserTokenEntity> selectSysUserTokenPage(IPage page, @Param("params") Map<String, Object> params);
 }

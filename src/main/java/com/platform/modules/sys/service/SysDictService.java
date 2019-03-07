@@ -13,7 +13,6 @@ package com.platform.modules.sys.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.modules.sys.entity.SysDictEntity;
 
 import java.util.List;
@@ -29,24 +28,23 @@ public interface SysDictService extends IService<SysDictEntity> {
     /**
      * 查看所有列表
      *
-     * @param params
-     * @return
+     * @param params 查询参数
+     * @return List
      */
     List<SysDictEntity> queryAll(Map<String, Object> params);
 
     /**
      * 查询分页信息
      *
-     * @param params
-     * @return
+     * @param params 查询参数
+     * @return IPage
      */
     IPage queryPage(Map<String, Object> params);
 
     /**
-     * 保存实体
+     * 新增实体
      *
      * @param sysDict 实体
-     * @return 保存条数
      */
     void add(SysDictEntity sysDict);
 
@@ -54,31 +52,28 @@ public interface SysDictService extends IService<SysDictEntity> {
      * 根据主键更新实体
      *
      * @param sysDict 实体
-     * @return 更新条数
      */
     void update(SysDictEntity sysDict);
 
     /**
      * 根据主键删除
      *
-     * @param id
-     * @return 删除条数
+     * @param id 主键
      */
     void delete(String id);
 
     /**
      * 根据主键批量删除
      *
-     * @param ids
-     * @return 删除条数
+     * @param ids ids
      */
     void deleteBatch(String[] ids);
 
     /**
      * 根据code查询数据字典
      *
-     * @param params
-     * @return
+     * @param params 查询参数
+     * @return List
      */
     List<SysDictEntity> queryByCode(Map<String, Object> params);
 }

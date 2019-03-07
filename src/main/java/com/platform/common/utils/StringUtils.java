@@ -35,7 +35,7 @@ public class StringUtils {
             return true;
         }
         for (int i = 0; i < strLen; i++) {
-            if ((Character.isWhitespace(str.charAt(i)) == false)) {
+            if ((!Character.isWhitespace(str.charAt(i)))) {
                 return false;
             }
         }
@@ -43,20 +43,23 @@ public class StringUtils {
     }
 
     /**
-     * @param parentId
-     * @param maxId
-     * @return
+     * 加一拼成字符串
+     * 如传入 10, 4 返回 1005
+     *
+     * @param parentId parentId
+     * @param maxId    maxId
+     * @return String 加1
      */
     public static String addOne(String parentId, String maxId) {
         int ten = 10;
-        if (Constant.STR_ZORE.equals(parentId)) {
+        if (Constant.STR_ZERO.equals(parentId)) {
             parentId = "";
         }
         if (isNullOrEmpty(maxId)) {
             return parentId + "01";
         }
 
-        maxId = maxId.substring(maxId.length() - 2, maxId.length());
+        maxId = maxId.substring(maxId.length() - 2);
 
         int result = Integer.parseInt(maxId) + 1;
 
@@ -70,8 +73,8 @@ public class StringUtils {
     /**
      * 判断对象或对象数组中每一个对象是否为空: 对象为null，字符序列长度为0，集合类、Map为empty
      *
-     * @param obj
-     * @return
+     * @param obj obj
+     * @return boolean
      */
     public static boolean isNullOrEmpty(Object obj) {
         if (obj == null) {
@@ -96,8 +99,8 @@ public class StringUtils {
                 return true;
             }
             boolean empty = true;
-            for (int i = 0; i < object.length; i++) {
-                if (!isNullOrEmpty(object[i])) {
+            for (Object anObject : object) {
+                if (!isNullOrEmpty(anObject)) {
                     empty = false;
                     break;
                 }

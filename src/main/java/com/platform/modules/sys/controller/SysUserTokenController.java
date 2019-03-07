@@ -11,8 +11,8 @@
  */
 package com.platform.modules.sys.controller;
 
-import com.platform.common.annotation.SysLog;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.platform.common.annotation.SysLog;
 import com.platform.common.utils.RestResponse;
 import com.platform.modules.sys.service.SysUserTokenService;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
@@ -35,6 +35,9 @@ public class SysUserTokenController {
 
     /**
      * 分页查询
+     *
+     * @param params 查询参数
+     * @return RestResponse
      */
     @GetMapping("/list")
     @RequiresPermissions("sys:usertoken:list")
@@ -46,6 +49,9 @@ public class SysUserTokenController {
 
     /**
      * 批量下线用户(删除用户token记录)
+     *
+     * @param userIds userIds
+     * @return RestResponse
      */
     @SysLog("批量下线用户")
     @RequestMapping("/offline")

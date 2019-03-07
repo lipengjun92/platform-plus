@@ -37,6 +37,9 @@ public class SysOrgController extends AbstractController {
 
     /**
      * 查看所有列表
+     *
+     * @param params 查询参数
+     * @return RestResponse
      */
     @RequestMapping("/queryAll")
     @RequiresPermissions("sys:org:list")
@@ -47,7 +50,10 @@ public class SysOrgController extends AbstractController {
     }
 
     /**
-     * 查看信息
+     * 根据主键查询详情
+     *
+     * @param orgNo 主键
+     * @return RestResponse
      */
     @RequestMapping("/info/{orgNo}")
     @RequiresPermissions("sys:org:info")
@@ -59,6 +65,9 @@ public class SysOrgController extends AbstractController {
 
     /**
      * 保存
+     *
+     * @param sysOrg sysOrg
+     * @return RestResponse
      */
     @SysLog("保存机构")
     @RequestMapping("/save")
@@ -72,6 +81,9 @@ public class SysOrgController extends AbstractController {
 
     /**
      * 修改
+     *
+     * @param sysOrg sysOrg
+     * @return RestResponse
      */
     @SysLog("修改机构")
     @RequestMapping("/update")
@@ -83,6 +95,9 @@ public class SysOrgController extends AbstractController {
 
     /**
      * 删除
+     *
+     * @param orgNo 机构编码
+     * @return RestResponse
      */
     @SysLog("删除机构")
     @RequestMapping("/delete")

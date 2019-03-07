@@ -25,6 +25,11 @@ public class Constant {
     public static final String DEFAULT_PW = "888888";
 
     /**
+     * 6小时后过期
+     */
+    public static final int EXPIRE = 3600 * 6;
+
+    /**
      * 云存储配置KEY
      */
     public final static String CLOUD_STORAGE_CONFIG_KEY = "CLOUD_STORAGE_CONFIG_KEY";
@@ -49,7 +54,7 @@ public class Constant {
      */
     public static final String MTM_CACHE = "MTM_CACHE:";
 
-    public static final String STR_ZORE = "0";
+    public static final String STR_ZERO = "0";
     public static final String STR_ONE = "1";
     public static final String STR_TWO = "2";
     public static final String STR_THREE = "3";
@@ -86,6 +91,7 @@ public class Constant {
     public static final String LINE_BREAK = "\\r\\n";
 
     public static final String ACCESS_TOKEN = "ACCESS_TOKEN";
+
     /**
      * 菜单类型
      */

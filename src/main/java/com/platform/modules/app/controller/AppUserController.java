@@ -37,11 +37,11 @@ public class AppUserController {
     /**
      * 根据token获取用户信息
      *
-     * @param user
-     * @return
+     * @param user user
+     * @return RestResponse
      */
     @GetMapping("userInfo")
-    @ApiOperation("根据token获取用户信息")
+    @ApiOperation(value = "获取用户信息", notes = "根据token获取用户信息")
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "query", name = "token", value = "token", required = true, dataType = "string")
     })
@@ -50,10 +50,26 @@ public class AppUserController {
     }
 
     /**
+     * 根据openId获取用户信息
+     *
+     * @param openId openId
+     * @return RestResponse
+     */
+    @IgnoreAuth
+    @GetMapping("getUserInfoByOpenId")
+    @ApiOperation(value = "获取用户信息-openId", notes = "根据openId获取用户信息")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query", name = "openId", value = "openId", required = true, dataType = "string", example = "oxaA11ulr9134oBL9Xscon5at_Gc")
+    })
+    public RestResponse getUserInfoByOpenId(String openId) {
+        return RestResponse.success().put("user", userService.selectByOpenId(openId));
+    }
+
+    /**
      * 上传文件
      *
-     * @param file
-     * @return
+     * @param file file
+     * @return RestResponse
      */
     @IgnoreAuth
     @PostMapping("/upload")
@@ -66,14 +82,14 @@ public class AppUserController {
     }
 
     /**
-     * 根据级别获取供电单位
+     * 根据级别获取机构
      *
-     * @param orgType
-     * @return
+     * @param orgType 机构级别
+     * @return RestResponse
      */
     @IgnoreAuth
     @GetMapping("queryOrg")
-    @ApiOperation("根据级别获取供电单位，不传查询所有")
+    @ApiOperation(value = "根据级别获取供电单位", tags = "根据级别获取供电单位，不传查询所有")
     @ApiImplicitParams({
             @ApiImplicitParam(paramType = "query", name = "orgType", value = "机构级别", dataType = "int", example = "2")
     })
@@ -83,21 +99,5 @@ public class AppUserController {
         params.put("orgType", orgType);
         List<SysOrgEntity> list = sysOrgService.queryAll(params);
         return RestResponse.success().put("list", list);
-    }
-
-    /**
-     * 根据openId获取用户信息
-     *
-     * @param openId openId
-     * @return
-     */
-    @IgnoreAuth
-    @GetMapping("getUserInfoByOpenId")
-    @ApiOperation(value = "根据openId获取用户信息", notes = "根据openId获取用户信息")
-    @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "query", name = "openId", value = "openId", required = true, dataType = "string", example = "oxaA11ulr9134oBL9Xscon5at_Gc")
-    })
-    public RestResponse getUserInfoByOpenId(String openId) {
-        return RestResponse.success().put("user", userService.selectByOpenId(openId));
     }
 }

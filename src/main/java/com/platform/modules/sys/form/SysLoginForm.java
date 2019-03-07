@@ -11,46 +11,17 @@
  */
 package com.platform.modules.sys.form;
 
+import lombok.Data;
+
 /**
  * 登录表单
  *
  * @author 李鹏军
  */
+@Data
 public class SysLoginForm {
     private String userName;
     private String password;
     private String captcha;
     private String uuid;
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getCaptcha() {
-        return captcha;
-    }
-
-    public void setCaptcha(String captcha) {
-        this.captcha = captcha;
-    }
-
-    public String getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
-    }
 }

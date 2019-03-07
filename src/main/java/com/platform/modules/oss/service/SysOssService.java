@@ -11,8 +11,8 @@
  */
 package com.platform.modules.oss.service;
 
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.platform.modules.oss.entity.SysOssEntity;
 
 import java.util.Map;
@@ -26,10 +26,10 @@ import java.util.Map;
 public interface SysOssService extends IService<SysOssEntity> {
 
     /**
-     * queryPage
+     * 分页查询
      *
-     * @param params
-     * @return
+     * @param params 查询参数
+     * @return Page
      */
     Page queryPage(Map<String, Object> params);
 }

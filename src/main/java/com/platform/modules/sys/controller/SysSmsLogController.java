@@ -12,9 +12,9 @@
 package com.platform.modules.sys.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.annotation.SysLog;
 import com.platform.common.utils.Constant;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.platform.common.utils.RestResponse;
 import com.platform.modules.sys.entity.SmsConfig;
 import com.platform.modules.sys.entity.SysSmsLogEntity;
@@ -43,6 +43,9 @@ public class SysSmsLogController extends AbstractController {
 
     /**
      * 查看所有列表
+     *
+     * @param params 查询参数
+     * @return RestResponse
      */
     @RequestMapping("/queryAll")
     @RequiresPermissions("sys:smslog:list")
@@ -54,6 +57,9 @@ public class SysSmsLogController extends AbstractController {
 
     /**
      * 分页查询
+     *
+     * @param params 查询参数
+     * @return RestResponse
      */
     @GetMapping("/list")
     @RequiresPermissions("sys:smslog:list")
@@ -64,7 +70,10 @@ public class SysSmsLogController extends AbstractController {
     }
 
     /**
-     * 查看信息
+     * 根据主键查询详情
+     *
+     * @param id 主键
+     * @return RestResponse
      */
     @RequestMapping("/info/{id}")
     @RequiresPermissions("sys:smslog:info")
@@ -76,6 +85,9 @@ public class SysSmsLogController extends AbstractController {
 
     /**
      * 保存
+     *
+     * @param sysSmsLog sysSmsLog
+     * @return RestResponse
      */
     @SysLog("保存短信发送记录")
     @RequestMapping("/save")
@@ -89,6 +101,9 @@ public class SysSmsLogController extends AbstractController {
 
     /**
      * 修改
+     *
+     * @param sysSmsLog sysSmsLog
+     * @return RestResponse
      */
     @SysLog("修改短信发送记录")
     @RequestMapping("/update")
@@ -102,6 +117,9 @@ public class SysSmsLogController extends AbstractController {
 
     /**
      * 删除
+     *
+     * @param ids ids
+     * @return RestResponse
      */
     @SysLog("删除短信发送记录")
     @RequestMapping("/delete")
@@ -114,6 +132,8 @@ public class SysSmsLogController extends AbstractController {
 
     /**
      * 短信配置信息
+     *
+     * @return RestResponse
      */
     @RequestMapping("/config")
     @RequiresPermissions("sys:smslog:config")
@@ -125,6 +145,9 @@ public class SysSmsLogController extends AbstractController {
 
     /**
      * 保存短信配置信息
+     *
+     * @param config config
+     * @return RestResponse
      */
     @SysLog("保存短信配置信息")
     @RequiresPermissions("sys:smslog:config")
@@ -136,6 +159,9 @@ public class SysSmsLogController extends AbstractController {
 
     /**
      * 发送短信
+     *
+     * @param smsLog smsLog
+     * @return RestResponse
      */
     @SysLog("系统调用发送短信")
     @RequiresPermissions("sys:smslog:send")

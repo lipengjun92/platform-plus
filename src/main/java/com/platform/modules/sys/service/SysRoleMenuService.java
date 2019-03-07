@@ -24,27 +24,26 @@ import java.util.List;
 public interface SysRoleMenuService extends IService<SysRoleMenuEntity> {
 
     /**
-     * saveOrUpdate
+     * 保存或更新
      *
-     * @param roleId
-     * @param menuIdList
+     * @param roleId     角色ID
+     * @param menuIdList menuIdList
      */
     void saveOrUpdate(String roleId, List<String> menuIdList);
 
     /**
      * 根据角色ID，获取菜单ID列表
      *
-     * @param roleId
-     * @return
+     * @param roleId 角色ID
+     * @return List
      */
     List<String> queryMenuIdList(String roleId);
 
     /**
      * 根据角色ID数组，批量删除
      *
-     * @param roleIds
-     * @return
+     * @param roleIds roleIds
+     * @return int
      */
     int deleteBatch(String[] roleIds);
-
 }

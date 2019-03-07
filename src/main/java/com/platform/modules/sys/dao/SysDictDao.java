@@ -32,25 +32,25 @@ public interface SysDictDao extends BaseMapper<SysDictEntity> {
     /**
      * 根据code查询数据字典
      *
-     * @param params
-     * @return
+     * @param params 查询参数
+     * @return List
      */
     List<SysDictEntity> queryByCode(Map<String, Object> params);
 
     /**
      * 查询所有数据字典
      *
-     * @param params
-     * @return
+     * @param params 查询参数
+     * @return List
      */
     List<SysDictEntity> queryAll(@Param("params") Map<String, Object> params);
 
     /**
      * 自定义分页查询
      *
-     * @param page
-     * @param params
-     * @return
+     * @param page   分页参数
+     * @param params 查询参数
+     * @return List
      */
     List<SysDictEntity> selectDictPage(IPage page, @Param("params") Map<String, Object> params);
 }

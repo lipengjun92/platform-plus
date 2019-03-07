@@ -31,49 +31,49 @@ public interface SysUserDao extends BaseMapper<SysUserEntity> {
     /**
      * 查询用户的所有权限
      *
-     * @param userId
-     * @return
+     * @param userId 用户ID
+     * @return List
      */
     List<String> queryAllPerms(String userId);
 
     /**
      * 查询用户的所有菜单ID
      *
-     * @param userId
-     * @return
+     * @param userId 用户ID
+     * @return List
      */
     List<String> queryAllMenuId(String userId);
 
     /**
      * 根据用户名，查询系统用户
      *
-     * @param userName
-     * @return
+     * @param userName 用户名
+     * @return SysUserEntity
      */
     SysUserEntity queryByUserName(String userName);
 
     /**
      * 分页查询
      *
-     * @param page
-     * @param params
-     * @return
+     * @param page   分页参数
+     * @param params 查询参数
+     * @return List
      */
     List<SysUserEntity> selectListPage(Page<SysUserEntity> page, @Param("params") Map<String, Object> params);
 
     /**
      * 查询所有
      *
-     * @param params
-     * @return
+     * @param params 查询参数
+     * @return List
      */
     List<SysUserEntity> selectListPage(@Param("params") Map<String, Object> params);
 
     /**
      * 根据userId连表查询一个
      *
-     * @param userId
-     * @return
+     * @param userId 用户ID
+     * @return SysUserEntity
      */
     SysUserEntity selectEntityById(String userId);
 }
