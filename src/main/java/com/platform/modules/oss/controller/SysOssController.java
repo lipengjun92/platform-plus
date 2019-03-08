@@ -135,22 +135,20 @@ public class SysOssController {
                          @RequestParam(value = "page", required = false) String page,
                          @RequestParam(value = "limit", required = false) String limit) throws Exception {
         if (null != action) {
-            Object result = null;
             switch (action) {
+                // 分页管理图片列表
                 case LIST_ACTION:
                     Map<String, Object> params = new HashMap<>(4);
                     params.put("page", page);
                     params.put("limit", limit);
-                    result = RestResponse.success().put("state", "SUCCESS").put("list", sysOssService.queryPage(params));
-                    break;
+                    return RestResponse.success().put("state", "SUCCESS").put("list", sysOssService.queryPage(params));
+                //获取UEditor后台配置
                 case CONFIG_ACTION:
-                    result = getConfig();
-                    break;
+                    return getConfig();
                 default:
                     // 其他的不处理
                     log.debug(action);
             }
-            return result;
         }
         if (null == file || file.isEmpty()) {
             throw new BusinessException("上传文件不能为空");
