@@ -27,6 +27,7 @@ import com.platform.modules.oss.cloud.UploadFactory;
 import com.platform.modules.oss.entity.SysOssEntity;
 import com.platform.modules.oss.service.SysOssService;
 import com.platform.modules.sys.service.SysConfigService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -43,6 +44,7 @@ import java.util.Map;
  * @author 李鹏军
  * @date 2019-01-17 16:21:01
  */
+@Slf4j
 @RestController
 @RequestMapping("sys/oss")
 public class SysOssController {
@@ -133,15 +135,22 @@ public class SysOssController {
                          @RequestParam(value = "page", required = false) String page,
                          @RequestParam(value = "limit", required = false) String limit) throws Exception {
         if (null != action) {
-            if (LIST_ACTION.equals(action)) {
-                Map<String, Object> params = new HashMap<>(4);
-                params.put("page", page);
-                params.put("limit", limit);
-                return RestResponse.success().put("state", "SUCCESS").put("list", sysOssService.queryPage(params));
+            Object result = null;
+            switch (action) {
+                case LIST_ACTION:
+                    Map<String, Object> params = new HashMap<>(4);
+                    params.put("page", page);
+                    params.put("limit", limit);
+                    result = RestResponse.success().put("state", "SUCCESS").put("list", sysOssService.queryPage(params));
+                    break;
+                case CONFIG_ACTION:
+                    result = getConfig();
+                    break;
+                default:
+                    // 其他的不处理
+                    log.debug(action);
             }
-            if (CONFIG_ACTION.equals(action)) {
-                return getConfig();
-            }
+            return result;
         }
         if (null == file || file.isEmpty()) {
             throw new BusinessException("上传文件不能为空");
@@ -239,7 +248,7 @@ public class SysOssController {
                 "    /* 列出指定目录下的图片 */\n" +
                 "    \"imageManagerActionName\": \"listimage\", /* 执行图片管理的action名称 */\n" +
                 "    \"imageManagerListPath\": \"/ueditor/jsp/upload/image/\", /* 指定要列出图片的目录 */\n" +
-                "    \"imageManagerListSize\": 20, /* 每次列出文件数量 */\n" +
+                "    \"imageManagerListSize\": 15, /* 每次列出文件数量 */\n" +
                 "    \"imageManagerUrlPrefix\": \"\", /* 图片访问路径前缀 */\n" +
                 "    \"imageManagerInsertAlign\": \"none\", /* 插入的图片浮动方式 */\n" +
                 "    \"imageManagerAllowFiles\": [\".png\", \".jpg\", \".jpeg\", \".gif\", \".bmp\"], /* 列出的文件类型 */\n" +
@@ -247,7 +256,7 @@ public class SysOssController {
                 "    \"fileManagerActionName\": \"listimage\", /* 执行文件管理的action名称 */\n" +
                 "    \"fileManagerListPath\": \"/ueditor/jsp/upload/file/\", /* 指定要列出文件的目录 */\n" +
                 "    \"fileManagerUrlPrefix\": \"\", /* 文件访问路径前缀 */\n" +
-                "    \"fileManagerListSize\": 20, /* 每次列出文件数量 */\n" +
+                "    \"fileManagerListSize\": 15, /* 每次列出文件数量 */\n" +
                 "    \"fileManagerAllowFiles\": [\n" +
                 "        \".png\", \".jpg\", \".jpeg\", \".gif\", \".bmp\",\n" +
                 "        \".flv\", \".swf\", \".mkv\", \".avi\", \".rm\", \".rmvb\", \".mpeg\", \".mpg\",\n" +
