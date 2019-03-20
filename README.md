@@ -8,7 +8,8 @@
 
 #### 项目说明
 - platform-plus是一个轻量级的，前后端分离的Java快速开发平台
-- 代码生成工具已完美支持MySQL、Oracle
+- JavaDoc：https://apidoc.gitee.com/fuyang_lipengjun/platform-plus/
+- 前端地址：https://github.com/lipengjun92/platform-plus-ui
  
 #### 优势
 - 严格遵循阿里编码规约开发，便于阅读及二次开发
@@ -102,10 +103,28 @@ platform-plus
 
 **项目演示**
 - 演示地址：http://fly2you.cn/platform-plus/#/login
-- 账号密码：admin/admin
+- 账号密码：
+  - admin/admin
+  - test/888888
+  - test1/888888
+  - test2/888888
+  - test3/888888
+  - test4/888888
+  - test5/888888
+  - test6/888888
+  - test7/888888
+  - test8/888888
+  - test9/888888
+  - test10/888888
 
 
 **效果图：**
+- 流程操作
+![https://platform-wxmall.oss-cn-beijing.aliyuncs.com/upload/platform-plus/reprocdef.png](https://platform-wxmall.oss-cn-beijing.aliyuncs.com/upload/platform-plus/reprocdef.png "流程操作")
+- 模型管理
+![https://platform-wxmall.oss-cn-beijing.aliyuncs.com/upload/platform-plus/remodel.png](https://platform-wxmall.oss-cn-beijing.aliyuncs.com/upload/platform-plus/remodel.png "模型管理")
+- 流程编辑
+![https://platform-wxmall.oss-cn-beijing.aliyuncs.com/upload/platform-plus/editor.png](https://platform-wxmall.oss-cn-beijing.aliyuncs.com/upload/platform-plus/editor.png "流程编辑")
 - 菜单管理
 ![https://platform-wxmall.oss-cn-beijing.aliyuncs.com/upload/platform-plus/platform-plus.jpg](https://platform-wxmall.oss-cn-beijing.aliyuncs.com/upload/platform-plus/platform-plus.jpg "菜单管理")
 - 字典管理
@@ -123,6 +142,15 @@ platform-plus
 - mysql执行sql/mysql.sql文件(oracle执行sql/oracle.sql)，初始化数据
 - 修改application-dev.yml，修改MySQL、Oracle驱动、账号和密码
 - Eclipse、IDEA运行PlatformPlusApplication.java，则可启动项目
+- docker部署
+```
+# 在centos7 ~ 创建一个文件夹docker，里面放置Dockerfile 和 mvn 打包的项目platform-plus.jar
+# 在该docker文件下 指令：
+docker build -t docker .
+
+# 运行 Docker Image
+docker run -d -p 8888:8888 docker
+```
 - Swagger路径：http://localhost:8888/platform-plus/doc.html
 
 #### 提交反馈
