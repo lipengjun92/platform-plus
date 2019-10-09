@@ -154,12 +154,12 @@ platform-plus
 - 修改admin、api模块下application-dev.yml，修改MySQL、Oracle驱动、账号和密码
 - 运行PlatformAdminApplication.java启动后台管理接口服务
        
-       -接口：http://localhost:8888/platform-admin
+       -接口：http://localhost:8801/platform-admin
 - 运行PlatformApiApplication.java启动api接口服务
 
-        -接口：http://localhost:8889/platform-api
+        -接口：http://localhost:8802/platform-api
         
-- Swagger路径：http://localhost:8889/platform-api/doc.html
+- Swagger路径：http://localhost:8802/platform-api/doc.html
 
 #### 提交反馈
 1. 欢迎提交 issue，请写清楚遇到问题的原因，开发环境，复显步骤。
